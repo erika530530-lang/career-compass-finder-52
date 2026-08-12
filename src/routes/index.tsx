@@ -5,16 +5,16 @@ import { axisMeta, careers, diagnose, questions, type Axis } from "@/lib/careers
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "向いてる職業診断 | 18の質問で75職業からあなたの適職を判定" },
+      { title: "向いてる職業診断 | 18の質問で70以上の職業からあなたの適職を判定" },
       {
         name: "description",
         content:
-          "18の質問に答えるだけで、6つの適性タイプから75以上の職業の中から向いている仕事をランキング表示。無料・登録不要の適職診断。",
+          "18の質問に答えるだけで、6つの適性タイプから70以上の職業の中から向いている仕事をランキング表示。無料・登録不要の適職診断。",
       },
       { property: "og:title", content: "向いてる職業診断 | 18の質問であなたの適職がわかる" },
       {
         property: "og:description",
-        content: "6つの適性タイプを測定し、75以上の職業から向いている仕事をランキング表示します。",
+        content: "6つの適性タイプを測定し、70以上の職業から向いている仕事をランキング表示します。",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

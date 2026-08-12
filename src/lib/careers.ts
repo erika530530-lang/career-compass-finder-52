@@ -2,10 +2,10 @@ export type Axis = "R" | "I" | "A" | "S" | "E" | "C";
 
 export const axisMeta: Record<Axis, { label: string; short: string; desc: string }> = {
   R: { label: "現実型", short: "つくる・動かす", desc: "手や体、道具や機械を使って形にすることが得意" },
-  I: { label: "研究型", short: "考える・調べる", desc: "仕組みを解明し、論理と data で答えを出すのが得意" },
-  A: { label: "芸術型", short: "표현する・創る", desc: "感性と発想で新しい表現を生み出すのが得意" },
+  I: { label: "研究型", short: "考える・調べる", desc: "仕組みを解明し、論理とデータで答えを出すのが得意" },
+  A: { label: "芸術型", short: "表現する・創る", desc: "感性と発想で新しい表現を生み出すのが得意" },
   S: { label: "社会型", short: "支える・育てる", desc: "人と関わり、助け、成長を支えるのが得意" },
-  E: { label: "企業型", short: "動かす・巻き込む", desc: "people を導き、挑戦して成果を出すのが得意" },
+  E: { label: "企業型", short: "動かす・巻き込む", desc: "人を導き、挑戦して成果を出すのが得意" },
   C: { label: "慣習型", short: "整える・守る", desc: "正確さと段取りで秩序をつくるのが得意" },
 };
 
@@ -39,7 +39,7 @@ export const questions: Question[] = [
 export type Career = {
   name: string;
   category: string;
-  axes: Axis[];
+  axes: [Axis, Axis];
   desc: string;
 };
 

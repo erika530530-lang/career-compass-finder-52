@@ -17,6 +17,20 @@ import { PROVERB_QUESTIONS_PER_GAME, allProverbQuestions } from "./proverb-data"
 export type { Difficulty, GlyphQuestion };
 export { difficultyLabel } from "./questions/types";
 
+/** ゲームのカテゴリー（将来ゲームを増やすときはここに足すだけ） */
+export type GameCategoryId = "knowledge" | "words" | "geography" | "reasoning" | "memory" | "reflex";
+
+export type GameCategory = { id: GameCategoryId; label: string; emoji: string; blurb: string };
+
+export const gameCategories: GameCategory[] = [
+  { id: "knowledge", label: "知識", emoji: "🧠", blurb: "遊んでたら賢くなってるやつ" },
+  { id: "words", label: "言葉", emoji: "🗣️", blurb: "ことわざ・漢字・日本語" },
+  { id: "geography", label: "地理", emoji: "🌍", blurb: "国旗・地図・世界のこと" },
+  { id: "reasoning", label: "推理", emoji: "🔍", blurb: "ヒントから答えを推理" },
+  { id: "memory", label: "記憶", emoji: "🃏", blurb: "覚えて当てる（準備中）" },
+  { id: "reflex", label: "反射神経", emoji: "⚡️", blurb: "速さ勝負（準備中）" },
+];
+
 export type Game = {
   id: string;
   title: string;
@@ -28,10 +42,17 @@ export type Game = {
   estimatedTime: string;
   plays: number;
   createdAt: string;
+  /** 一覧の絞り込みに使うカテゴリー（主カテゴリー＋サブ） */
+  categories: GameCategoryId[];
+  /** 公開状態。false にすると一覧・sitemapから外れます */
+  published: boolean;
+  /** 結果画面から案内する「もっと知る」トピック。href未設定なら準備中表示 */
+  topic: { label: string; href?: string };
 };
 
 /** 1ゲームの出題数 */
 export const QUESTIONS_PER_GAME = 10;
+
 
 export const allGlyphQuestions: GlyphQuestion[] = [
   ...easyQuestions,

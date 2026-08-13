@@ -3,7 +3,7 @@ import { useState } from "react";
 import { trackShareClick } from "@/lib/analytics";
 import { SITE_URL } from "@/lib/site-config";
 
-export function ShareRow({ text, quizId }: { text: string; quizId?: string }) {
+export function ShareRow({ text, quizId }: { text: string; quizId?: string | undefined }) {
   const [copied, setCopied] = useState(false);
   const url = typeof window !== "undefined" ? window.location.href : SITE_URL;
   const full = `${text}\n#ピクセルポップ\n${url}`;

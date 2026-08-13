@@ -11,6 +11,7 @@ import { easyQuestions } from "./questions/easy";
 import { mediumQuestions } from "./questions/medium";
 import { hardQuestions } from "./questions/hard";
 import type { Difficulty, GlyphQuestion } from "./questions/types";
+import { COUNTRY_QUESTIONS_PER_GAME, allCountryQuestions } from "./country-data";
 
 export type { Difficulty, GlyphQuestion };
 export { difficultyLabel } from "./questions/types";
@@ -41,6 +42,18 @@ export const allGlyphQuestions: GlyphQuestion[] = [
 export const glyphQuestions = allGlyphQuestions;
 
 export const games: Game[] = [
+  {
+    id: "flag-country",
+    title: "この国、わかる？",
+    nickname: "国旗と国名クイズ",
+    description: `国旗と穴あき国名から国を当てよう！全${allCountryQuestions.length}か国から毎回ランダムに10問出題。2段階ヒントつきで、正解すると首都・地域・豆知識も読めます。`,
+    emoji: "🌍",
+    path: "/game/kokki",
+    questionCount: COUNTRY_QUESTIONS_PER_GAME,
+    estimatedTime: "約3分",
+    plays: 3120,
+    createdAt: "2026-08-13",
+  },
   {
     id: "kanji-glyph",
     title: "この象形文字、何の漢字？",

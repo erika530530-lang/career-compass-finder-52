@@ -25,11 +25,15 @@ export function GameCard({ game }: { game: Game }) {
       </div>
 
       <Link
-        to="/game/kanji"
+        to={game.path}
         onClick={() => track("game_card_click", { game_id: game.id })}
         className="block bg-story px-5 py-7 text-center"
       >
-        <Glyph name="eye" className="mx-auto size-16 text-primary-foreground" />
+        {game.id === "kanji-glyph" ? (
+          <Glyph name="eye" className="mx-auto size-16 text-primary-foreground" />
+        ) : (
+          <p className="text-5xl">{game.emoji}</p>
+        )}
         <h3 className="font-display mt-3 text-xl font-black leading-snug text-primary-foreground">
           {game.title}
         </h3>
@@ -38,7 +42,7 @@ export function GameCard({ game }: { game: Game }) {
       <div className="p-4">
         <p className="text-[13px] leading-relaxed text-muted-foreground">{game.description}</p>
         <Link
-          to="/game/kanji"
+          to={game.path}
           onClick={() => track("game_card_click", { game_id: game.id })}
           className="shadow-lift mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3.5 text-sm font-black text-primary-foreground active:scale-95"
         >
@@ -53,7 +57,7 @@ export function GameCard({ game }: { game: Game }) {
 export function GameRow({ game }: { game: Game }) {
   return (
     <Link
-      to="/game/kanji"
+      to={game.path}
       onClick={() => track("game_card_click", { game_id: game.id })}
       className="card-surface flex items-center gap-3 p-3"
     >

@@ -100,8 +100,7 @@ export function normalizeCountryAnswer(input: string) {
   v = kataToHira(v);
   // 「ゔ」は「ぶ」として扱う
   v = v.replace(/ゔ/g, "ぶ");
-  // 長音記号は直前の母音の繰り返しに開く（おー → おお）
-  const vowel: Record<string, string> = { あ: "あ", い: "い", う: "う", え: "え", お: "お" };
+  // 長音記号は直前の文字の母音に開く（おー → おお）
   const rows: Record<string, string> = {
     あ: "あ", か: "あ", さ: "あ", た: "あ", な: "あ", は: "あ", ま: "あ", や: "あ", ら: "あ", わ: "あ",
     が: "あ", ざ: "あ", だ: "あ", ば: "あ", ぱ: "あ", ゃ: "あ",
@@ -114,13 +113,10 @@ export function normalizeCountryAnswer(input: string) {
     お: "お", こ: "お", そ: "お", と: "お", の: "お", ほ: "お", も: "お", よ: "お", ろ: "お",
     ご: "お", ぞ: "お", ど: "お", ぼ: "お", ぽ: "お", ょ: "お", ぉ: "お",
   };
-  v = [...v]
-    .map((c, i, arr) => (c === "ー" ? (rows[arr[i - 1] ?? ""] ?? "") : c))
-    .join("");
-  // 母音の長音表記のゆれを吸収（おう→おお、えい→えー相当、連続母音の圧縮）
-  v = v.replace(/おう/g, "おお").replace(/えい/g, "えお".slice(0, 1) + "え");
-  v = v.replace(/(.)\1+/g, "$1");
-  void vowel;
+  v = [...v].map((c, i, arr) => (c === "ー" ? (rows[arr[i - 1] ?? ""] ?? "") : c)).join("");
+  // 「おう」と「おお」（おーすとらりあ／おうすとらりあ）を同一視し、伸ばした母音を1文字にそろえる
+  v = v.replace(/おう/g, "おお");
+  v = v.replace(/([あいうえお])\1+/g, "$1");
   return v;
 }
 
@@ -130,12 +126,6 @@ export function isCountryCorrect(input: string, q: CountryQuestion) {
   return q.acceptedAnswers.some((a) => normalizeCountryAnswer(a) === v);
 }
 
-
-export function isCountryCorrect(input: string, q: CountryQuestion) {
-  const v = normalizeCountryAnswer(input);
-  if (!v) return false;
-  return q.acceptedAnswers.some((a) => normalizeCountryAnswer(a) === v);
-}
 
 /* ---------- ランダム出題 ---------- */
 

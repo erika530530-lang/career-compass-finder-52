@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as GamesRouteImport } from './routes/games'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuizzesRouteImport } from './routes/quizzes'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -34,6 +35,11 @@ const AboutRoute = AboutRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GamesRoute = GamesRouteImport.update({
+  id: '/games',
+  path: '/games',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -81,6 +87,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/games': typeof GamesRoute
   '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/games': typeof GamesRoute
   '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -108,6 +116,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
+  '/games': typeof GamesRoute
   '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -123,6 +132,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/games'
     | '/privacy'
     | '/quizzes'
     | '/sitemap.xml'
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/games'
     | '/privacy'
     | '/quizzes'
     | '/sitemap.xml'
@@ -149,6 +160,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
+    | '/games'
     | '/privacy'
     | '/quizzes'
     | '/sitemap.xml'
@@ -163,6 +175,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
+  GamesRoute: typeof GamesRoute
   PrivacyRoute: typeof PrivacyRoute
   QuizzesRoute: typeof QuizzesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -194,6 +207,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/games': {
+      id: '/games'
+      path: '/games'
+      fullPath: '/games'
+      preLoaderRoute: typeof GamesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -259,6 +279,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
+  GamesRoute: GamesRoute,
   PrivacyRoute: PrivacyRoute,
   QuizzesRoute: QuizzesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

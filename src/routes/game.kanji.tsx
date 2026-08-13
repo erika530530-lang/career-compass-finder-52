@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Lightbulb, RotateCcw, Send } from "lucide-react";
 import { GlyphArt } from "@/components/glyph";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
-import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";
+import { BestScorePanel, NextUp } from "@/components/game-extras";
 import {
   QUESTIONS_PER_GAME,
   allGlyphQuestions,
@@ -15,7 +15,6 @@ import {
   rankFor,
   type GlyphQuestion,
 } from "@/lib/games/data";
-import { popularQuizzes } from "@/lib/quizzes/data";
 import { canonical } from "@/lib/site-config";
 import { track } from "@/lib/analytics";
 
@@ -57,9 +56,16 @@ function KanjiGame() {
 
   const total = questions.length || QUESTIONS_PER_GAME;
   const q = questions[index];
-  const game = games[0]!;
+  const game = games.find((g) => g.id === "kanji-glyph") ?? games[0]!;
   const correctCount = logs.filter((l) => l.cleared).length;
   const firstTryCount = logs.filter((l) => l.firstTry).length;
+  const bestStreak = logs.reduce(
+    (acc, l) => {
+      const cur = l.cleared ? acc.cur + 1 : 0;
+      return { cur, best: Math.max(acc.best, cur) };
+    },
+    { cur: 0, best: 0 },
+  ).best;
 
   function begin(replay = false) {
     setQuestions(pickQuestions());
@@ -116,7 +122,6 @@ function KanjiGame() {
 
   const percent = Math.round((correctCount / total) * 100);
   const rank = rankFor(percent);
-  const recommended = popularQuizzes.slice(0, 3);
   const lastLog = logs[logs.length - 1];
 
   return (
@@ -297,10 +302,16 @@ function KanjiGame() {
                   {rank.comment}
                 </p>
                 <p className="mt-2 text-[12px] text-muted-foreground">
-                  ヒントなしの一発正解は {firstTryCount}問でした。
+                  ヒントなしの一発正解は {firstTryCount}問／最高連続正解は {bestStreak}問でした。
                 </p>
                 <ShareRow
-                  text={`「この象形文字、何の漢字？」で${total}問中${correctCount}問正解（正答率${percent}%）。称号は「${rank.title}」でした！`}
+                  text={`象形文字クイズ🪨\n${total}問中${correctCount}問正解（正答率${percent}%）\n称号は「${rank.title}」！あなたは何問わかる？`}
+                />
+                <BestScorePanel
+                  gameId={game.id}
+                  score={correctCount}
+                  total={total}
+                  streak={bestStreak}
                 />
               </div>
             </div>
@@ -339,22 +350,7 @@ function KanjiGame() {
               <RotateCcw className="size-4" />
               もう一度遊ぶ（新しい10問）
             </button>
-            <Link
-              to="/quizzes"
-              search={{ cat: "game", sort: "popular" }}
-              className="mt-2 block rounded-full border border-border bg-card py-3.5 text-center text-sm font-black text-foreground active:scale-95"
-            >
-              次のゲームを見る 🎮
-            </Link>
-
-            <h3 className="font-display mt-7 px-1 text-base font-black text-foreground">
-              診断もやってみる？ 🔮
-            </h3>
-            <div className="mt-3 flex flex-col gap-3">
-              {recommended.map((quiz) => (
-                <QuizRow key={quiz.id} quiz={quiz} fromQuizId={game.id} />
-              ))}
-            </div>
+            <NextUp gameId={game.id} />
           </section>
         )}
 

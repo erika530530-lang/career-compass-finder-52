@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BookOpen, Flame, Trophy } from "lucide-react";
 import { GameRow } from "@/components/game-card";
 import { QuizRow } from "@/components/quiz-card";
@@ -29,8 +29,11 @@ export function BestScorePanel({
     isNewBest: boolean;
   } | null>(null);
   const [days, setDays] = useState(0);
+  const recorded = useRef(false);
 
   useEffect(() => {
+    if (recorded.current) return; // 開発時の二重実行で二重記録しない
+    recorded.current = true;
     const result = recordGamePlay(gameId, { score, total, streak });
     setData({ before: result.before, after: result.after, isNewBest: result.isNewBest });
     setDays(readPlayStreak());
@@ -68,9 +71,11 @@ export function BestScorePanel({
           ? "はじめてのプレイ！これがあなたの基準タイムです ⏱️"
           : isNewBest
             ? "自己ベスト更新！おめでとう 🎉"
-            : toBest === 1
-              ? "ベストスコアまであと1問！おしい 😤"
-              : `ベストスコアまであと${toBest}問。`}
+            : toBest <= 0
+              ? "自己ベストタイ。安定感がすごい 🧘"
+              : toBest === 1
+                ? "ベストスコアまであと1問！おしい 😤"
+                : `ベストスコアまであと${toBest}問。`}
       </p>
       <p className="mt-2 text-center text-[11px] text-muted-foreground">
         プレイ回数 {after.plays}回／最高連続正解 {after.bestStreak}問／最高正答率{" "}

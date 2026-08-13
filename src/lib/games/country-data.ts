@@ -8,6 +8,7 @@ import { mediumCountries } from "./countries/medium";
 import { hardCountries } from "./countries/hard";
 import {
   countryDifficultyLabel,
+  kataToHira,
   type CountryDifficulty,
   type CountryQuestion,
 } from "./countries/types";
@@ -91,10 +92,33 @@ export function maskName(name: string, difficulty: CountryDifficulty, pattern: M
 /* ---------- 正解判定 ---------- */
 
 export function normalizeCountryAnswer(input: string) {
-  return input
+  let v = input
     .normalize("NFKC")
-    .replace(/[\s\u3000・･]/g, "")
-    .trim();
+    .trim()
+    .replace(/[\s\u3000・･,，.。'’"”\-–—]/g, "")
+    .toLowerCase();
+  // カタカナ → ひらがな（「フランス」と「ふらんす」を同一視）
+  v = kataToHira(v);
+  // 「ゔ」は「ぶ」として扱う
+  v = v.replace(/ゔ/g, "ぶ");
+  // 長音記号は直前の文字の母音に開く（おー → おお）
+  const rows: Record<string, string> = {
+    あ: "あ", か: "あ", さ: "あ", た: "あ", な: "あ", は: "あ", ま: "あ", や: "あ", ら: "あ", わ: "あ",
+    が: "あ", ざ: "あ", だ: "あ", ば: "あ", ぱ: "あ", ゃ: "あ",
+    い: "い", き: "い", し: "い", ち: "い", に: "い", ひ: "い", み: "い", り: "い",
+    ぎ: "い", じ: "い", ぢ: "い", び: "い", ぴ: "い", ぃ: "い",
+    う: "う", く: "う", す: "う", つ: "う", ぬ: "う", ふ: "う", む: "う", ゆ: "う", る: "う",
+    ぐ: "う", ず: "う", づ: "う", ぶ: "う", ぷ: "う", ゅ: "う", ぅ: "う",
+    え: "え", け: "え", せ: "え", て: "え", ね: "え", へ: "え", め: "え", れ: "え",
+    げ: "え", ぜ: "え", で: "え", べ: "え", ぺ: "え", ぇ: "え",
+    お: "お", こ: "お", そ: "お", と: "お", の: "お", ほ: "お", も: "お", よ: "お", ろ: "お",
+    ご: "お", ぞ: "お", ど: "お", ぼ: "お", ぽ: "お", ょ: "お", ぉ: "お",
+  };
+  v = [...v].map((c, i, arr) => (c === "ー" ? (rows[arr[i - 1] ?? ""] ?? "") : c)).join("");
+  // 「おう」と「おお」（おーすとらりあ／おうすとらりあ）を同一視し、伸ばした母音を1文字にそろえる
+  v = v.replace(/おう/g, "おお");
+  v = v.replace(/([あいうえお])\1+/g, "$1");
+  return v;
 }
 
 export function isCountryCorrect(input: string, q: CountryQuestion) {
@@ -102,6 +126,7 @@ export function isCountryCorrect(input: string, q: CountryQuestion) {
   if (!v) return false;
   return q.acceptedAnswers.some((a) => normalizeCountryAnswer(a) === v);
 }
+
 
 /* ---------- ランダム出題 ---------- */
 

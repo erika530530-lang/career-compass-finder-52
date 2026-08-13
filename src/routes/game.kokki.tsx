@@ -163,7 +163,7 @@ function KokkiGame() {
             </div>
             <div className="p-5">
               <p className="text-[13px] leading-relaxed text-muted-foreground">
-                国旗と、一部が「□」で隠れた国名が表示されます。どの国かを推理して入力してください。
+                国旗と、一部が「□」で隠れた国名が表示されます。どの国かを推理して入力してください（ひらがなでもOK！）。
                 <br />
                 全{allCountryQuestions.length}か国のなかから
                 <span className="font-bold text-foreground">毎回ランダムに10問</span>
@@ -209,6 +209,7 @@ function KokkiGame() {
               <p className="mt-2 text-[13px] font-bold text-muted-foreground">
                 □に入る文字を考えて、国名を入力してください
               </p>
+              <p className="mt-1 text-[12px] font-bold text-primary">ひらがなでもOK！</p>
 
               <form onSubmit={submit} className="mt-4">
                 <input
@@ -219,7 +220,8 @@ function KokkiGame() {
                   }}
                   disabled={state === "correct"}
                   maxLength={24}
-                  placeholder="国名を入力してください"
+                  placeholder="国名を入力（ひらがなでもOK）"
+
                   className="w-full rounded-2xl border border-border bg-background px-4 py-3.5 text-center text-xl font-black text-foreground outline-none focus:border-primary disabled:opacity-70"
                 />
                 <button

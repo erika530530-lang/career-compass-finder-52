@@ -4,8 +4,11 @@ import { QuizCard, QuizRow } from "@/components/quiz-card";
 import { CategoryStrip } from "@/components/category-strip";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { GameCard } from "@/components/game-card";
-import { games } from "@/lib/games/data";
+import { DailyQuiz } from "@/components/daily-quiz";
+import { PlayStreakBadge } from "@/components/play-streak";
+import { publishedGames } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({

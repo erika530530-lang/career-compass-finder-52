@@ -6,6 +6,8 @@ import { categoryMap, scoreQuiz, type Quiz } from "@/lib/quizzes/types";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";
+import { GameRow } from "@/components/game-card";
+import { publishedGames } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
 import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analytics";
 
@@ -237,6 +239,21 @@ function ResultView({
           <QuizRow key={r.id} quiz={r} fromQuizId={quiz.id} />
         ))}
       </div>
+      <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">
+        次は頭を使うゲームもやってみる？ 🧠
+      </h2>
+      <div className="mt-3 grid gap-3 md:grid-cols-2">
+        {publishedGames.slice(0, 2).map((g) => (
+          <GameRow key={g.id} game={g} />
+        ))}
+      </div>
+      <Link
+        to="/games"
+        search={{ cat: "all" }}
+        className="mx-auto mt-3 flex min-h-12 w-full max-w-sm items-center justify-center rounded-full border border-border bg-card text-sm font-black text-foreground"
+      >
+        ゲームを全部見る 🕹️
+      </Link>
       <Link
         to="/quizzes"
         search={{ cat: "all", sort: "popular" }}

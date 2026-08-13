@@ -335,7 +335,7 @@ function ResultView({
       <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">
         次はこれやってみる？ 👀
       </h2>
-      <div className="mt-3 flex flex-col gap-3">
+      <div className="mt-3 grid gap-3 md:grid-cols-2">
         {recos.map((r) => (
           <QuizRow key={r.id} quiz={r} fromQuizId="tekishoku" />
         ))}

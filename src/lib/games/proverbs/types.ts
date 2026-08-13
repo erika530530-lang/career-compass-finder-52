@@ -6,6 +6,8 @@
  * 将来200問・300問に増やすときはタプルを足すだけで抽選対象になります。
  */
 
+import { getProverbIllustration, type ProverbIllustration } from "./illustrations";
+
 export type ProverbDifficulty = "easy" | "medium" | "hard";
 
 export const proverbDifficultyLabel: Record<ProverbDifficulty, string> = {
@@ -32,6 +34,8 @@ export type ProverbQuestion = {
   /** 4択（正解＋ダミー3つ。表示時にシャッフルします） */
   options: string[];
   difficulty: ProverbDifficulty;
+  /** 情景イラスト（未登録の問題は undefined） */
+  illustration?: ProverbIllustration | undefined;
 };
 
 /** データ定義用タプル：[id, ことわざ, 由来, 意味, 現代での使い方, 豆知識, ダミー1, ダミー2, ダミー3] */
@@ -61,5 +65,6 @@ export function buildProverbs(
     distractors: [d1, d2, d3],
     options: [proverb, d1, d2, d3],
     difficulty,
+    illustration: getProverbIllustration(id),
   }));
 }

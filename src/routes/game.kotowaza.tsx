@@ -155,6 +155,16 @@ function KotowazaGame() {
             </div>
 
             <div className="card-surface animate-pop mt-3 p-5 md:mx-auto md:max-w-lg md:p-7">
+              {q.illustration && (
+                <img
+                  src={q.illustration.url}
+                  alt={q.illustration.alt}
+                  loading="lazy"
+                  width={1024}
+                  height={640}
+                  className="mb-4 h-36 w-full rounded-2xl border border-border bg-secondary/40 object-contain sm:h-44 md:h-56"
+                />
+              )}
               <p className="text-[11px] font-black tracking-widest text-primary">由来</p>
               <p className="mt-2 text-[14px] leading-loose text-foreground">{q.origin}</p>
 
@@ -265,6 +275,16 @@ function KotowazaGame() {
             <div className="mt-3 flex flex-col gap-3 md:grid md:grid-cols-2">
               {logs.map((log, i) => (
                 <div key={log.round.q.id} className="card-surface p-4">
+                  {log.round.q.illustration && (
+                    <img
+                      src={log.round.q.illustration.url}
+                      alt={log.round.q.illustration.alt}
+                      loading="lazy"
+                      width={1024}
+                      height={640}
+                      className="mb-2 h-28 w-full rounded-xl border border-border bg-secondary/40 object-contain"
+                    />
+                  )}
                   <p className="text-[11px] font-bold text-muted-foreground">
                     第{i + 1}問・{proverbDifficultyLabel[log.round.q.difficulty]}・
                     {log.cleared ? "正解 ⭕️" : "不正解 ❌"}

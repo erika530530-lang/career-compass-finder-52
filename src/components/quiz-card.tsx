@@ -73,7 +73,3 @@ export function QuizRow({ quiz }: { quiz: Quiz }) {
     </QuizLink>
   );
 }
-
-export function NextUpSection({ ids, currentId }: { ids: string[]; currentId: string }) {
-  return null;
-}

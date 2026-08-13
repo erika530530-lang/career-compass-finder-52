@@ -277,6 +277,7 @@ function ResultView({
         </div>
 
         <ShareRow
+          quizId="tekishoku"
           text={`私は${result.top.map((a) => axisMeta[a].label).slice(0, 2).join("×")}タイプ！1位は「${result.matches[0]!.career.name}」`}
         />
       </div>
@@ -336,7 +337,7 @@ function ResultView({
       </h2>
       <div className="mt-3 flex flex-col gap-3">
         {recos.map((r) => (
-          <QuizRow key={r.id} quiz={r} />
+          <QuizRow key={r.id} quiz={r} fromQuizId="tekishoku" />
         ))}
       </div>
       <Link

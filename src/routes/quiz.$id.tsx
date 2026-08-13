@@ -216,7 +216,10 @@ function ResultView({
           <Block title="良いところ" items={band.good} />
           <Block title="注意点" items={band.caution} />
 
-          <ShareRow text={`私の${quiz.metricLabel}は${percent}%でした${band.emoji}「${band.title}」`} />
+          <ShareRow
+            quizId={quiz.id}
+            text={`私の${quiz.metricLabel}は${percent}%でした${band.emoji}「${band.title}」`}
+          />
           <button
             onClick={onRestart}
             className="mt-2 w-full rounded-full border border-border bg-card py-3 text-sm font-black text-foreground"
@@ -231,7 +234,7 @@ function ResultView({
       </h2>
       <div className="mt-3 flex flex-col gap-3">
         {recos.map((r) => (
-          <QuizRow key={r.id} quiz={r} />
+          <QuizRow key={r.id} quiz={r} fromQuizId={quiz.id} />
         ))}
       </div>
       <Link

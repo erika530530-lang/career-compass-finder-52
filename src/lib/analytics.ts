@@ -1,0 +1,37 @@
+import { GA4_MEASUREMENT_ID } from "./site-config";
+
+type Params = Record<string, string | number | boolean | undefined>;
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
+}
+
+export const gaEnabled = () => GA4_MEASUREMENT_ID.length > 0;
+
+/**
+ * GA4イベント送信。個人を特定できる情報（名前・メール・自由入力文）は
+ * 絶対に params に入れないこと。診断ID・結果バンド名などの非個人情報のみ。
+ */
+export function track(event: string, params: Params = {}) {
+  if (typeof window === "undefined" || !window.gtag) return;
+  window.gtag("event", event, params);
+}
+
+export const trackPageView = (path: string) => {
+  if (typeof window === "undefined" || !window.gtag) return;
+  window.gtag("event", "page_view", { page_path: path, page_location: window.location.href });
+};
+
+export const trackQuizStart = (quizId: string) => track("quiz_start", { quiz_id: quizId });
+export const trackQuizComplete = (quizId: string, resultLabel: string) =>
+  track("quiz_complete", { quiz_id: quizId, result: resultLabel });
+export const trackResultView = (quizId: string, resultLabel: string) =>
+  track("quiz_result_view", { quiz_id: quizId, result: resultLabel });
+export const trackNextQuizClick = (fromId: string, toId: string) =>
+  track("next_quiz_click", { from_quiz_id: fromId, to_quiz_id: toId });
+export const trackShareClick = (channel: string, quizId?: string) =>
+  track("share_click", { channel, quiz_id: quizId });
+export const trackOutboundClick = (url: string) => track("outbound_click", { link_url: url });

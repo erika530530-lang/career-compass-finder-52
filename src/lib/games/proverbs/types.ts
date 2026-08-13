@@ -35,7 +35,7 @@ export type ProverbQuestion = {
   options: string[];
   difficulty: ProverbDifficulty;
   /** 情景イラスト（未登録の問題は undefined） */
-  illustration?: ProverbIllustration;
+  illustration?: ProverbIllustration | undefined;
 };
 
 /** データ定義用タプル：[id, ことわざ, 由来, 意味, 現代での使い方, 豆知識, ダミー1, ダミー2, ダミー3] */

@@ -107,8 +107,8 @@ export function GlyphArt({
   className,
 }: {
   paths: string[];
-  dots?: [number, number, number?][];
-  className?: string;
+  dots?: [number, number, number?][] | undefined;
+  className?: string | undefined;
 }) {
   return (
     <svg viewBox="0 0 100 100" role="img" aria-label="象形文字" className={className}>

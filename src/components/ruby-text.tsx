@@ -1,4 +1,7 @@
+import type { ReactNode } from "react";
 import { furiganaFor } from "@/lib/games/proverbs/furigana";
+
+const TOKEN = /([^\s{}]+?)\{([^{}]+)\}/g;
 
 /**
  * 「漢字{よみ}」記法を <ruby> に変換して表示する。
@@ -6,20 +9,21 @@ import { furiganaFor } from "@/lib/games/proverbs/furigana";
  */
 export function RubyText({ text, className }: { text: string; className?: string }) {
   const annotated = furiganaFor(text);
-  const parts = annotated.split(/([\u3400-\u9fff々]+\{[^{}]+\})/g).filter(Boolean);
+  const nodes: ReactNode[] = [];
+  let last = 0;
+  let m: RegExpExecArray | null;
+  TOKEN.lastIndex = 0;
+  while ((m = TOKEN.exec(annotated))) {
+    if (m.index > last) nodes.push(annotated.slice(last, m.index));
+    nodes.push(
+      <ruby key={m.index} className="ruby-text">
+        {m[1]}
+        <rt>{m[2]}</rt>
+      </ruby>,
+    );
+    last = m.index + m[0].length;
+  }
+  if (last < annotated.length) nodes.push(annotated.slice(last));
 
-  return (
-    <span className={className}>
-      {parts.map((part, i) => {
-        const m = /^([\u3400-\u9fff々]+)\{([^{}]+)\}$/.exec(part);
-        if (!m) return <span key={i}>{part}</span>;
-        return (
-          <ruby key={i} className="ruby-text">
-            {m[1]}
-            <rt>{m[2]}</rt>
-          </ruby>
-        );
-      })}
-    </span>
-  );
+  return <span className={className}>{nodes}</span>;
 }

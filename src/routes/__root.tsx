@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "向いてる職業診断" },
-      { name: "description", content: "18の質問であなたに向いている職業を診断します。" },
-      
-      { property: "og:title", content: "向いてる職業診断" },
-      { property: "og:description", content: "18の質問であなたに向いている職業を診断します。" },
+      { title: "ピクセルポップ | 暇つぶしできる診断、いっぱいあります。" },
+      {
+        name: "description",
+        content:
+          "適職・性格・恋愛・お金・人間関係。1〜3分で終わる診断を無料・登録不要で楽しめるサイト、ピクセルポップ。",
+      },
+      { property: "og:site_name", content: SITE_NAME },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      ...(GSC_VERIFICATION_CODE
+        ? [{ name: "google-site-verification", content: GSC_VERIFICATION_CODE }]
+        : []),
     ],
     links: [
       {
@@ -99,6 +103,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
+    scripts: GA4_MEASUREMENT_ID
+      ? [
+          {
+            src: `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`,
+            async: true,
+          },
+          {
+            children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${GA4_MEASUREMENT_ID}',{anonymize_ip:true,send_page_view:true});`,
+          },
+        ]
+      : [],
   }),
   shellComponent: RootShell,
   component: RootComponent,

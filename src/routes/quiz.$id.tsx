@@ -1,11 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Sparkles } from "lucide-react";
 import { getQuiz, quizzes } from "@/lib/quizzes/data";
 import { categoryMap, scoreQuiz, type Quiz } from "@/lib/quizzes/types";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";
+import { canonical } from "@/lib/site-config";
+import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analytics";
 
 export const Route = createFileRoute("/quiz/$id")({
   loader: ({ params }) => {
@@ -13,20 +15,24 @@ export const Route = createFileRoute("/quiz/$id")({
     if (!quiz || quiz.kind !== "percent") throw notFound();
     return { quiz };
   },
-  head: ({ loaderData }) => {
+  head: ({ params, loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "診断が見つかりません | ピクセルポップ" }, { name: "robots", content: "noindex" }] };
+      return { meta: [{ title: "診断が見つかりません｜ピクセルポップ" }, { name: "robots", content: "noindex" }] };
     }
     const q = loaderData.quiz;
+    const title = `${q.title}｜${q.nickname ?? q.metricLabel}診断｜ピクセルポップ`;
+    const url = canonical(`/quiz/${params.id}`);
     return {
       meta: [
-        { title: `${q.title} | ピクセルポップ` },
+        { title },
         { name: "description", content: q.description },
-        { property: "og:title", content: `${q.title} | ピクセルポップ` },
+        { property: "og:title", content: title },
         { property: "og:description", content: q.description },
         { property: "og:type", content: "website" },
+        { property: "og:url", content: url },
         { name: "twitter:card", content: "summary_large_image" },
       ],
+      links: [{ rel: "canonical", href: url }],
     };
   },
   component: QuizPage,
@@ -46,10 +52,22 @@ function QuizPage() {
 
   const q = quiz.questions[step]!;
 
+  useEffect(() => {
+    if (stage === "result" && result) {
+      trackQuizComplete(quiz.id, result.band.title);
+      trackResultView(quiz.id, result.band.title);
+    }
+  }, [stage, result, quiz.id]);
+
   function answer(score: number) {
     setAnswers({ ...answers, [q.id]: score });
     if (step + 1 >= quiz.questions.length) setStage("result");
     else setStep(step + 1);
+  }
+
+  function start() {
+    trackQuizStart(quiz.id);
+    setStage("quiz");
   }
 
   return (

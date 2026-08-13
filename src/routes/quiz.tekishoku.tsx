@@ -12,20 +12,22 @@ import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analyt
 export const Route = createFileRoute("/quiz/tekishoku")({
   head: () => ({
     meta: [
-      { title: "てきしょく診断 | 18問で70職業からあなたの適職を判定 - ピクセルポップ" },
+      { title: "きみに向いてる仕事、なに？｜てきしょく｜ピクセルポップ" },
       {
         name: "description",
         content:
           "18の質問に答えるだけで、6つの適性タイプから70以上の職業の中から向いている仕事をランキング表示。無料・登録不要の適職診断。",
       },
-      { property: "og:title", content: "てきしょく診断 | 18問であなたの適職がわかる" },
+      { property: "og:title", content: "きみに向いてる仕事、なに？｜てきしょく｜ピクセルポップ" },
       {
         property: "og:description",
         content: "6つの適性タイプを測定し、70以上の職業から向いている仕事をランキング表示します。",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonical("/quiz/tekishoku") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: canonical("/quiz/tekishoku") }],
   }),
   component: Tekishoku,
 });
@@ -56,7 +58,7 @@ function Tekishoku() {
 
   useEffect(() => {
     if (stage === "result" && result) {
-      const label = result.top?.[0]?.axis ?? "unknown";
+      const label = result.top[0] ?? "unknown";
       trackQuizComplete("tekishoku", String(label));
       trackResultView("tekishoku", String(label));
     }

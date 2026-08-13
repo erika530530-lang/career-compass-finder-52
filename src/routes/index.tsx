@@ -17,7 +17,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "適職・性格・恋愛・お金・人間関係。1〜3分で終わる診断を無料・登録不要で。結果はそのままシェアできます。",
+          "診断・漢字・ことわざ・国旗の知識クイズが遊べる暇つぶしサイト。毎日かわる「今日のピクセルクイズ」つき。無料・登録不要で結果をシェアできます。",
       },
       { property: "og:title", content: "ピクセルポップ | 暇つぶしできる診断、いっぱいあります。" },
       {
@@ -111,6 +111,13 @@ function Home() {
           className="shadow-lift mx-auto mt-6 block w-full max-w-sm rounded-full bg-primary py-3.5 text-center text-sm font-black text-primary-foreground"
         >
           カテゴリーから探す
+        </Link>
+        <Link
+          to="/games"
+          search={{ cat: "all" }}
+          className="mx-auto mt-2 block w-full max-w-sm rounded-full border border-border bg-card py-3.5 text-center text-sm font-black text-foreground"
+        >
+          知識ゲームを探す 🕹️
         </Link>
 
         <SiteFooter />

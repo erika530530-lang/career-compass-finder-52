@@ -3,6 +3,8 @@ import { newestQuizzes, popularQuizzes } from "@/lib/quizzes/data";
 import { categories, type CategoryId } from "@/lib/quizzes/types";
 import { QuizRow } from "@/components/quiz-card";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
+import { GameRow } from "@/components/game-card";
+import { games } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
 
 type Search = { cat: CategoryId | "all"; sort: "popular" | "new" };
@@ -81,11 +83,24 @@ function QuizzesPage() {
           ))}
         </div>
 
+        {(cat === "all" || cat === "game") && (
+          <div className="mt-5">
+            <h2 className="font-display px-1 text-base font-black text-foreground">
+              ミニゲーム 🎮
+            </h2>
+            <div className="mt-3 flex flex-col gap-3">
+              {games.map((g) => (
+                <GameRow key={g.id} game={g} />
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="mt-5 flex flex-col gap-3">
           {list.map((q) => (
             <QuizRow key={q.id} quiz={q} />
           ))}
-          {list.length === 0 && (
+          {list.length === 0 && cat !== "game" && (
             <p className="card-surface p-6 text-center text-sm text-muted-foreground">
               このカテゴリーの診断はまだ準備中。近日追加します 🛠️
             </p>

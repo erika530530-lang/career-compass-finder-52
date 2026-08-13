@@ -5,7 +5,8 @@ export type CategoryId =
   | "money"
   | "social"
   | "fun"
-  | "future";
+  | "future"
+  | "game";
 
 export type Category = {
   id: CategoryId;
@@ -22,6 +23,7 @@ export const categories: Category[] = [
   { id: "social", label: "人間関係", emoji: "👥", tagline: "友だち・家族・学校" },
   { id: "fun", label: "ネタ", emoji: "😂", tagline: "笑える系だけ集めた" },
   { id: "future", label: "将来", emoji: "🔮", tagline: "これからの自分を占う" },
+  { id: "game", label: "ゲーム", emoji: "🎮", tagline: "頭を使うミニゲーム" },
 ];
 
 export const categoryMap: Record<CategoryId, Category> = categories.reduce(

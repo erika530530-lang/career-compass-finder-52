@@ -1,11 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Sparkles } from "lucide-react";
 import { axisMeta, careers, diagnose, questions, type Axis } from "@/lib/careers";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";
 import { quizzes } from "@/lib/quizzes/data";
+import { canonical } from "@/lib/site-config";
+import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analytics";
 
 export const Route = createFileRoute("/quiz/tekishoku")({
   head: () => ({
@@ -51,6 +53,14 @@ function Tekishoku() {
   const [answers, setAnswers] = useState<Record<number, number>>({});
 
   const result = useMemo(() => (stage === "result" ? diagnose(answers) : null), [stage, answers]);
+
+  useEffect(() => {
+    if (stage === "result" && result) {
+      const label = result.top?.[0]?.axis ?? "unknown";
+      trackQuizComplete("tekishoku", String(label));
+      trackResultView("tekishoku", String(label));
+    }
+  }, [stage, result]);
   const q = questions[step]!;
 
   function answer(v: number) {
@@ -64,7 +74,7 @@ function Tekishoku() {
       <div className="mx-auto w-full max-w-md px-4 pb-24 pt-4">
         <SiteHeader tagline={false} />
 
-        {stage === "intro" && <Intro onStart={() => setStage("quiz")} />}
+        {stage === "intro" && <Intro onStart={() => { trackQuizStart("tekishoku"); setStage("quiz"); }} />}
         {stage === "quiz" && <Quiz step={step} onAnswer={answer} onBack={() => setStep(step - 1)} />}
         {stage === "result" && result && (
           <ResultView

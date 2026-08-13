@@ -91,7 +91,7 @@ function QuizPage() {
             <div className="p-4">
               <p className="text-[13px] leading-relaxed text-muted-foreground">{quiz.description}</p>
               <button
-                onClick={() => setStage("quiz")}
+                onClick={start}
                 className="shadow-lift mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-primary py-4 text-base font-black text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"
               >
                 <Sparkles className="size-5" />

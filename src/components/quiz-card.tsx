@@ -54,10 +54,10 @@ export function QuizCard({ quiz, rank }: { quiz: Quiz; rank?: number }) {
   );
 }
 
-export function QuizRow({ quiz }: { quiz: Quiz }) {
+export function QuizRow({ quiz, fromQuizId }: { quiz: Quiz; fromQuizId?: string | undefined }) {
   const cat = categoryMap[quiz.category];
   return (
-    <QuizLink quiz={quiz} className="card-surface flex items-center gap-3 p-3">
+    <QuizLink quiz={quiz} fromQuizId={fromQuizId} className="card-surface flex items-center gap-3 p-3">
       <div className="story-ring shrink-0">
         <div className="flex size-11 items-center justify-center rounded-full bg-card text-xl">
           {quiz.emoji}

@@ -1,29 +1,33 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Sparkles } from "lucide-react";
 import { axisMeta, careers, diagnose, questions, type Axis } from "@/lib/careers";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";
 import { quizzes } from "@/lib/quizzes/data";
+import { canonical } from "@/lib/site-config";
+import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analytics";
 
 export const Route = createFileRoute("/quiz/tekishoku")({
   head: () => ({
     meta: [
-      { title: "てきしょく診断 | 18問で70職業からあなたの適職を判定 - ピクセルポップ" },
+      { title: "きみに向いてる仕事、なに？｜てきしょく｜ピクセルポップ" },
       {
         name: "description",
         content:
           "18の質問に答えるだけで、6つの適性タイプから70以上の職業の中から向いている仕事をランキング表示。無料・登録不要の適職診断。",
       },
-      { property: "og:title", content: "てきしょく診断 | 18問であなたの適職がわかる" },
+      { property: "og:title", content: "きみに向いてる仕事、なに？｜てきしょく｜ピクセルポップ" },
       {
         property: "og:description",
         content: "6つの適性タイプを測定し、70以上の職業から向いている仕事をランキング表示します。",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonical("/quiz/tekishoku") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: canonical("/quiz/tekishoku") }],
   }),
   component: Tekishoku,
 });
@@ -51,6 +55,14 @@ function Tekishoku() {
   const [answers, setAnswers] = useState<Record<number, number>>({});
 
   const result = useMemo(() => (stage === "result" ? diagnose(answers) : null), [stage, answers]);
+
+  useEffect(() => {
+    if (stage === "result" && result) {
+      const label = result.top[0] ?? "unknown";
+      trackQuizComplete("tekishoku", String(label));
+      trackResultView("tekishoku", String(label));
+    }
+  }, [stage, result]);
   const q = questions[step]!;
 
   function answer(v: number) {
@@ -64,7 +76,7 @@ function Tekishoku() {
       <div className="mx-auto w-full max-w-md px-4 pb-24 pt-4">
         <SiteHeader tagline={false} />
 
-        {stage === "intro" && <Intro onStart={() => setStage("quiz")} />}
+        {stage === "intro" && <Intro onStart={() => { trackQuizStart("tekishoku"); setStage("quiz"); }} />}
         {stage === "quiz" && <Quiz step={step} onAnswer={answer} onBack={() => setStep(step - 1)} />}
         {stage === "result" && result && (
           <ResultView
@@ -265,6 +277,7 @@ function ResultView({
         </div>
 
         <ShareRow
+          quizId="tekishoku"
           text={`私は${result.top.map((a) => axisMeta[a].label).slice(0, 2).join("×")}タイプ！1位は「${result.matches[0]!.career.name}」`}
         />
       </div>
@@ -324,7 +337,7 @@ function ResultView({
       </h2>
       <div className="mt-3 flex flex-col gap-3">
         {recos.map((r) => (
-          <QuizRow key={r.id} quiz={r} />
+          <QuizRow key={r.id} quiz={r} fromQuizId="tekishoku" />
         ))}
       </div>
       <Link

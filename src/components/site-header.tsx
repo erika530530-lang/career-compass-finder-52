@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Bookmark, Heart, Send } from "lucide-react";
+import { HAS_TERMS_PAGE } from "@/lib/site-config";
 
 export function SiteHeader({ tagline = true }: { tagline?: boolean }) {
   return (
@@ -24,13 +25,35 @@ export function SiteHeader({ tagline = true }: { tagline?: boolean }) {
 }
 
 export function SiteFooter() {
+  const linkClass = "font-bold text-primary";
   return (
-    <footer className="mt-10 space-y-2 text-center text-[11px] leading-relaxed text-muted-foreground">
+    <footer className="mt-10 space-y-3 text-center text-[11px] leading-relaxed text-muted-foreground">
       <p>
-        <Link to="/quizzes" search={{ cat: "all", sort: "popular" }} className="font-bold text-primary">
+        <Link to="/quizzes" search={{ cat: "all", sort: "popular" }} className={linkClass}>
           診断をもっと見る
         </Link>
       </p>
+      <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+        <Link to="/about" className={linkClass}>
+          サイトについて
+        </Link>
+        <span aria-hidden>·</span>
+        <Link to="/privacy" className={linkClass}>
+          プライバシーポリシー
+        </Link>
+        <span aria-hidden>·</span>
+        <Link to="/contact" className={linkClass}>
+          お問い合わせ
+        </Link>
+        {HAS_TERMS_PAGE && (
+          <>
+            <span aria-hidden>·</span>
+            <a href="/terms" className={linkClass}>
+              利用規約
+            </a>
+          </>
+        )}
+      </nav>
       <p>ピクセルポップ｜暇なときに遊べる診断とエンタメ 🎈</p>
     </footer>
   );

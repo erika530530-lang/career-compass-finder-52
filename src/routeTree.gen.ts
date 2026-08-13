@@ -10,7 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as QuizzesRouteImport } from './routes/quizzes'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as QuizIdRouteImport } from './routes/quiz.$id'
 import { Route as QuizTekishokuRouteImport } from './routes/quiz.tekishoku'
 
@@ -19,9 +23,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuizzesRoute = QuizzesRouteImport.update({
   id: '/quizzes',
   path: '/quizzes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QuizIdRoute = QuizIdRouteImport.update({
@@ -37,34 +61,75 @@ const QuizTekishokuRoute = QuizTekishokuRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/quiz/$id': typeof QuizIdRoute
   '/quiz/tekishoku': typeof QuizTekishokuRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/quiz/$id': typeof QuizIdRoute
   '/quiz/tekishoku': typeof QuizTekishokuRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/privacy': typeof PrivacyRoute
   '/quizzes': typeof QuizzesRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/quiz/$id': typeof QuizIdRoute
   '/quiz/tekishoku': typeof QuizTekishokuRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/quizzes' | '/quiz/$id' | '/quiz/tekishoku'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/privacy'
+    | '/quizzes'
+    | '/sitemap.xml'
+    | '/quiz/$id'
+    | '/quiz/tekishoku'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/quizzes' | '/quiz/$id' | '/quiz/tekishoku'
-  id: '__root__' | '/' | '/quizzes' | '/quiz/$id' | '/quiz/tekishoku'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/privacy'
+    | '/quizzes'
+    | '/sitemap.xml'
+    | '/quiz/$id'
+    | '/quiz/tekishoku'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/privacy'
+    | '/quizzes'
+    | '/sitemap.xml'
+    | '/quiz/$id'
+    | '/quiz/tekishoku'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  PrivacyRoute: typeof PrivacyRoute
   QuizzesRoute: typeof QuizzesRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   QuizIdRoute: typeof QuizIdRoute
   QuizTekishokuRoute: typeof QuizTekishokuRoute
 }
@@ -78,11 +143,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quizzes': {
       id: '/quizzes'
       path: '/quizzes'
       fullPath: '/quizzes'
       preLoaderRoute: typeof QuizzesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/quiz/$id': {
@@ -104,7 +197,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  PrivacyRoute: PrivacyRoute,
   QuizzesRoute: QuizzesRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   QuizIdRoute: QuizIdRoute,
   QuizTekishokuRoute: QuizTekishokuRoute,
 }

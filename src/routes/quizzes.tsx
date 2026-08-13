@@ -3,6 +3,7 @@ import { newestQuizzes, popularQuizzes } from "@/lib/quizzes/data";
 import { categories, type CategoryId } from "@/lib/quizzes/types";
 import { QuizRow } from "@/components/quiz-card";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
+import { canonical } from "@/lib/site-config";
 
 type Search = { cat: CategoryId | "all"; sort: "popular" | "new" };
 
@@ -13,20 +14,22 @@ export const Route = createFileRoute("/quizzes")({
   }),
   head: () => ({
     meta: [
-      { title: "診断を探す | ピクセルポップ" },
+      { title: "診断を探す｜カテゴリー別・人気順｜ピクセルポップ" },
       {
         name: "description",
         content:
           "仕事・性格・恋愛・お金・人間関係・ネタ・将来。ピクセルポップの診断を人気順や新着順、カテゴリー別に探せます。",
       },
-      { property: "og:title", content: "診断を探す | ピクセルポップ" },
+      { property: "og:title", content: "診断を探す｜カテゴリー別・人気順｜ピクセルポップ" },
       {
         property: "og:description",
         content: "暇つぶしにちょうどいい診断を人気順・新着順・カテゴリー別に探そう。",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonical("/quizzes") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: canonical("/quizzes") }],
   }),
   component: QuizzesPage,
 });

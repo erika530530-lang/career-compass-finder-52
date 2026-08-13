@@ -3,6 +3,7 @@ import { newestQuizzes, popularQuizzes } from "@/lib/quizzes/data";
 import { QuizCard, QuizRow } from "@/components/quiz-card";
 import { CategoryStrip } from "@/components/category-strip";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
+import { canonical } from "@/lib/site-config";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,8 +20,10 @@ export const Route = createFileRoute("/")({
         content: "1〜3分で終わる診断が集まったサイト。無料・登録不要で結果をシェアしよう。",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonical("/") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [{ rel: "canonical", href: canonical("/") }],
   }),
   component: Home,
 });

@@ -1,4 +1,5 @@
 import { defaultScale, type Quiz, type QuizQuestion } from "./types";
+import { extraQuizzes } from "./data-extra";
 
 function qs(texts: string[]): QuizQuestion[] {
   return texts.map((text, i) => ({ id: i + 1, text, choices: defaultScale() }));
@@ -524,7 +525,7 @@ const percentQuizzes: Quiz[] = [
   },
 ];
 
-export const quizzes: Quiz[] = [tekishoku, ...percentQuizzes];
+export const quizzes: Quiz[] = [tekishoku, ...percentQuizzes, ...extraQuizzes];
 
 export function getQuiz(id: string): Quiz | undefined {
   return quizzes.find((q) => q.id === id);

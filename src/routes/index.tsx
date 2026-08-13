@@ -27,7 +27,9 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const featured = popularQuizzes.slice(0, 3);
-  const rest = popularQuizzes.slice(3);
+  const newest = newestQuizzes.filter((q) => !featured.includes(q)).slice(0, 4);
+  const shown = new Set([...featured, ...newest].map((q) => q.id));
+  const rest = popularQuizzes.filter((q) => !shown.has(q.id));
 
   return (
     <main className="min-h-screen bg-hero">
@@ -48,7 +50,7 @@ function Home() {
           新着の診断 🆕
         </h2>
         <div className="mt-3 flex flex-col gap-3">
-          {newestQuizzes.slice(0, 4).map((q) => (
+          {newest.map((q) => (
             <QuizRow key={q.id} quiz={q} />
           ))}
         </div>

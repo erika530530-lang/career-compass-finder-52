@@ -97,3 +97,27 @@ export function Glyph({ name, className }: { name: string; className?: string })
     </svg>
   );
 }
+
+/**
+ * 問題データの paths / dots をそのまま描画する汎用の象形文字ビュー。
+ */
+export function GlyphArt({
+  paths,
+  dots,
+  className,
+}: {
+  paths: string[];
+  dots?: [number, number, number?][] | undefined;
+  className?: string | undefined;
+}) {
+  return (
+    <svg viewBox="0 0 100 100" role="img" aria-label="象形文字" className={className}>
+      {paths.map((d, i) => (
+        <path key={i} {...S} d={d} />
+      ))}
+      {dots?.map(([cx, cy, r], i) => (
+        <circle key={`d${i}`} cx={cx} cy={cy} r={r ?? 5} fill="currentColor" />
+      ))}
+    </svg>
+  );
+}

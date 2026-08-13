@@ -46,6 +46,42 @@ import p2033 from "@/assets/proverbs/p2033.jpg";
 import p2034 from "@/assets/proverbs/p2034.jpg";
 import p2035 from "@/assets/proverbs/p2035.jpg";
 import p2036 from "@/assets/proverbs/p2036.jpg";
+import p3001 from "@/assets/proverbs/p3001.jpg";
+import p3002 from "@/assets/proverbs/p3002.jpg";
+import p3003 from "@/assets/proverbs/p3003.jpg";
+import p3004 from "@/assets/proverbs/p3004.jpg";
+import p3005 from "@/assets/proverbs/p3005.jpg";
+import p3006 from "@/assets/proverbs/p3006.jpg";
+import p3007 from "@/assets/proverbs/p3007.jpg";
+import p3008 from "@/assets/proverbs/p3008.jpg";
+import p3009 from "@/assets/proverbs/p3009.jpg";
+import p3010 from "@/assets/proverbs/p3010.jpg";
+import p3011 from "@/assets/proverbs/p3011.jpg";
+import p3012 from "@/assets/proverbs/p3012.jpg";
+import p3013 from "@/assets/proverbs/p3013.jpg";
+import p3014 from "@/assets/proverbs/p3014.jpg";
+import p3015 from "@/assets/proverbs/p3015.jpg";
+import p3016 from "@/assets/proverbs/p3016.jpg";
+import p3017 from "@/assets/proverbs/p3017.jpg";
+import p3018 from "@/assets/proverbs/p3018.jpg";
+import p3019 from "@/assets/proverbs/p3019.jpg";
+import p3020 from "@/assets/proverbs/p3020.jpg";
+import p3021 from "@/assets/proverbs/p3021.jpg";
+import p3022 from "@/assets/proverbs/p3022.jpg";
+import p3023 from "@/assets/proverbs/p3023.jpg";
+import p3024 from "@/assets/proverbs/p3024.jpg";
+import p3025 from "@/assets/proverbs/p3025.jpg";
+import p3026 from "@/assets/proverbs/p3026.jpg";
+import p3027 from "@/assets/proverbs/p3027.jpg";
+import p3028 from "@/assets/proverbs/p3028.jpg";
+import p3029 from "@/assets/proverbs/p3029.jpg";
+import p3030 from "@/assets/proverbs/p3030.jpg";
+import p3031 from "@/assets/proverbs/p3031.jpg";
+import p3032 from "@/assets/proverbs/p3032.jpg";
+import p3033 from "@/assets/proverbs/p3033.jpg";
+import p3034 from "@/assets/proverbs/p3034.jpg";
+import p3035 from "@/assets/proverbs/p3035.jpg";
+import p3036 from "@/assets/proverbs/p3036.jpg";
 
 export type ProverbIllustration = {
   /** 画像URL（import した静的アセット、または外部URL） */
@@ -91,6 +127,42 @@ export const proverbIllustrations: Record<number, ProverbIllustration> = {
   2034: { url: p2034, alt: "目からうろこのようなものが落ちて、急に世界がはっきり見えた人の絵" },
   2035: { url: p2035, alt: "白い羽の矢が家の屋根に突き立ち、家族がおどろいて指さす絵" },
   2036: { url: p2036, alt: "泳ぎ上手なカッパが、川の流れに押し流されてあわてている絵" },
+  3001: { url: p3001, alt: "夜の関所で鶏の鳴きまねをする男と、犬のように忍び込む男の絵" },
+  3002: { url: p3002, alt: "かたい友情で結ばれた将軍と大臣が、笑って手を取り合う絵" },
+  3003: { url: p3003, alt: "苗を引っぱって伸ばそうとして、枯らしてしまった男の絵" },
+  3004: { url: p3004, alt: "小さなカマキリが、大きな車の輪に前足を振り上げて立ち向かう絵" },
+  3005: { url: p3005, alt: "深い霧に包まれて、進む方向が分からず立ちすくむ旅人の絵" },
+  3006: { url: p3006, alt: "暗い部屋で、かけた服を鬼と見まちがえておどろく人の絵" },
+  3007: { url: p3007, alt: "木のてっぺんに登って、魚を探している人の絵" },
+  3008: { url: p3008, alt: "王の前で「まず私から」と自分を指す家臣と、後ろに続く賢者たちの絵" },
+  3009: { url: p3009, alt: "牛の尻の横で、胸を張って先頭に立つニワトリの絵" },
+  3010: { url: p3010, alt: "竹が一気に真っすぐ割れていく、勢いのある絵" },
+  3011: { url: p3011, alt: "紙の店に人が押し寄せ、白い紙の山が売り切れそうになっている絵" },
+  3012: { url: p3012, alt: "大きな青銅の器（鼎）を前に、重さを量ろうとのぞき込む人物の絵" },
+  3013: { url: p3013, alt: "同盟の儀式で、牛の耳をつかんで盟主となる人の絵" },
+  3014: { url: p3014, alt: "高くそびえる山と、夜空に光る北斗七星の絵" },
+  3015: { url: p3015, alt: "五人兄弟のなかで、まゆに白い毛のまじった兄が一歩前に出ている絵" },
+  3016: { url: p3016, alt: "気に入らない相手に対して、白目を向けている人の絵" },
+  3017: { url: p3017, alt: "まわりに人がいないかのように、市中で歌い笑う男の絵" },
+  3018: { url: p3018, alt: "子ザルを追って岸を走り、力尽きる母ザルの絵" },
+  3019: { url: p3019, alt: "竹を馬に見立てて、いっしょに走り回る二人の子どもの絵" },
+  3020: { url: p3020, alt: "水の中を気持ちよく泳ぐ魚のように、寄り添う君主と軍師の絵" },
+  3021: { url: p3021, alt: "土ぼこりを巻き上げて、もう一度攻め寄せようとする軍勢の絵" },
+  3022: { url: p3022, alt: "宿で眠る青年の夢に、王冠と豪華な暮らしが浮かんでいる絵" },
+  3023: { url: p3023, alt: "チョウになって舞う夢を見ている思想家の絵" },
+  3024: { url: p3024, alt: "店先に立派な羊の頭をかざり、下では別の肉を売っている店の絵" },
+  3025: { url: p3025, alt: "宝石とただの石が、かごの中で入りまじっている絵" },
+  3026: { url: p3026, alt: "決まりを気にせず、いいかげんに詩を書き散らす人の絵" },
+  3027: { url: p3027, alt: "立派な上着を脱いで、もとの地味な姿に戻った人の絵" },
+  3028: { url: p3028, alt: "隣家との境に立派な小柱が上がった家と、上げられない家の絵" },
+  3029: { url: p3029, alt: "小さな魚が大きく育ち、最後の呼び名にたどり着く成長の絵" },
+  3030: { url: p3030, alt: "調子がぴたりと合って、気持ちよく声を張り上げる人の絵" },
+  3031: { url: p3031, alt: "舞台の板の上で、自然に決めポーズをとる役者の絵" },
+  3032: { url: p3032, alt: "得意の演目を、自信たっぷりに演じる歌舞伎役者の絵" },
+  3033: { url: p3033, alt: "黒い幕の裏で、こっそり糸を引いている人物の絵" },
+  3034: { url: p3034, alt: "囲碁で、相手に敬意をこめて石をひとつ先に置く場面の絵" },
+  3035: { url: p3035, alt: "そり具合が合わず、どうしてもかみ合わない二枚の板の絵" },
+  3036: { url: p3036, alt: "火が回りすぎて切れ味を失った刃物を前に、困る鍛冶職人の絵" },
 };
 
 export function getProverbIllustration(id: number): ProverbIllustration | undefined {

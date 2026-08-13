@@ -28,7 +28,11 @@ export function SiteFooter() {
   const linkClass = "font-bold text-primary";
   return (
     <footer className="mt-10 space-y-3 text-center text-[11px] leading-relaxed text-muted-foreground">
-      <p>
+      <p className="flex flex-wrap justify-center gap-x-3 gap-y-2">
+        <Link to="/games" search={{ cat: "all" }} className={linkClass}>
+          ゲーム一覧
+        </Link>
+        <span aria-hidden>·</span>
         <Link to="/quizzes" search={{ cat: "all", sort: "popular" }} className={linkClass}>
           診断をもっと見る
         </Link>

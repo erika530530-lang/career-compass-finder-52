@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Lightbulb, RotateCcw, Send } from "lucide-react";
 import { FlagImage } from "@/components/flag-image";

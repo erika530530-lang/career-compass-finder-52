@@ -21,18 +21,25 @@ function NotFoundComponent() {
       <div className="w-full max-w-md text-center">
         <p className="font-display text-6xl font-black text-foreground">404</p>
         <h1 className="font-display mt-3 text-xl font-black text-foreground">
-          ページが見つかりません 🫠
+          ここには何もないみたい。🫠
         </h1>
         <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
-          URLが変わったか、削除された可能性があります。ほかの診断で暇つぶししていきませんか？
+          URLが変わったか、消えてしまったようです。せっかく来たので、暇なら別のゲームでもやっていきませんか？
         </p>
         <div className="mt-6 flex flex-col gap-2">
           <Link
-            to="/quizzes"
-            search={{ cat: "all", sort: "popular" }}
+            to="/games"
+            search={{ cat: "all" }}
             className="shadow-lift rounded-full bg-primary py-3.5 text-sm font-black text-primary-foreground"
           >
-            診断をさがす
+            ゲームを見る 🕹️
+          </Link>
+          <Link
+            to="/quizzes"
+            search={{ cat: "all", sort: "popular" }}
+            className="rounded-full border border-border bg-card py-3 text-sm font-black text-foreground"
+          >
+            診断を見る 🔮
           </Link>
           <Link
             to="/"

@@ -5,6 +5,7 @@ import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";
 import { GameRow } from "@/components/game-card";
+import { RubyText } from "@/components/ruby-text";
 import {
   PROVERB_QUESTIONS_PER_GAME,
   allProverbQuestions,
@@ -193,7 +194,7 @@ function KotowazaGame() {
                       <span className="text-[11px] opacity-70">
                         {["A", "B", "C", "D"][i]}
                       </span>
-                      {c}
+                      <RubyText text={c} />
                     </button>
                   );
                 })}
@@ -204,7 +205,9 @@ function KotowazaGame() {
                   <p className="font-display text-xl font-black text-foreground">
                     {lastLog?.cleared ? "正解！🎉" : "惜しい！"}
                   </p>
-                  <p className="font-display text-2xl font-black text-foreground">{q.proverb}</p>
+                  <p className="font-display text-2xl font-black leading-loose text-foreground">
+                    <RubyText text={q.proverb} />
+                  </p>
                   <p className="text-[13px] leading-relaxed text-foreground">
                     <span className="font-black">意味：</span>
                     {q.meaning}
@@ -289,10 +292,10 @@ function KotowazaGame() {
                     第{i + 1}問・{proverbDifficultyLabel[log.round.q.difficulty]}・
                     {log.cleared ? "正解 ⭕️" : "不正解 ❌"}
                   </p>
-                  <p className="font-display text-lg font-black text-foreground">
-                    {log.round.q.proverb}
+                  <p className="font-display text-lg font-black leading-loose text-foreground">
+                    <RubyText text={log.round.q.proverb} />
                   </p>
-                  <p className="text-[11px] text-muted-foreground">あなたの回答：{log.chosen}</p>
+                  <p className="text-[11px] text-muted-foreground">あなたの回答：<RubyText text={log.chosen} /></p>
                   <p className="mt-1 text-[12px] leading-relaxed text-foreground">
                     意味：{log.round.q.meaning}
                   </p>

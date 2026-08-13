@@ -27,7 +27,7 @@ export function SiteFooter() {
   return (
     <footer className="mt-10 space-y-2 text-center text-[11px] leading-relaxed text-muted-foreground">
       <p>
-        <Link to="/quizzes" className="font-bold text-primary">
+        <Link to="/quizzes" search={{ cat: "all", sort: "popular" }} className="font-bold text-primary">
           診断をもっと見る
         </Link>
       </p>

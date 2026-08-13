@@ -8,8 +8,8 @@ type Search = { cat: CategoryId | "all"; sort: "popular" | "new" };
 
 export const Route = createFileRoute("/quizzes")({
   validateSearch: (search: Record<string, unknown>): Search => ({
-    cat: (search.cat as Search["cat"]) ?? "all",
-    sort: search.sort === "new" ? "new" : "popular",
+    cat: (search['cat'] as Search['cat']) ?? "all",
+    sort: search['sort'] === 'new' ? "new" : "popular",
   }),
   head: () => ({
     meta: [

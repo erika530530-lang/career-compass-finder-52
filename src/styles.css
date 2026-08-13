@@ -19,12 +19,15 @@
  */
 
 @theme inline {
-  --font-display: "Zen Kaku Gothic New", ui-sans-serif, sans-serif;
+  --font-display: "Zen Maru Gothic", "Zen Kaku Gothic New", ui-sans-serif, sans-serif;
   --font-sans: "Zen Kaku Gothic New", ui-sans-serif, sans-serif;
   --color-ink: var(--ink);
   --color-sand: var(--sand);
   --color-clay: var(--clay);
   --color-moss: var(--moss);
+  --color-grape: var(--grape);
+  --color-bubble: var(--bubble);
+  --color-sunny: var(--sunny);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

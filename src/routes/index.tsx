@@ -3,6 +3,8 @@ import { newestQuizzes, popularQuizzes } from "@/lib/quizzes/data";
 import { QuizCard, QuizRow } from "@/components/quiz-card";
 import { CategoryStrip } from "@/components/category-strip";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
+import { GameCard } from "@/components/game-card";
+import { games } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
 
 export const Route = createFileRoute("/")({
@@ -46,6 +48,15 @@ function Home() {
         <div className="mt-3 flex flex-col gap-4">
           {featured.map((q, i) => (
             <QuizCard key={q.id} quiz={q} rank={i + 1} />
+          ))}
+        </div>
+
+        <h2 className="font-display mt-7 px-1 text-base font-black text-foreground">
+          あそべるミニゲーム 🎮
+        </h2>
+        <div className="mt-3 flex flex-col gap-4">
+          {games.map((g) => (
+            <GameCard key={g.id} game={g} />
           ))}
         </div>
 

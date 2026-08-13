@@ -520,7 +520,7 @@ export const mediumQuestions: GlyphQuestion[] = [
   },
   {
     id: 2052,
-    answer: "門",
+    answer: "閉",
     acceptedAnswers: ["閉", "門"],
     difficulty: "medium",
     paths: ["M18 18v72", "M82 18v72", "M18 18h22M60 18h22", "M18 46h22M60 46h22", "M30 60v24M70 60v24", "M26 62h48"],
@@ -550,7 +550,7 @@ export const mediumQuestions: GlyphQuestion[] = [
   },
   {
     id: 2055,
-    answer: "羊",
+    answer: "美",
     acceptedAnswers: ["美"],
     difficulty: "medium",
     paths: ["M28 18c10 8 14 14 14 20", "M72 18c-10 8-14 14-14 20", "M50 38v18", "M50 44a8 8 0 100 16 8 8 0 100-16", "M20 62c10 6 20 12 30 14 10-2 20-8 30-14", "M50 76c-8 6-14 12-16 18M50 76c8 6 14 12 16 18"],

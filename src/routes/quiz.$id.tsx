@@ -232,7 +232,7 @@ function ResultView({
       <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">
         次はこれやってみる？ 👀
       </h2>
-      <div className="mt-3 flex flex-col gap-3">
+      <div className="mt-3 grid gap-3 md:grid-cols-2">
         {recos.map((r) => (
           <QuizRow key={r.id} quiz={r} fromQuizId={quiz.id} />
         ))}
@@ -240,7 +240,7 @@ function ResultView({
       <Link
         to="/quizzes"
         search={{ cat: "all", sort: "popular" }}
-        className="shadow-lift mt-4 block rounded-full bg-primary py-3.5 text-center text-sm font-black text-primary-foreground"
+        className="shadow-lift mx-auto mt-5 block w-full max-w-sm rounded-full bg-primary py-3.5 text-center text-sm font-black text-primary-foreground"
       >
         診断をもっと見る
       </Link>

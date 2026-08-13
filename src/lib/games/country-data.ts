@@ -91,11 +91,45 @@ export function maskName(name: string, difficulty: CountryDifficulty, pattern: M
 /* ---------- 正解判定 ---------- */
 
 export function normalizeCountryAnswer(input: string) {
-  return input
+  let v = input
     .normalize("NFKC")
-    .replace(/[\s\u3000・･]/g, "")
-    .trim();
+    .trim()
+    .replace(/[\s\u3000・･,，.。'’"”\-–—]/g, "")
+    .toLowerCase();
+  // カタカナ → ひらがな（「フランス」と「ふらんす」を同一視）
+  v = kataToHira(v);
+  // 「ゔ」は「ぶ」として扱う
+  v = v.replace(/ゔ/g, "ぶ");
+  // 長音記号は直前の母音の繰り返しに開く（おー → おお）
+  const vowel: Record<string, string> = { あ: "あ", い: "い", う: "う", え: "え", お: "お" };
+  const rows: Record<string, string> = {
+    あ: "あ", か: "あ", さ: "あ", た: "あ", な: "あ", は: "あ", ま: "あ", や: "あ", ら: "あ", わ: "あ",
+    が: "あ", ざ: "あ", だ: "あ", ば: "あ", ぱ: "あ", ゃ: "あ",
+    い: "い", き: "い", し: "い", ち: "い", に: "い", ひ: "い", み: "い", り: "い",
+    ぎ: "い", じ: "い", ぢ: "い", び: "い", ぴ: "い", ぃ: "い",
+    う: "う", く: "う", す: "う", つ: "う", ぬ: "う", ふ: "う", む: "う", ゆ: "う", る: "う",
+    ぐ: "う", ず: "う", づ: "う", ぶ: "う", ぷ: "う", ゅ: "う", ぅ: "う",
+    え: "え", け: "え", せ: "え", て: "え", ね: "え", へ: "え", め: "え", れ: "え",
+    げ: "え", ぜ: "え", で: "え", べ: "え", ぺ: "え", ぇ: "え",
+    お: "お", こ: "お", そ: "お", と: "お", の: "お", ほ: "お", も: "お", よ: "お", ろ: "お",
+    ご: "お", ぞ: "お", ど: "お", ぼ: "お", ぽ: "お", ょ: "お", ぉ: "お",
+  };
+  v = [...v]
+    .map((c, i, arr) => (c === "ー" ? (rows[arr[i - 1] ?? ""] ?? "") : c))
+    .join("");
+  // 母音の長音表記のゆれを吸収（おう→おお、えい→えー相当、連続母音の圧縮）
+  v = v.replace(/おう/g, "おお").replace(/えい/g, "えお".slice(0, 1) + "え");
+  v = v.replace(/(.)\1+/g, "$1");
+  void vowel;
+  return v;
 }
+
+export function isCountryCorrect(input: string, q: CountryQuestion) {
+  const v = normalizeCountryAnswer(input);
+  if (!v) return false;
+  return q.acceptedAnswers.some((a) => normalizeCountryAnswer(a) === v);
+}
+
 
 export function isCountryCorrect(input: string, q: CountryQuestion) {
   const v = normalizeCountryAnswer(input);

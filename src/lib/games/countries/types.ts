@@ -1,3 +1,5 @@
+import { kanjiReadings, suffixReadings } from "./readings";
+
 /**
  * 「この国、わかる？」の問題データ型。
  *

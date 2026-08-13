@@ -12,6 +12,7 @@ import { mediumQuestions } from "./questions/medium";
 import { hardQuestions } from "./questions/hard";
 import type { Difficulty, GlyphQuestion } from "./questions/types";
 import { COUNTRY_QUESTIONS_PER_GAME, allCountryQuestions } from "./country-data";
+import { PROVERB_QUESTIONS_PER_GAME, allProverbQuestions } from "./proverb-data";
 
 export type { Difficulty, GlyphQuestion };
 export { difficultyLabel } from "./questions/types";
@@ -42,6 +43,18 @@ export const allGlyphQuestions: GlyphQuestion[] = [
 export const glyphQuestions = allGlyphQuestions;
 
 export const games: Game[] = [
+  {
+    id: "proverb-origin",
+    title: "この由来、どのことわざ？",
+    nickname: "ことわざ由来クイズ",
+    description: `ことわざの由来を読んで、元のことわざを当てよう！全${allProverbQuestions.length}問から毎回ランダムに10問の4択。意味・由来・現代での使い方・豆知識つきです。`,
+    emoji: "📚",
+    path: "/game/kotowaza",
+    questionCount: PROVERB_QUESTIONS_PER_GAME,
+    estimatedTime: "約3分",
+    plays: 1980,
+    createdAt: "2026-08-13",
+  },
   {
     id: "flag-country",
     title: "この国、わかる？",

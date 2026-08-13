@@ -17,21 +17,35 @@ import { trackPageView } from "../lib/analytics";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <div className="bg-hero flex min-h-screen items-center justify-center px-4">
+      <div className="w-full max-w-md text-center">
+        <p className="font-display text-6xl font-black text-foreground">404</p>
+        <h1 className="font-display mt-3 text-xl font-black text-foreground">
+          ページが見つかりません 🫠
+        </h1>
+        <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">
+          URLが変わったか、削除された可能性があります。ほかの診断で暇つぶししていきませんか？
         </p>
-        <div className="mt-6">
+        <div className="mt-6 flex flex-col gap-2">
+          <Link
+            to="/quizzes"
+            search={{ cat: "all", sort: "popular" }}
+            className="shadow-lift rounded-full bg-primary py-3.5 text-sm font-black text-primary-foreground"
+          >
+            診断をさがす
+          </Link>
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="rounded-full border border-border bg-card py-3 text-sm font-black text-foreground"
           >
-            Go home
+            トップにもどる
           </Link>
         </div>
+        <nav className="mt-6 flex flex-wrap justify-center gap-x-3 gap-y-2 text-[11px] font-bold text-primary">
+          <Link to="/about">サイトについて</Link>
+          <Link to="/privacy">プライバシーポリシー</Link>
+          <Link to="/contact">お問い合わせ</Link>
+        </nav>
       </div>
     </div>
   );

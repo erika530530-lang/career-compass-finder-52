@@ -257,10 +257,23 @@ function ResultView({
           </span>
           タイプ
         </h1>
-        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-          {axisMeta[result.top[0]!].desc}。さらに{axisMeta[result.top[1]!].label}の力もあって、
-          {axisMeta[result.top[1]!].short}場面でも強い。
-        </p>
+        <div className="mt-3 space-y-3 text-sm leading-relaxed text-muted-foreground">
+          <p>
+            <span className="font-bold text-foreground">{axisMeta[result.top[0]!].label}</span>
+            が最も強いタイプ。{axisMeta[result.top[0]!].desc}
+          </p>
+          <p>
+            そこに
+            <span className="font-bold text-foreground">{axisMeta[result.top[1]!].label}</span>
+            の力が加わることで、{axisMeta[result.top[1]!].short}場面でも強みを発揮する。
+            {axisMeta[result.top[1]!].desc}
+          </p>
+          <p>
+            この組み合わせは、一つのことに深く没頭しつつ、
+            自分の得意を活かした形で社会に貢献できる可能性が高い。好きなことに真剣に向き合い、
+            小さな成功を積み重ねていこう。
+          </p>
+        </div>
 
         <div className="mt-4 flex flex-wrap gap-2">
           {sorted.map((a) => (

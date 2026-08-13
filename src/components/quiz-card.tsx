@@ -20,9 +20,10 @@ export function QuizCard({ quiz, rank }: { quiz: Quiz; rank?: number }) {
             {cat.emoji} {cat.label}・{quiz.questionCount}問・{quiz.estimatedTime}
           </p>
         </div>
-        <span className="rounded-full bg-secondary px-2.5 py-0.5 text-[10px] font-bold text-secondary-foreground">
-          {Math.round(quiz.plays / 1000)}k
+        <span className="shrink-0 rounded-full bg-secondary px-2.5 py-0.5 text-[10px] font-bold text-secondary-foreground">
+          {rank ? "人気" : "診断"}
         </span>
+
       </div>
 
       <QuizLink quiz={quiz} className="block bg-story px-5 py-8 text-center">
@@ -64,12 +65,18 @@ export function QuizRow({ quiz, fromQuizId }: { quiz: Quiz; fromQuizId?: string 
         </div>
       </div>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-black text-foreground">{quiz.title}</p>
+        <p className="truncate text-sm font-black text-foreground">
+          <span className="mr-1.5 rounded-full bg-secondary px-2 py-0.5 text-[9px] font-bold text-secondary-foreground">
+            診断
+          </span>
+          {quiz.title}
+        </p>
         <p className="text-[11px] text-muted-foreground">
           {cat.emoji} {cat.label}・{quiz.questionCount}問・{quiz.estimatedTime}
         </p>
       </div>
-      <span className="text-gradient font-display text-xs font-black">やる →</span>
+      <span className="text-gradient font-display shrink-0 text-xs font-black">やる →</span>
+
     </QuizLink>
   );
 }

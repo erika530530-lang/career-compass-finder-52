@@ -19,9 +19,10 @@ export function GameCard({ game }: { game: Game }) {
             🎮 ゲーム・{game.questionCount}問・{game.estimatedTime}
           </p>
         </div>
-        <span className="rounded-full bg-secondary px-2.5 py-0.5 text-[10px] font-bold text-secondary-foreground">
-          NEW
+        <span className="shrink-0 rounded-full bg-primary px-2.5 py-0.5 text-[10px] font-black tracking-wider text-primary-foreground">
+          GAME
         </span>
+
       </div>
 
       <Link
@@ -67,12 +68,18 @@ export function GameRow({ game }: { game: Game }) {
         </div>
       </div>
       <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-black text-foreground">{game.title}</p>
+        <p className="truncate text-sm font-black text-foreground">
+          <span className="mr-1.5 rounded-full bg-primary px-2 py-0.5 text-[9px] font-black tracking-wider text-primary-foreground">
+            GAME
+          </span>
+          {game.title}
+        </p>
         <p className="text-[11px] text-muted-foreground">
           🎮 ゲーム・{game.questionCount}問・{game.estimatedTime}
         </p>
       </div>
-      <span className="text-gradient font-display text-xs font-black">あそぶ →</span>
+      <span className="text-gradient font-display shrink-0 text-xs font-black">あそぶ →</span>
+
     </Link>
   );
 }

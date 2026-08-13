@@ -87,7 +87,7 @@ function QuizPage() {
                 {quiz.title}
               </h1>
               <p className="mt-3 text-xs font-medium text-primary-foreground/90">
-                {cat.emoji} {cat.label}・{Math.round(quiz.plays / 1000)}k人が診断済み
+                {cat.emoji} {cat.label}・{quiz.questionCount}問・登録なし
               </p>
             </div>
             <div className="p-4">

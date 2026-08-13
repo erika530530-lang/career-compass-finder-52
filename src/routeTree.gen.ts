@@ -17,6 +17,7 @@ import { Route as QuizzesRouteImport } from './routes/quizzes'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as GameKanjiRouteImport } from './routes/game.kanji'
 import { Route as GameKokkiRouteImport } from './routes/game.kokki'
+import { Route as GameKotowazaRouteImport } from './routes/game.kotowaza'
 import { Route as QuizIdRouteImport } from './routes/quiz.$id'
 import { Route as QuizTekishokuRouteImport } from './routes/quiz.tekishoku'
 
@@ -60,6 +61,11 @@ const GameKokkiRoute = GameKokkiRouteImport.update({
   path: '/game/kokki',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GameKotowazaRoute = GameKotowazaRouteImport.update({
+  id: '/game/kotowaza',
+  path: '/game/kotowaza',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuizIdRoute = QuizIdRouteImport.update({
   id: '/quiz/$id',
   path: '/quiz/$id',
@@ -80,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/game/kanji': typeof GameKanjiRoute
   '/game/kokki': typeof GameKokkiRoute
+  '/game/kotowaza': typeof GameKotowazaRoute
   '/quiz/$id': typeof QuizIdRoute
   '/quiz/tekishoku': typeof QuizTekishokuRoute
 }
@@ -92,6 +99,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/game/kanji': typeof GameKanjiRoute
   '/game/kokki': typeof GameKokkiRoute
+  '/game/kotowaza': typeof GameKotowazaRoute
   '/quiz/$id': typeof QuizIdRoute
   '/quiz/tekishoku': typeof QuizTekishokuRoute
 }
@@ -105,6 +113,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/game/kanji': typeof GameKanjiRoute
   '/game/kokki': typeof GameKokkiRoute
+  '/game/kotowaza': typeof GameKotowazaRoute
   '/quiz/$id': typeof QuizIdRoute
   '/quiz/tekishoku': typeof QuizTekishokuRoute
 }
@@ -119,6 +128,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/game/kanji'
     | '/game/kokki'
+    | '/game/kotowaza'
     | '/quiz/$id'
     | '/quiz/tekishoku'
   fileRoutesByTo: FileRoutesByTo
@@ -131,6 +141,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/game/kanji'
     | '/game/kokki'
+    | '/game/kotowaza'
     | '/quiz/$id'
     | '/quiz/tekishoku'
   id:
@@ -143,6 +154,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/game/kanji'
     | '/game/kokki'
+    | '/game/kotowaza'
     | '/quiz/$id'
     | '/quiz/tekishoku'
   fileRoutesById: FileRoutesById
@@ -156,6 +168,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   GameKanjiRoute: typeof GameKanjiRoute
   GameKokkiRoute: typeof GameKokkiRoute
+  GameKotowazaRoute: typeof GameKotowazaRoute
   QuizIdRoute: typeof QuizIdRoute
   QuizTekishokuRoute: typeof QuizTekishokuRoute
 }
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GameKokkiRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/game/kotowaza': {
+      id: '/game/kotowaza'
+      path: '/game/kotowaza'
+      fullPath: '/game/kotowaza'
+      preLoaderRoute: typeof GameKotowazaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quiz/$id': {
       id: '/quiz/$id'
       path: '/quiz/$id'
@@ -244,6 +264,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   GameKanjiRoute: GameKanjiRoute,
   GameKokkiRoute: GameKokkiRoute,
+  GameKotowazaRoute: GameKotowazaRoute,
   QuizIdRoute: QuizIdRoute,
   QuizTekishokuRoute: QuizTekishokuRoute,
 }

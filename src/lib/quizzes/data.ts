@@ -524,7 +524,7 @@ const percentQuizzes: Quiz[] = [
   },
 ];
 
-export const quizzes: Quiz[] = [tekishoku, ...percentQuizzes];
+export const quizzes: Quiz[] = [tekishoku, ...percentQuizzes, ...extraQuizzes];
 
 export function getQuiz(id: string): Quiz | undefined {
   return quizzes.find((q) => q.id === id);

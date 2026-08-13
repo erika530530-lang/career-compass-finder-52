@@ -1,0 +1,74 @@
+import { Link } from "@tanstack/react-router";
+import { Gamepad2 } from "lucide-react";
+import { Glyph } from "@/components/glyph";
+import { track } from "@/lib/analytics";
+import type { Game } from "@/lib/games/data";
+
+export function GameCard({ game }: { game: Game }) {
+  return (
+    <article className="card-surface animate-pop overflow-hidden">
+      <div className="flex items-center gap-3 px-4 py-3">
+        <div className="story-ring">
+          <div className="flex size-10 items-center justify-center rounded-full bg-card text-lg">
+            {game.emoji}
+          </div>
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-sm font-black text-foreground">{game.nickname}</p>
+          <p className="text-[11px] text-muted-foreground">
+            🎮 ゲーム・{game.questionCount}問・{game.estimatedTime}
+          </p>
+        </div>
+        <span className="rounded-full bg-secondary px-2.5 py-0.5 text-[10px] font-bold text-secondary-foreground">
+          NEW
+        </span>
+      </div>
+
+      <Link
+        to="/game/kanji"
+        onClick={() => track("game_card_click", { game_id: game.id })}
+        className="block bg-story px-5 py-7 text-center"
+      >
+        <Glyph name="eye" className="mx-auto size-16 text-primary-foreground" />
+        <h3 className="font-display mt-3 text-xl font-black leading-snug text-primary-foreground">
+          {game.title}
+        </h3>
+      </Link>
+
+      <div className="p-4">
+        <p className="text-[13px] leading-relaxed text-muted-foreground">{game.description}</p>
+        <Link
+          to="/game/kanji"
+          onClick={() => track("game_card_click", { game_id: game.id })}
+          className="shadow-lift mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3.5 text-sm font-black text-primary-foreground active:scale-95"
+        >
+          <Gamepad2 className="size-4" />
+          ゲームをはじめる
+        </Link>
+      </div>
+    </article>
+  );
+}
+
+export function GameRow({ game }: { game: Game }) {
+  return (
+    <Link
+      to="/game/kanji"
+      onClick={() => track("game_card_click", { game_id: game.id })}
+      className="card-surface flex items-center gap-3 p-3"
+    >
+      <div className="story-ring shrink-0">
+        <div className="flex size-11 items-center justify-center rounded-full bg-card text-xl">
+          {game.emoji}
+        </div>
+      </div>
+      <div className="min-w-0 flex-1">
+        <p className="truncate text-sm font-black text-foreground">{game.title}</p>
+        <p className="text-[11px] text-muted-foreground">
+          🎮 ゲーム・{game.questionCount}問・{game.estimatedTime}
+        </p>
+      </div>
+      <span className="text-gradient font-display text-xs font-black">あそぶ →</span>
+    </Link>
+  );
+}

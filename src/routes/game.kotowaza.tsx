@@ -2,9 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
-import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";
-import { GameRow } from "@/components/game-card";
+import { BestScorePanel, NextUp } from "@/components/game-extras";
 import { RubyText } from "@/components/ruby-text";
 import {
   PROVERB_QUESTIONS_PER_GAME,
@@ -16,7 +15,6 @@ import {
   type ProverbRound,
 } from "@/lib/games/proverb-data";
 import { games } from "@/lib/games/data";
-import { popularQuizzes } from "@/lib/quizzes/data";
 import { canonical } from "@/lib/site-config";
 import { track } from "@/lib/analytics";
 
@@ -54,8 +52,6 @@ function KotowazaGame() {
   const [logs, setLogs] = useState<Log[]>([]);
 
   const game = games.find((g) => g.id === "proverb-origin") ?? games[0]!;
-  const otherGames = games.filter((g) => g.id !== "proverb-origin");
-  const recommended = popularQuizzes.slice(0, 3);
 
   const total = rounds.length || PROVERB_QUESTIONS_PER_GAME;
   const round = rounds[index];
@@ -267,7 +263,13 @@ function KotowazaGame() {
                   {byDifficulty("hard").correct}/{byDifficulty("hard").total}
                 </p>
                 <ShareRow
-                  text={`ことわざ由来クイズ、${total}問中${correctCount}問正解！あなたは何問わかる？📚`}
+                  text={`ことわざ由来クイズ📚\n${total}問中${correctCount}問正解（正答率${percent}%）\n称号は「${rank.title}」！あなたは何問わかる？`}
+                />
+                <BestScorePanel
+                  gameId={game.id}
+                  score={correctCount}
+                  total={total}
+                  streak={bestStreak}
                 />
               </div>
             </div>
@@ -314,30 +316,7 @@ function KotowazaGame() {
               もう一度遊ぶ（新しい10問）
             </button>
 
-            <h3 className="font-display mt-7 px-1 text-base font-black text-foreground">
-              次はこれやってみる？ 🎮
-            </h3>
-            <div className="mt-3 flex flex-col gap-3">
-              {otherGames.map((g) => (
-                <GameRow key={g.id} game={g} />
-              ))}
-              <Link
-                to="/quizzes"
-                search={{ cat: "game", sort: "popular" }}
-                className="block rounded-full border border-border bg-card py-3.5 text-center text-sm font-black text-foreground active:scale-95"
-              >
-                ミニゲームを全部見る 🕹️
-              </Link>
-            </div>
-
-            <h3 className="font-display mt-7 px-1 text-base font-black text-foreground">
-              診断もやってみる？ 🔮
-            </h3>
-            <div className="mt-3 flex flex-col gap-3">
-              {recommended.map((quiz) => (
-                <QuizRow key={quiz.id} quiz={quiz} fromQuizId={game.id} />
-              ))}
-            </div>
+            <NextUp gameId={game.id} />
           </section>
         )}
 

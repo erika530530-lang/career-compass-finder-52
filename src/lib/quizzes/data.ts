@@ -1,4 +1,5 @@
 import { defaultScale, type Quiz, type QuizQuestion } from "./types";
+import { extraQuizzes } from "./data-extra";
 
 function qs(texts: string[]): QuizQuestion[] {
   return texts.map((text, i) => ({ id: i + 1, text, choices: defaultScale() }));

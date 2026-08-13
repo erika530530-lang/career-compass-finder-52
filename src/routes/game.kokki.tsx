@@ -11,7 +11,7 @@ import {
   allCountryQuestions,
   countryDifficultyLabel,
   countryRankFor,
-  isCountryCorrect,
+  isCountryRoundCorrect,
   pickCountryRounds,
   type CountryRound,
 } from "@/lib/games/country-data";
@@ -98,7 +98,7 @@ function KokkiGame() {
   function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!round || state === "correct" || !input.trim()) return;
-    if (isCountryCorrect(input, round.q)) {
+    if (isCountryRoundCorrect(input, round)) {
       setState("correct");
       setLogs((l) => [
         ...l,
@@ -207,7 +207,7 @@ function KokkiGame() {
                 {round.masked}
               </p>
               <p className="mt-2 text-[13px] font-bold text-muted-foreground">
-                □に入る文字を考えて、国名を入力してください
+                □に入る文字だけの入力でもOK！国名ぜんぶでも正解です
               </p>
               <p className="mt-1 text-[12px] font-bold text-primary">ひらがなでもOK！</p>
 
@@ -220,7 +220,7 @@ function KokkiGame() {
                   }}
                   disabled={state === "correct"}
                   maxLength={24}
-                  placeholder="国名を入力（ひらがなでもOK）"
+                  placeholder="国名 or □の文字だけ（ひらがなOK）"
 
                   className="w-full rounded-2xl border border-border bg-background px-4 py-3.5 text-center text-xl font-black text-foreground outline-none focus:border-primary disabled:opacity-70"
                 />

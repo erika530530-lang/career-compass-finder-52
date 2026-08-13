@@ -127,6 +127,32 @@ export function isCountryCorrect(input: string, q: CountryQuestion) {
   return q.acceptedAnswers.some((a) => normalizeCountryAnswer(a) === v);
 }
 
+/**
+ * 穴（□）に入る文字だけを入力しても正解にする。
+ * - 「□」の位置の文字をつなげたもの（例：「フ□ン□ス」→「ラン」）
+ * - 連続した「□」のかたまりごとに区切って入力したもの（空白・読点などは無視される）
+ * ひらがな入力も normalizeCountryAnswer でカタカナと同一視されます。
+ */
+export function blankAnswers(name: string, masked: string): string[] {
+  const nameChars = [...name];
+  const maskChars = [...masked];
+  if (nameChars.length !== maskChars.length) return [];
+  const hidden = nameChars.filter((_, i) => maskChars[i] === "□");
+  if (hidden.length === 0) return [];
+  return [hidden.join("")];
+}
+
+/** ラウンド（穴あき表示つき）に対する正解判定 */
+export function isCountryRoundCorrect(input: string, round: CountryRound) {
+  if (isCountryCorrect(input, round.q)) return true;
+  const v = normalizeCountryAnswer(input);
+  if (!v) return false;
+  return blankAnswers(round.q.name, round.masked).some(
+    (a) => normalizeCountryAnswer(a) === v,
+  );
+}
+
+
 
 /* ---------- ランダム出題 ---------- */
 

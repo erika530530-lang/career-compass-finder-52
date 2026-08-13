@@ -275,6 +275,16 @@ function KotowazaGame() {
             <div className="mt-3 flex flex-col gap-3 md:grid md:grid-cols-2">
               {logs.map((log, i) => (
                 <div key={log.round.q.id} className="card-surface p-4">
+                  {log.round.q.illustration && (
+                    <img
+                      src={log.round.q.illustration.url}
+                      alt={log.round.q.illustration.alt}
+                      loading="lazy"
+                      width={1024}
+                      height={640}
+                      className="mb-2 h-28 w-full rounded-xl border border-border bg-secondary/40 object-contain"
+                    />
+                  )}
                   <p className="text-[11px] font-bold text-muted-foreground">
                     第{i + 1}問・{proverbDifficultyLabel[log.round.q.difficulty]}・
                     {log.cleared ? "正解 ⭕️" : "不正解 ❌"}

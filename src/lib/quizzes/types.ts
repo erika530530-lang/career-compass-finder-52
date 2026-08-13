@@ -5,7 +5,8 @@ export type CategoryId =
   | "money"
   | "social"
   | "fun"
-  | "future";
+  | "future"
+  | "game";
 
 export type Category = {
   id: CategoryId;

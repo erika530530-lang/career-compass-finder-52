@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://career-compass-finder-52.lovable.app/sitemap.xml

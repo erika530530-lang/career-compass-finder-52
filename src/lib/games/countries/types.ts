@@ -52,21 +52,59 @@ export type CountryTuple = [
   ...string[],
 ];
 
+const KANJI = /[\u4e00-\u9fff]/;
+
+/** カタカナをひらがなに変換する */
+export function kataToHira(s: string) {
+  return s.replace(/[\u30a1-\u30f6]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60));
+}
+
+/**
+ * 国名から、ひらがなの正解候補をつくる。
+ * - カタカナだけの表記 → そのままひらがなへ
+ * - 漢字を含む表記 → 読み辞書、または「カタカナ部分＋語尾の読み」で組み立て
+ */
+export function hiraganaVariants(name: string): string[] {
+  const out = new Set<string>();
+  if (!KANJI.test(name)) {
+    out.add(kataToHira(name));
+    return [...out];
+  }
+  for (const r of kanjiReadings[name] ?? []) out.add(r);
+  for (const [suffix, reading] of suffixReadings) {
+    if (name.length > suffix.length && name.endsWith(suffix)) {
+      const head = name.slice(0, -suffix.length);
+      if (!KANJI.test(head)) out.add(kataToHira(head) + reading);
+      else {
+        for (const hr of hiraganaVariants(head)) out.add(hr + reading);
+      }
+      break;
+    }
+  }
+  return [...out];
+}
+
 export function buildCountries(
   rows: CountryTuple[],
   difficulty: CountryDifficulty,
 ): CountryQuestion[] {
-  return rows.map(([id, name, nameEn, code, capital, region, trivia, ...accepted]) => ({
-    id,
-    name,
-    nameEn,
-    code,
-    capital,
-    region,
-    trivia,
-    difficulty,
-    acceptedAnswers: [name, ...accepted],
-    hint1: `${region}にある国です。`,
-    hint2: `首都は${capital}です。`,
-  }));
+  return rows.map(([id, name, nameEn, code, capital, region, trivia, ...accepted]) => {
+    const base = [name, ...accepted];
+    const answers = new Set(base);
+    for (const a of base) for (const h of hiraganaVariants(a)) answers.add(h);
+    return {
+      id,
+      name,
+      nameEn,
+      code,
+      capital,
+      region,
+      trivia,
+      difficulty,
+      acceptedAnswers: [...answers],
+      hint1: `${region}にある国です。`,
+      hint2: `首都は${capital}です。`,
+    };
+  });
 }
+

@@ -1,11 +1,10 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Lightbulb, RotateCcw, Send } from "lucide-react";
 import { FlagImage } from "@/components/flag-image";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
-import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";
-import { GameRow } from "@/components/game-card";
+import { BestScorePanel, NextUp } from "@/components/game-extras";
 import {
   COUNTRY_QUESTIONS_PER_GAME,
   allCountryQuestions,
@@ -16,7 +15,6 @@ import {
   type CountryRound,
 } from "@/lib/games/country-data";
 import { games } from "@/lib/games/data";
-import { popularQuizzes } from "@/lib/quizzes/data";
 import { canonical } from "@/lib/site-config";
 import { track } from "@/lib/analytics";
 
@@ -63,7 +61,6 @@ function KokkiGame() {
   const [logs, setLogs] = useState<Log[]>([]);
 
   const game = games.find((g) => g.id === "flag-country") ?? games[0]!;
-  const otherGames = games.filter((g) => g.id !== "flag-country");
   const total = rounds.length || COUNTRY_QUESTIONS_PER_GAME;
   const round = rounds[index];
   const q = round?.q;
@@ -81,7 +78,6 @@ function KokkiGame() {
   const percent = Math.round((correctCount / total) * 100);
   const rank = countryRankFor(correctCount);
   const lastLog = logs[logs.length - 1];
-  const recommended = popularQuizzes.slice(0, 3);
 
   function begin(replay = false) {
     setRounds(pickCountryRounds());
@@ -332,7 +328,13 @@ function KokkiGame() {
                   連続正解：{bestStreak}問／使ったヒント：{hintUsed}回／一発正解：{firstTryCount}問
                 </p>
                 <ShareRow
-                  text={`国名当てゲーム「この国、わかる？」で${total}問中${correctCount}問正解！あなたは何問わかる？🌍`}
+                  text={`国名当てクイズ🌍\n${total}問中${correctCount}問正解（正答率${percent}%）\n称号は「${rank.title}」！あなたは何問わかる？`}
+                />
+                <BestScorePanel
+                  gameId={game.id}
+                  score={correctCount}
+                  total={total}
+                  streak={bestStreak}
                 />
               </div>
             </div>
@@ -373,30 +375,7 @@ function KokkiGame() {
               もう一度遊ぶ（新しい10問）
             </button>
 
-            <h3 className="font-display mt-7 px-1 text-base font-black text-foreground">
-              次はこれやってみる？ 🎮
-            </h3>
-            <div className="mt-3 flex flex-col gap-3">
-              {otherGames.map((g) => (
-                <GameRow key={g.id} game={g} />
-              ))}
-              <Link
-                to="/quizzes"
-                search={{ cat: "game", sort: "popular" }}
-                className="block rounded-full border border-border bg-card py-3.5 text-center text-sm font-black text-foreground active:scale-95"
-              >
-                ミニゲームを全部見る 🕹️
-              </Link>
-            </div>
-
-            <h3 className="font-display mt-7 px-1 text-base font-black text-foreground">
-              診断もやってみる？ 🔮
-            </h3>
-            <div className="mt-3 flex flex-col gap-3">
-              {recommended.map((quiz) => (
-                <QuizRow key={quiz.id} quiz={quiz} fromQuizId={game.id} />
-              ))}
-            </div>
+            <NextUp gameId={game.id} />
           </section>
         )}
 

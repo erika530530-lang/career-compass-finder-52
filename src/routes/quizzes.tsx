@@ -4,7 +4,7 @@ import { categories, type CategoryId } from "@/lib/quizzes/types";
 import { QuizRow } from "@/components/quiz-card";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { GameRow } from "@/components/game-card";
-import { games } from "@/lib/games/data";
+import { publishedGames } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
 
 type Search = { cat: CategoryId | "all"; sort: "popular" | "new" };
@@ -89,10 +89,17 @@ function QuizzesPage() {
               ミニゲーム 🎮
             </h2>
             <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-              {games.map((g) => (
+              {publishedGames.map((g) => (
                 <GameRow key={g.id} game={g} />
               ))}
             </div>
+            <Link
+              to="/games"
+              search={{ cat: "all" }}
+              className="mt-3 flex min-h-12 items-center justify-center rounded-full border border-border bg-card text-sm font-black text-foreground"
+            >
+              ゲーム一覧をカテゴリーで見る 🕹️
+            </Link>
           </div>
         )}
 

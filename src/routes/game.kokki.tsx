@@ -163,7 +163,7 @@ function KokkiGame() {
             </div>
             <div className="p-5">
               <p className="text-[13px] leading-relaxed text-muted-foreground">
-                国旗と、一部が「□」で隠れた国名が表示されます。どの国かを推理して入力してください。
+                国旗と、一部が「□」で隠れた国名が表示されます。どの国かを推理して入力してください（ひらがなでもOK！）。
                 <br />
                 全{allCountryQuestions.length}か国のなかから
                 <span className="font-bold text-foreground">毎回ランダムに10問</span>

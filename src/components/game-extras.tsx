@@ -68,7 +68,7 @@ export function BestScorePanel({
       </div>
       <p className="mt-2 text-center text-[12px] font-bold text-muted-foreground">
         {firstPlay
-          ? "はじめてのプレイ！これがあなたの基準タイムです ⏱️"
+          ? "はじめてのプレイ！これがあなたの基準スコアです 🎯"
           : isNewBest
             ? "自己ベスト更新！おめでとう 🎉"
             : toBest <= 0

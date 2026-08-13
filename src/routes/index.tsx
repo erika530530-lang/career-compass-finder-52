@@ -50,7 +50,7 @@ function Home() {
           新着の診断 🆕
         </h2>
         <div className="mt-3 flex flex-col gap-3">
-          {newestQuizzes.slice(0, 4).map((q) => (
+          {newest.map((q) => (
             <QuizRow key={q.id} quiz={q} />
           ))}
         </div>

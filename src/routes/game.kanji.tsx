@@ -154,7 +154,7 @@ function KanjiGame() {
 
         {phase === "play" && q && (
           <section className="mt-5">
-            <div className="flex items-center justify-between px-1">
+            <div className="flex items-center justify-between px-1 md:mx-auto md:max-w-md">
               <p className="font-display text-sm font-black text-foreground">
                 第{index + 1}問 / {questions.length}問
               </p>
@@ -162,7 +162,7 @@ function KanjiGame() {
                 {difficultyLabel[q.difficulty]}
               </span>
             </div>
-            <div className="mt-2 flex gap-1">
+            <div className="mt-2 flex gap-1 md:mx-auto md:max-w-md">
               {questions.map((item, i) => (
                 <span
                   key={item.id}
@@ -171,12 +171,12 @@ function KanjiGame() {
               ))}
             </div>
 
-            <div className="card-surface animate-pop mt-3 p-6 text-center">
+            <div className="card-surface animate-pop mt-3 p-6 text-center md:mx-auto md:max-w-md md:p-7">
               <GlyphArt
                 key={q.id}
                 paths={q.paths}
                 dots={q.dots}
-                className="mx-auto size-40 text-foreground"
+                className="mx-auto size-40 text-foreground md:size-44"
               />
               <p className="mt-4 text-[13px] font-bold text-muted-foreground">
                 これは現代の何という漢字でしょう？
@@ -268,7 +268,7 @@ function KanjiGame() {
               )}
             </div>
 
-            <p className="mt-3 px-1 text-[11px] text-muted-foreground">
+            <p className="mt-3 px-1 text-[11px] text-muted-foreground md:mx-auto md:max-w-md md:text-center">
               ここまでの正解：{correctCount}問（一発正解 {firstTryCount}問）
             </p>
           </section>

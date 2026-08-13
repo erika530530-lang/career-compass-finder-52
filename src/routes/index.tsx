@@ -54,9 +54,11 @@ function Home() {
         <h2 className="font-display mt-7 px-1 text-base font-black text-foreground">
           あそべるミニゲーム 🎮
         </h2>
-        <div className="mt-3 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-3 flex flex-col gap-4 md:flex-row md:flex-wrap md:justify-center">
           {games.map((g) => (
-            <GameCard key={g.id} game={g} />
+            <div key={g.id} className="w-full md:max-w-sm md:flex-1">
+              <GameCard game={g} />
+            </div>
           ))}
         </div>
 

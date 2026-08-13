@@ -8,6 +8,7 @@ import { mediumCountries } from "./countries/medium";
 import { hardCountries } from "./countries/hard";
 import {
   countryDifficultyLabel,
+  kataToHira,
   type CountryDifficulty,
   type CountryQuestion,
 } from "./countries/types";

@@ -50,7 +50,7 @@ function QuizzesPage() {
 
   return (
     <main className="min-h-screen bg-hero">
-      <div className="mx-auto w-full max-w-md px-4 pb-24 pt-4">
+      <div className="mx-auto w-full max-w-md px-4 pb-24 pt-4 md:max-w-3xl md:px-6 lg:max-w-[1200px] lg:px-8">
         <SiteHeader />
 
         <h1 className="font-display mt-5 text-2xl font-black text-foreground">診断を探す 🔍</h1>

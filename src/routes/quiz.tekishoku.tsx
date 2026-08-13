@@ -73,7 +73,7 @@ function Tekishoku() {
 
   return (
     <main className="min-h-screen bg-hero">
-      <div className="mx-auto w-full max-w-md px-4 pb-24 pt-4">
+      <div className="mx-auto w-full max-w-md px-4 pb-24 pt-4 md:max-w-2xl md:px-6">
         <SiteHeader tagline={false} />
 
         {stage === "intro" && <Intro onStart={() => { trackQuizStart("tekishoku"); setStage("quiz"); }} />}

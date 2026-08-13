@@ -3,7 +3,7 @@ import { categories, type CategoryId } from "@/lib/quizzes/types";
 
 export function CategoryStrip({ active }: { active?: CategoryId | "all" }) {
   return (
-    <div className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2">
+    <div className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2 md:mx-0 md:flex-wrap md:justify-center md:gap-5 md:px-0">
       {categories.map((c) => (
         <Link
           key={c.id}

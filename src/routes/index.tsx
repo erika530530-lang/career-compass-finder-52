@@ -38,14 +38,14 @@ function Home() {
 
   return (
     <main className="min-h-screen bg-hero">
-      <div className="mx-auto w-full max-w-md px-4 pb-24 pt-4">
+      <div className="mx-auto w-full max-w-md px-4 pb-24 pt-4 md:max-w-3xl md:px-6 lg:max-w-[1200px] lg:px-8">
         <SiteHeader />
         <CategoryStrip />
 
         <h1 className="font-display mt-5 px-1 text-xl font-black leading-snug text-foreground">
           いま人気の診断 🔥
         </h1>
-        <div className="mt-3 flex flex-col gap-4">
+        <div className="mt-3 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {featured.map((q, i) => (
             <QuizCard key={q.id} quiz={q} rank={i + 1} />
           ))}
@@ -54,16 +54,18 @@ function Home() {
         <h2 className="font-display mt-7 px-1 text-base font-black text-foreground">
           あそべるミニゲーム 🎮
         </h2>
-        <div className="mt-3 flex flex-col gap-4">
+        <div className="mt-3 flex flex-col gap-4 md:flex-row md:flex-wrap md:justify-center">
           {games.map((g) => (
-            <GameCard key={g.id} game={g} />
+            <div key={g.id} className="w-full md:max-w-sm md:flex-1">
+              <GameCard game={g} />
+            </div>
           ))}
         </div>
 
         <h2 className="font-display mt-7 px-1 text-base font-black text-foreground">
           新着の診断 🆕
         </h2>
-        <div className="mt-3 flex flex-col gap-3">
+        <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {newest.map((q) => (
             <QuizRow key={q.id} quiz={q} />
           ))}
@@ -72,7 +74,7 @@ function Home() {
         <h2 className="font-display mt-7 px-1 text-base font-black text-foreground">
           ぜんぶの診断 📚
         </h2>
-        <div className="mt-3 flex flex-col gap-3">
+        <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {rest.map((q) => (
             <QuizRow key={q.id} quiz={q} />
           ))}
@@ -81,7 +83,7 @@ function Home() {
         <Link
           to="/quizzes"
           search={{ cat: "all", sort: "popular" }}
-          className="shadow-lift mt-5 block rounded-full bg-primary py-3.5 text-center text-sm font-black text-primary-foreground"
+          className="shadow-lift mx-auto mt-6 block w-full max-w-sm rounded-full bg-primary py-3.5 text-center text-sm font-black text-primary-foreground"
         >
           カテゴリーから探す
         </Link>

@@ -50,7 +50,7 @@ function QuizzesPage() {
 
   return (
     <main className="min-h-screen bg-hero">
-      <div className="mx-auto w-full max-w-md px-4 pb-24 pt-4">
+      <div className="mx-auto w-full max-w-md px-4 pb-24 pt-4 md:max-w-3xl md:px-6 lg:max-w-[1200px] lg:px-8">
         <SiteHeader />
 
         <h1 className="font-display mt-5 text-2xl font-black text-foreground">診断を探す 🔍</h1>
@@ -58,7 +58,7 @@ function QuizzesPage() {
           全{popularQuizzes.length}件。気になったやつから、どうぞ。
         </p>
 
-        <div className="-mx-4 mt-4 flex gap-2 overflow-x-auto px-4 pb-1">
+        <div className="-mx-4 mt-4 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:flex-wrap md:px-0">
           <Link to="/quizzes" search={{ cat: "all", sort: "popular" }} className={chip(cat === "all" && sort === "popular")}>
             すべて
           </Link>
@@ -70,7 +70,7 @@ function QuizzesPage() {
           </Link>
         </div>
 
-        <div className="-mx-4 mt-2 flex gap-2 overflow-x-auto px-4 pb-1">
+        <div className="-mx-4 mt-2 flex gap-2 overflow-x-auto px-4 pb-1 md:mx-0 md:flex-wrap md:px-0">
           {categories.map((c) => (
             <Link
               key={c.id}
@@ -88,7 +88,7 @@ function QuizzesPage() {
             <h2 className="font-display px-1 text-base font-black text-foreground">
               ミニゲーム 🎮
             </h2>
-            <div className="mt-3 flex flex-col gap-3">
+            <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {games.map((g) => (
                 <GameRow key={g.id} game={g} />
               ))}
@@ -96,7 +96,7 @@ function QuizzesPage() {
           </div>
         )}
 
-        <div className="mt-5 flex flex-col gap-3">
+        <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
           {list.map((q) => (
             <QuizRow key={q.id} quiz={q} />
           ))}

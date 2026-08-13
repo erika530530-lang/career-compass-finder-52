@@ -69,7 +69,9 @@ export function maskName(name: string, difficulty: CountryDifficulty, pattern: M
     hideCount = Math.max(1, Math.round(len * ratio));
   }
   // 上級の difficulty パターン以外は、必ず1文字以上見えるようにする
-  const maxHide = difficulty === "hard" && pattern === "difficulty" ? len : Math.max(1, len - 1);
+  // 上級の difficulty パターンだけは全隠しもあり（ただし短い国名は1文字残す）
+  const maxHide =
+    difficulty === "hard" && pattern === "difficulty" && len >= 5 ? len : Math.max(1, len - 1);
   hideCount = Math.min(hideCount, maxHide);
 
   let hidden: number[];

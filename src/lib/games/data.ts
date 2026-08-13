@@ -75,6 +75,9 @@ export const games: Game[] = [
     estimatedTime: "約3分",
     plays: 1980,
     createdAt: "2026-08-13",
+    categories: ["words", "knowledge"],
+    published: true,
+    topic: { label: "ことわざの由来をもっと詳しく" },
   },
   {
     id: "flag-country",
@@ -87,6 +90,9 @@ export const games: Game[] = [
     estimatedTime: "約3分",
     plays: 3120,
     createdAt: "2026-08-13",
+    categories: ["geography", "knowledge"],
+    published: true,
+    topic: { label: "この国についてもっと知る" },
   },
   {
     id: "kanji-glyph",
@@ -99,8 +105,24 @@ export const games: Game[] = [
     estimatedTime: "約2分",
     plays: 4210,
     createdAt: "2026-08-13",
+    categories: ["knowledge", "words", "reasoning"],
+    published: true,
+    topic: { label: "漢字はどうやって生まれた？" },
   },
 ];
+
+/** 公開中のゲームだけ（一覧・sitemap用） */
+export const publishedGames = games.filter((g) => g.published);
+
+export const gameById = (id: string) => games.find((g) => g.id === id);
+
+/** カテゴリーに属する公開ゲーム */
+export const gamesInCategory = (cat: GameCategoryId) =>
+  publishedGames.filter((g) => g.categories.includes(cat));
+
+/** 指定ゲーム以外のおすすめ（回遊導線用） */
+export const otherGames = (id: string, limit = 3) =>
+  publishedGames.filter((g) => g.id !== id).slice(0, limit);
 
 /* ---------- 正解判定 ---------- */
 

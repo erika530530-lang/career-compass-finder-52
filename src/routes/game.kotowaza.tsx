@@ -155,6 +155,16 @@ function KotowazaGame() {
             </div>
 
             <div className="card-surface animate-pop mt-3 p-5 md:mx-auto md:max-w-lg md:p-7">
+              {q.illustration && (
+                <img
+                  src={q.illustration.url}
+                  alt={q.illustration.alt}
+                  loading="lazy"
+                  width={1024}
+                  height={640}
+                  className="mb-4 h-36 w-full rounded-2xl border border-border bg-secondary/40 object-contain sm:h-44 md:h-56"
+                />
+              )}
               <p className="text-[11px] font-black tracking-widest text-primary">由来</p>
               <p className="mt-2 text-[14px] leading-loose text-foreground">{q.origin}</p>
 

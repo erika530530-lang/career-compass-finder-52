@@ -82,6 +82,36 @@ import p3033 from "@/assets/proverbs/p3033.jpg";
 import p3034 from "@/assets/proverbs/p3034.jpg";
 import p3035 from "@/assets/proverbs/p3035.jpg";
 import p3036 from "@/assets/proverbs/p3036.jpg";
+import p4001 from "@/assets/proverbs/p4001.jpg";
+import p4002 from "@/assets/proverbs/p4002.jpg";
+import p4003 from "@/assets/proverbs/p4003.jpg";
+import p4004 from "@/assets/proverbs/p4004.jpg";
+import p4005 from "@/assets/proverbs/p4005.jpg";
+import p4006 from "@/assets/proverbs/p4006.jpg";
+import p4007 from "@/assets/proverbs/p4007.jpg";
+import p4008 from "@/assets/proverbs/p4008.jpg";
+import p4009 from "@/assets/proverbs/p4009.jpg";
+import p4010 from "@/assets/proverbs/p4010.jpg";
+import p4011 from "@/assets/proverbs/p4011.jpg";
+import p4012 from "@/assets/proverbs/p4012.jpg";
+import p4013 from "@/assets/proverbs/p4013.jpg";
+import p4014 from "@/assets/proverbs/p4014.jpg";
+import p4015 from "@/assets/proverbs/p4015.jpg";
+import p4016 from "@/assets/proverbs/p4016.jpg";
+import p4017 from "@/assets/proverbs/p4017.jpg";
+import p4018 from "@/assets/proverbs/p4018.jpg";
+import p4019 from "@/assets/proverbs/p4019.jpg";
+import p4020 from "@/assets/proverbs/p4020.jpg";
+import p4021 from "@/assets/proverbs/p4021.jpg";
+import p4022 from "@/assets/proverbs/p4022.jpg";
+import p4023 from "@/assets/proverbs/p4023.jpg";
+import p4024 from "@/assets/proverbs/p4024.jpg";
+import p4025 from "@/assets/proverbs/p4025.jpg";
+import p4026 from "@/assets/proverbs/p4026.jpg";
+import p4027 from "@/assets/proverbs/p4027.jpg";
+import p4028 from "@/assets/proverbs/p4028.jpg";
+import p4029 from "@/assets/proverbs/p4029.jpg";
+import p4030 from "@/assets/proverbs/p4030.jpg";
 
 export type ProverbIllustration = {
   /** 画像URL（import した静的アセット、または外部URL） */
@@ -163,6 +193,36 @@ export const proverbIllustrations: Record<number, ProverbIllustration> = {
   3034: { url: p3034, alt: "囲碁で、相手に敬意をこめて石をひとつ先に置く場面の絵" },
   3035: { url: p3035, alt: "そり具合が合わず、どうしてもかみ合わない二枚の板の絵" },
   3036: { url: p3036, alt: "火が回りすぎて切れ味を失った刃物を前に、困る鍛冶職人の絵" },
+  4001: { url: p4001, alt: "ぬれた手を粟の入ったかごに入れ、粒がびっしりくっついている絵" },
+  4002: { url: p4002, alt: "小さなひょうたんから馬が飛び出し、おどろく人の絵" },
+  4003: { url: p4003, alt: "川に剣を落とし、舟のふちに印を刻んでいる男の絵" },
+  4004: { url: p4004, alt: "時の権力に合わせて学問を曲げようとする人を、老学者がにらむ絵" },
+  4005: { url: p4005, alt: "戦に敗れて、泥まみれの地面にうずくまる将の絵" },
+  4006: { url: p4006, alt: "戦の前に、軍師が若い君主へ大切な書を差し出す絵" },
+  4007: { url: p4007, alt: "軍師が涙をこらえながら、規律のために愛弟子の将を裁く絵" },
+  4008: { url: p4008, alt: "若者が争いを避け、ならず者の股の下をおとなしくくぐる絵" },
+  4009: { url: p4009, alt: "墓地のそば、市場のそば、学校のそばへと三度引っこす母子の絵" },
+  4010: { url: p4010, alt: "酒の池と、枝に肉をつるした林のような、ぜいたくな宴の絵" },
+  4011: { url: p4011, alt: "宴のあと、杯や皿が床いっぱいに散らかっている絵" },
+  4012: { url: p4012, alt: "琴の音を心から聞き分けてくれる友と、切れた弦の絵" },
+  4013: { url: p4013, alt: "ひとつの土地を得たのに、遠くの山までほしがる将軍の絵" },
+  4014: { url: p4014, alt: "川べりで石で口をすすぎ、流れを枕にしようとする強気な男の絵" },
+  4015: { url: p4015, alt: "熱い吸い物で口をやいて、冷たい料理まで吹いて冷ます人の絵" },
+  4016: { url: p4016, alt: "絵にかかれた餅にかじりつこうとして、がっかりする子の絵" },
+  4017: { url: p4017, alt: "砂の上に建てた高い塔が、かたむいてくずれていく絵" },
+  4018: { url: p4018, alt: "遠い山から持ってきた石で、宝玉をみがく職人の絵" },
+  4019: { url: p4019, alt: "戦に出られず、太ももの肉をつまんでため息をつく武将の絵" },
+  4020: { url: p4020, alt: "割れた鏡を半分ずつ持ち、離れて立つ夫婦の絵" },
+  4021: { url: p4021, alt: "古い巻物を作りかえて、新しい詩に生まれ変わらせる人の絵" },
+  4022: { url: p4022, alt: "頭は立派な竜、尾は細い蛇になっている生き物の絵" },
+  4023: { url: p4023, alt: "夜空をよぎる一瞬の流れ星に、手をのばす人の絵" },
+  4024: { url: p4024, alt: "藍色の布を干している職人が、自分は白いはかまをはいている絵" },
+  4025: { url: p4025, alt: "囲碁の終わりに、どちらの得にもならない点を埋める手の絵" },
+  4026: { url: p4026, alt: "柵の門が開かず、走り出せずに待っている馬と騎手たちの絵" },
+  4027: { url: p4027, alt: "演奏会の最後の曲を奏でる楽人たちと、舞い散る花びらの絵" },
+  4028: { url: p4028, alt: "台座がなくて、ぐらぐらしている仏像の絵" },
+  4029: { url: p4029, alt: "前の舞をまねて、こっけいに転びそうになる二番目の舞い手の絵" },
+  4030: { url: p4030, alt: "先頭の人が最初の一節を歌い出し、みんなが続く絵" },
 };
 
 export function getProverbIllustration(id: number): ProverbIllustration | undefined {

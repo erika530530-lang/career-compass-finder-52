@@ -67,6 +67,6 @@ export function buildCountries(
     difficulty,
     acceptedAnswers: [name, ...accepted],
     hint1: `${region}にある国です。`,
-    hint2: `首都は${capital}（英語名：${nameEn}）です。`,
+    hint2: `首都は${capital}です。`,
   }));
 }

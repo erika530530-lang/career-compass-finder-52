@@ -1,6 +1,5 @@
-import { Link } from "@tanstack/react-router";
 import { Bookmark, Heart, MessageCircle, Play, Send } from "lucide-react";
-import { quizPath } from "@/lib/quizzes/data";
+import { QuizLink } from "@/components/quiz-link";
 import { categoryMap, type Quiz } from "@/lib/quizzes/types";
 
 export function QuizCard({ quiz, rank }: { quiz: Quiz; rank?: number }) {
@@ -26,26 +25,24 @@ export function QuizCard({ quiz, rank }: { quiz: Quiz; rank?: number }) {
         </span>
       </div>
 
-      <Link to={quizPath(quiz)} className="block bg-story px-5 py-8 text-center">
+      <QuizLink quiz={quiz} className="block bg-story px-5 py-8 text-center">
         <p className="text-[11px] font-bold tracking-widest text-primary-foreground/90">
           {quiz.questionCount}問・{quiz.estimatedTime}・登録なし
         </p>
         <h3 className="font-display mt-2 text-xl font-black leading-snug text-primary-foreground">
           {quiz.title}
         </h3>
-      </Link>
+      </QuizLink>
 
       <div className="p-4">
-        <p className="line-clamp-3 text-[13px] leading-relaxed text-muted-foreground">
-          {quiz.description}
-        </p>
-        <Link
-          to={quizPath(quiz)}
+        <p className="text-[13px] leading-relaxed text-muted-foreground">{quiz.description}</p>
+        <QuizLink
+          quiz={quiz}
           className="shadow-lift mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3.5 text-sm font-black text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"
         >
           <Play className="size-4" />
           診断スタート
-        </Link>
+        </QuizLink>
         <div className="mt-3 flex items-center gap-4 text-muted-foreground">
           <Heart className="size-5" />
           <MessageCircle className="size-5" />
@@ -60,7 +57,7 @@ export function QuizCard({ quiz, rank }: { quiz: Quiz; rank?: number }) {
 export function QuizRow({ quiz }: { quiz: Quiz }) {
   const cat = categoryMap[quiz.category];
   return (
-    <Link to={quizPath(quiz)} className="card-surface flex items-center gap-3 p-3">
+    <QuizLink quiz={quiz} className="card-surface flex items-center gap-3 p-3">
       <div className="story-ring shrink-0">
         <div className="flex size-11 items-center justify-center rounded-full bg-card text-xl">
           {quiz.emoji}
@@ -73,6 +70,10 @@ export function QuizRow({ quiz }: { quiz: Quiz }) {
         </p>
       </div>
       <span className="text-gradient font-display text-xs font-black">やる →</span>
-    </Link>
+    </QuizLink>
   );
+}
+
+export function NextUpSection({ ids, currentId }: { ids: string[]; currentId: string }) {
+  return null;
 }

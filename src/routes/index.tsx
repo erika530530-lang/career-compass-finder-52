@@ -27,7 +27,9 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   const featured = popularQuizzes.slice(0, 3);
-  const rest = popularQuizzes.slice(3);
+  const newest = newestQuizzes.filter((q) => !featured.includes(q)).slice(0, 4);
+  const shown = new Set([...featured, ...newest].map((q) => q.id));
+  const rest = popularQuizzes.filter((q) => !shown.has(q.id));
 
   return (
     <main className="min-h-screen bg-hero">

@@ -1,10 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { Gamepad2 } from "lucide-react";
 import { Glyph } from "@/components/glyph";
-import { track } from "@/lib/analytics";
+import { trackCardClick } from "@/lib/analytics";
 import type { Game } from "@/lib/games/data";
 
-export function GameCard({ game }: { game: Game }) {
+export function GameCard({ game, location }: { game: Game; location?: string | undefined }) {
+  const onClick = () => trackCardClick("game", game.id, location);
   return (
     <article className="card-surface animate-pop overflow-hidden">
       <div className="flex items-center gap-3 px-4 py-3">
@@ -25,11 +26,7 @@ export function GameCard({ game }: { game: Game }) {
 
       </div>
 
-      <Link
-        to={game.path}
-        onClick={() => track("game_card_click", { game_id: game.id })}
-        className="block bg-story px-5 py-7 text-center"
-      >
+      <Link to={game.path} onClick={onClick} className="block bg-story px-5 py-7 text-center">
         {game.id === "kanji-glyph" ? (
           <Glyph name="eye" className="mx-auto size-16 text-primary-foreground" />
         ) : (
@@ -44,7 +41,7 @@ export function GameCard({ game }: { game: Game }) {
         <p className="text-[13px] leading-relaxed text-muted-foreground">{game.description}</p>
         <Link
           to={game.path}
-          onClick={() => track("game_card_click", { game_id: game.id })}
+          onClick={onClick}
           className="shadow-lift mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3.5 text-sm font-black text-primary-foreground active:scale-95"
         >
           <Gamepad2 className="size-4" />
@@ -55,11 +52,11 @@ export function GameCard({ game }: { game: Game }) {
   );
 }
 
-export function GameRow({ game }: { game: Game }) {
+export function GameRow({ game, location }: { game: Game; location?: string | undefined }) {
   return (
     <Link
       to={game.path}
-      onClick={() => track("game_card_click", { game_id: game.id })}
+      onClick={() => trackCardClick("game", game.id, location)}
       className="card-surface flex items-center gap-3 p-3"
     >
       <div className="story-ring shrink-0">

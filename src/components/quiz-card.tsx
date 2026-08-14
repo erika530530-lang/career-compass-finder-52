@@ -2,7 +2,7 @@ import { Bookmark, Heart, MessageCircle, Play, Send } from "lucide-react";
 import { QuizLink } from "@/components/quiz-link";
 import { categoryMap, type Quiz } from "@/lib/quizzes/types";
 
-export function QuizCard({ quiz, rank }: { quiz: Quiz; rank?: number }) {
+export function QuizCard({ quiz, rank, location }: { quiz: Quiz; rank?: number; location?: string | undefined }) {
   const cat = categoryMap[quiz.category];
   return (
     <article className="card-surface animate-pop overflow-hidden">
@@ -26,7 +26,7 @@ export function QuizCard({ quiz, rank }: { quiz: Quiz; rank?: number }) {
 
       </div>
 
-      <QuizLink quiz={quiz} className="block bg-story px-5 py-8 text-center">
+      <QuizLink quiz={quiz} location={location} className="block bg-story px-5 py-8 text-center">
         <p className="text-[11px] font-bold tracking-widest text-primary-foreground/90">
           {quiz.questionCount}問・{quiz.estimatedTime}・登録なし
         </p>
@@ -39,6 +39,7 @@ export function QuizCard({ quiz, rank }: { quiz: Quiz; rank?: number }) {
         <p className="text-[13px] leading-relaxed text-muted-foreground">{quiz.description}</p>
         <QuizLink
           quiz={quiz}
+          location={location}
           className="shadow-lift mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3.5 text-sm font-black text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"
         >
           <Play className="size-4" />
@@ -55,10 +56,18 @@ export function QuizCard({ quiz, rank }: { quiz: Quiz; rank?: number }) {
   );
 }
 
-export function QuizRow({ quiz, fromQuizId }: { quiz: Quiz; fromQuizId?: string | undefined }) {
+export function QuizRow({
+  quiz,
+  fromQuizId,
+  location,
+}: {
+  quiz: Quiz;
+  fromQuizId?: string | undefined;
+  location?: string | undefined;
+}) {
   const cat = categoryMap[quiz.category];
   return (
-    <QuizLink quiz={quiz} fromQuizId={fromQuizId} className="card-surface flex items-center gap-3 p-3">
+    <QuizLink quiz={quiz} fromQuizId={fromQuizId} location={location} className="card-surface flex items-center gap-3 p-3">
       <div className="story-ring shrink-0">
         <div className="flex size-11 items-center justify-center rounded-full bg-card text-xl">
           {quiz.emoji}

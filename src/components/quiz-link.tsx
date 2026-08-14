@@ -16,7 +16,7 @@ export function QuizLink({
   className?: string;
   children: ReactNode;
   fromQuizId?: string | undefined;
-  location?: string;
+  location?: string | undefined;
 }) {
   const onClick = () => {
     if (fromQuizId) trackNextQuizClick(fromQuizId, quiz.id);

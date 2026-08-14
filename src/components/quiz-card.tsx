@@ -2,7 +2,7 @@ import { Bookmark, Heart, MessageCircle, Play, Send } from "lucide-react";
 import { QuizLink } from "@/components/quiz-link";
 import { categoryMap, type Quiz } from "@/lib/quizzes/types";
 
-export function QuizCard({ quiz, rank, location }: { quiz: Quiz; rank?: number; location?: string }) {
+export function QuizCard({ quiz, rank, location }: { quiz: Quiz; rank?: number; location?: string | undefined }) {
   const cat = categoryMap[quiz.category];
   return (
     <article className="card-surface animate-pop overflow-hidden">
@@ -63,7 +63,7 @@ export function QuizRow({
 }: {
   quiz: Quiz;
   fromQuizId?: string | undefined;
-  location?: string;
+  location?: string | undefined;
 }) {
   const cat = categoryMap[quiz.category];
   return (

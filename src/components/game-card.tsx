@@ -4,7 +4,7 @@ import { Glyph } from "@/components/glyph";
 import { trackCardClick } from "@/lib/analytics";
 import type { Game } from "@/lib/games/data";
 
-export function GameCard({ game, location }: { game: Game; location?: string }) {
+export function GameCard({ game, location }: { game: Game; location?: string | undefined }) {
   const onClick = () => trackCardClick("game", game.id, location);
   return (
     <article className="card-surface animate-pop overflow-hidden">
@@ -52,7 +52,7 @@ export function GameCard({ game, location }: { game: Game; location?: string }) 
   );
 }
 
-export function GameRow({ game, location }: { game: Game; location?: string }) {
+export function GameRow({ game, location }: { game: Game; location?: string | undefined }) {
   return (
     <Link
       to={game.path}

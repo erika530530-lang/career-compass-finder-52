@@ -35,3 +35,19 @@ export const trackNextQuizClick = (fromId: string, toId: string) =>
 export const trackShareClick = (channel: string, quizId?: string) =>
   track("share_click", { channel, quiz_id: quizId });
 export const trackOutboundClick = (url: string) => track("outbound_click", { link_url: url });
+
+/** トップページなどの掲載場所（section）付きのカードクリック計測 */
+export const trackCardClick = (
+  kind: "game" | "quiz",
+  id: string,
+  location?: string | undefined,
+) =>
+  track(kind === "game" ? "game_card_click" : "quiz_card_click", {
+    [kind === "game" ? "game_id" : "quiz_id"]: id,
+    location: location ?? "other",
+  });
+
+export const trackGameStart = (gameId: string, replay = false) =>
+  track("game_start", { game_id: gameId, replay });
+export const trackGameComplete = (gameId: string, score: number, percent: number) =>
+  track("game_complete", { game_id: gameId, score, percent });

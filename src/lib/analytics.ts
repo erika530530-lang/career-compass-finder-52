@@ -22,7 +22,10 @@ export function track(event: string, params: Params = {}) {
 
 export const trackPageView = (path: string) => {
   if (typeof window === "undefined" || !window.gtag) return;
-  window.gtag("event", "page_view", { page_path: path, page_location: window.location.href });
+  window.gtag("event", "page_view", {
+    page_path: path,
+    page_location: `${window.location.origin}${path}`,
+  });
 };
 
 export const trackQuizStart = (quizId: string) => track("quiz_start", { quiz_id: quizId });

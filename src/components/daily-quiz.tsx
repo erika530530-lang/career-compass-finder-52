@@ -33,6 +33,7 @@ export function DailyQuiz() {
     track("daily_quiz_answer", {
       game_id: daily.gameId,
       result: hit ? "correct" : "wrong",
+      location: "home_daily_quiz",
     });
   }
 
@@ -114,7 +115,7 @@ export function DailyQuiz() {
             )}
             <Link
               to={daily.gamePath}
-              onClick={() => track("daily_quiz_to_game", { game_id: daily.gameId })}
+              onClick={() => track("daily_quiz_to_game", { game_id: daily.gameId, location: "home_daily_quiz" })}
               className="shadow-lift mt-3 flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-4 text-sm font-black text-primary-foreground active:scale-95"
             >
               「{daily.gameLabel}」を10問あそぶ

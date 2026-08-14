@@ -112,7 +112,7 @@ function Home() {
           />
           <div className="mt-3 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {publishedGames.map((g) => (
-              <GameCard key={g.id} game={g} />
+              <GameCard key={g.id} game={g} location="home_popular_games" />
             ))}
           </div>
         </div>
@@ -126,12 +126,12 @@ function Home() {
           />
           <div className="mt-3 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {featured.map((q, i) => (
-              <QuizCard key={q.id} quiz={q} rank={i + 1} />
+              <QuizCard key={q.id} quiz={q} rank={i + 1} location="home_quizzes_featured" />
             ))}
           </div>
           <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {rest.map((q) => (
-              <QuizRow key={q.id} quiz={q} />
+              <QuizRow key={q.id} quiz={q} location="home_quizzes_rest" />
             ))}
           </div>
         </div>
@@ -145,9 +145,9 @@ function Home() {
           <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {newItems.map((item) =>
               item.kind === "game" ? (
-                <GameRow key={`g-${item.game.id}`} game={item.game} />
+                <GameRow key={`g-${item.game.id}`} game={item.game} location="home_new" />
               ) : (
-                <QuizRow key={`q-${item.quiz.id}`} quiz={item.quiz} />
+                <QuizRow key={`q-${item.quiz.id}`} quiz={item.quiz} location="home_new" />
               ),
             )}
           </div>

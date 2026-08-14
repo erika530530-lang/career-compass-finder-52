@@ -16,7 +16,7 @@ import {
 } from "@/lib/games/proverb-data";
 import { games } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
-import { track } from "@/lib/analytics";
+import { trackGameComplete, trackGameStart } from "@/lib/analytics";
 
 export const Route = createFileRoute("/game/kotowaza")({
   head: () => ({
@@ -78,7 +78,7 @@ function KotowazaGame() {
     setChosen(null);
     setLogs([]);
     setPhase("play");
-    track(again ? "game_replay" : "game_start", { game_id: game.id });
+    trackGameStart(game.id, again);
   }
 
   function answer(choice: string) {
@@ -89,7 +89,7 @@ function KotowazaGame() {
 
   function next() {
     if (index + 1 >= rounds.length) {
-      track("game_complete", { game_id: game.id, score: correctCount, percent });
+      trackGameComplete(game.id, correctCount, percent);
       setPhase("done");
       return;
     }

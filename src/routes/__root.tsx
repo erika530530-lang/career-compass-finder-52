@@ -12,7 +12,12 @@ import { useEffect, useRef, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { GA4_MEASUREMENT_ID, GSC_VERIFICATION_CODE, SITE_NAME } from "../lib/site-config";
+import {
+  ADSENSE_CLIENT_ID,
+  GA4_MEASUREMENT_ID,
+  GSC_VERIFICATION_CODE,
+  SITE_NAME,
+} from "../lib/site-config";
 import { trackPageView } from "../lib/analytics";
 
 function NotFoundComponent() {
@@ -127,17 +132,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
-    scripts: GA4_MEASUREMENT_ID
-      ? [
-          {
-            src: `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`,
-            async: true,
-          },
-          {
-            children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${GA4_MEASUREMENT_ID}',{anonymize_ip:true,send_page_view:true});`,
-          },
-        ]
-      : [],
+    scripts: [
+      // Google AdSense（サイト全体の<head>で1回だけ読み込む）
+      {
+        src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`,
+        async: true,
+        crossOrigin: "anonymous",
+      },
+      ...(GA4_MEASUREMENT_ID
+        ? [
+            {
+              src: `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`,
+              async: true,
+            },
+            {
+              children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${GA4_MEASUREMENT_ID}',{anonymize_ip:true,send_page_view:true});`,
+            },
+          ]
+        : []),
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

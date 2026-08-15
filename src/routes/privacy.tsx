@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { CONTACT_EMAIL, SITE_OWNER, canonical } from "@/lib/site-config";
 
-const TITLE = "プライバシーポリシー｜ピクセルポップ";
+const TITLE = "プライバシーポリシー｜ピクセルポップ（PixelPop）";
 const DESC =
-  "ピクセルポップにおけるアクセス解析（Google Analytics 4）、Cookie、広告配信、お問い合わせ情報の取り扱いについて説明します。";
+  "PixelPopにおけるCookie、アクセス解析（Google Analytics 4）、広告配信（Google AdSense・A8.net・afb）、お問い合わせ情報の取り扱いについて説明します。";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({

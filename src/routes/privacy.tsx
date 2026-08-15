@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
-import { CONTACT_EMAIL, SITE_OWNER, canonical } from "@/lib/site-config";
+import { CONTACT_EMAIL, SITE_URL, canonical } from "@/lib/site-config";
 
 const TITLE = "プライバシーポリシー｜ピクセルポップ（PixelPop）";
 const DESC =

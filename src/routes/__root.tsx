@@ -12,7 +12,12 @@ import { useEffect, useRef, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { GA4_MEASUREMENT_ID, GSC_VERIFICATION_CODE, SITE_NAME } from "../lib/site-config";
+import {
+  ADSENSE_CLIENT_ID,
+  GA4_MEASUREMENT_ID,
+  GSC_VERIFICATION_CODE,
+  SITE_NAME,
+} from "../lib/site-config";
 import { trackPageView } from "../lib/analytics";
 
 function NotFoundComponent() {

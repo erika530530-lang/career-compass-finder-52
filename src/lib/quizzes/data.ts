@@ -56,6 +56,7 @@ const percentQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "shafu-result-high",
         title: "ガチ社不、しかし才能の宝庫",
         emoji: "🛸",
         description:
@@ -66,6 +67,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "shafu-result-medium",
         title: "社会と適度に距離を置くタイプ",
         emoji: "🌤️",
         description:
@@ -76,6 +78,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "shafu-result-low",
         title: "わりと社会に馴染めるタイプ",
         emoji: "🌞",
         description:
@@ -86,6 +89,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "shafu-result-minimal",
         title: "社会適合スーパースター",
         emoji: "🏆",
         description:
@@ -127,6 +131,7 @@ const percentQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "seikaku-warui-result-high",
         title: "腹黒界のトップランナー",
         emoji: "😈",
         description:
@@ -137,6 +142,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "seikaku-warui-result-medium",
         title: "そこそこ黒い、つまり人間",
         emoji: "🫠",
         description:
@@ -147,6 +153,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "seikaku-warui-result-low",
         title: "だいたい素直な良いやつ",
         emoji: "🍀",
         description:
@@ -157,6 +164,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "seikaku-warui-result-minimal",
         title: "性格良すぎて心配",
         emoji: "😇",
         description:
@@ -198,6 +206,7 @@ const percentQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "renai-mendo-result-high",
         title: "こじらせ王、恋の情報量が多すぎる",
         emoji: "🌀",
         description:
@@ -208,6 +217,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "renai-mendo-result-medium",
         title: "そこそこ重い、けど可愛げがある",
         emoji: "💘",
         description:
@@ -218,6 +228,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "renai-mendo-result-low",
         title: "けっこう素直で付き合いやすい",
         emoji: "🍒",
         description:
@@ -228,6 +239,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "renai-mendo-result-minimal",
         title: "恋愛コスパ最強タイプ",
         emoji: "🧊",
         description:
@@ -269,6 +281,7 @@ const percentQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "kanemochi-result-high",
         title: "資本主義の主人公",
         emoji: "🤑",
         description:
@@ -279,6 +292,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "kanemochi-result-medium",
         title: "バランス型、伸びしろたっぷり",
         emoji: "📈",
         description:
@@ -289,6 +303,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "kanemochi-result-low",
         title: "今を楽しむ消費の達人",
         emoji: "🎈",
         description:
@@ -299,6 +314,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "kanemochi-result-minimal",
         title: "お金と距離を置きすぎ",
         emoji: "🐷",
         description:
@@ -411,6 +427,7 @@ const percentQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "kakure-sainou-result-high",
         title: "才能、すでに起動中",
         emoji: "✨",
         description:
@@ -421,6 +438,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "kakure-sainou-result-medium",
         title: "才能の芽、あと一歩で開花",
         emoji: "🌱",
         description:
@@ -431,6 +449,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "kakure-sainou-result-low",
         title: "才能は探索中",
         emoji: "🧭",
         description:
@@ -441,6 +460,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "kakure-sainou-result-minimal",
         title: "これから全部が伸びしろ",
         emoji: "🚀",
         description:

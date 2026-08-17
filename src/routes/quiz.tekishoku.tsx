@@ -79,7 +79,24 @@ function Tekishoku() {
         <SiteHeader tagline={false} />
 
         {stage === "intro" && <Intro onStart={() => { trackQuizStart("tekishoku"); setStage("quiz"); }} />}
-        {stage === "quiz" && <Quiz step={step} onAnswer={answer} onBack={() => setStep(step - 1)} />}
+        {stage === "quiz" && (
+          <section className="mt-5">
+            <div className="rounded-full border border-border bg-card/80 p-1.5 backdrop-blur">
+              <div className="flex gap-1">
+                {questions.map((_, i) => (
+                  <div key={i} className="h-2 flex-1 overflow-hidden rounded-full bg-secondary">
+                    <div
+                      className={`bg-story h-full rounded-full transition-all duration-500 ${
+                        i <= step ? "w-full" : "w-0"
+                      }`}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <Quiz step={step} onAnswer={answer} onBack={() => setStep(step - 1)} />
+          </section>
+        )}
         {stage === "result" && result && (
           <ResultView
             result={result}
@@ -335,11 +352,11 @@ function ResultView({
       </div>
 
       <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">
-        次はこれやってみる？ 👀
+        もっと診断を続ける 🔮
       </h2>
       <div className="mt-3 grid gap-3 md:grid-cols-2">
-        {recos.map((r) => (
-          <QuizRow key={r.id} quiz={r} fromQuizId="tekishoku" />
+        {recos.slice(1).map((r) => (
+          <QuizRow key={r.id} quiz={r} fromQuizId="tekishoku" location="result_reco_rest" />
         ))}
       </div>
       <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">

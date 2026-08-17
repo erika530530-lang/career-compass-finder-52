@@ -20,6 +20,9 @@ dist-ssr
 .wrangler/
 .dev.vars
 
+# Development screenshots
+mobile-*.png
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

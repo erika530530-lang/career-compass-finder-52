@@ -7,7 +7,7 @@ import type { Game } from "@/lib/games/data";
 export function GameCard({ game, location }: { game: Game; location?: string | undefined }) {
   const onClick = () => trackCardClick("game", game.id, location);
   return (
-    <article className="card-surface animate-pop overflow-hidden">
+    <article className="card-surface animate-pop overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-18px_oklch(0.64_0.28_338_/_0.36)]">
       <div className="flex items-center gap-3 px-4 py-3">
         <div className="story-ring">
           <div className="flex size-10 items-center justify-center rounded-full bg-card text-lg">
@@ -42,7 +42,7 @@ export function GameCard({ game, location }: { game: Game; location?: string | u
         <Link
           to={game.path}
           onClick={onClick}
-          className="shadow-lift mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3.5 text-sm font-black text-primary-foreground active:scale-95"
+          className="shadow-lift mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3.5 text-sm font-black text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_28px_-18px_oklch(0.64_0.28_338_/_0.42)] active:scale-[0.98]"
         >
           <Gamepad2 className="size-4" />
           ゲームをはじめる

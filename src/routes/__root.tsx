@@ -133,12 +133,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
     scripts: [
-      // Google AdSense（サイト全体の<head>で1回だけ読み込む）
-      {
-        src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`,
-        async: true,
-        crossOrigin: "anonymous",
-      },
       ...(GA4_MEASUREMENT_ID
         ? [
             {
@@ -176,6 +170,22 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const first = useRef(true);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const adsbygoogleScript = document.createElement("script");
+    adsbygoogleScript.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE_CLIENT_ID}`;
+    adsbygoogleScript.async = true;
+    adsbygoogleScript.crossOrigin = "anonymous";
+    document.head.appendChild(adsbygoogleScript);
+
+    return () => {
+      if (adsbygoogleScript.parentNode) {
+        adsbygoogleScript.parentNode.removeChild(adsbygoogleScript);
+      }
+    };
+  }, []);
 
   // SPA遷移時のGA4ページビュー計測（初回表示はgtagのconfigが送信する）
   useEffect(() => {

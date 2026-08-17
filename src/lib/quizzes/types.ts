@@ -48,6 +48,8 @@ export type ResultBand = {
   features: string[];
   good: string[];
   caution: string[];
+  /** 結果を表現する画像のID（例: "ketsudan-result-high"）。src/assets/diagnoses/result/{id}.jpg */
+  resultImageId?: string;
 };
 
 export type Quiz = {
@@ -72,6 +74,8 @@ export type Quiz = {
   questions: QuizQuestion[];
   results: ResultBand[];
   recommendedDiagnoses: string[];
+  /** カード画像のID（例: "ketsudan"）。public/images/diagnoses/card/{id}.png */
+  cardImageId?: string;
 };
 
 /** 5段階の選択肢を作るヘルパー（左が高スコア） */

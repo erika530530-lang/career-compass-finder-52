@@ -4,8 +4,12 @@ import { categoryMap, type Quiz } from "@/lib/quizzes/types";
 
 export function QuizCard({ quiz, rank, location }: { quiz: Quiz; rank?: number; location?: string | undefined }) {
   const cat = categoryMap[quiz.category];
+  const cardImagePath = quiz.cardImageId
+    ? `/images/diagnoses/card/${quiz.cardImageId}.png`
+    : null;
+
   return (
-    <article className="card-surface animate-pop overflow-hidden">
+    <article className="card-surface animate-pop overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-18px_oklch(0.64_0.28_338_/_0.36)]">
       <div className="flex items-center gap-3 px-4 py-3">
         <div className="story-ring">
           <div className="flex size-10 items-center justify-center rounded-full bg-card text-lg">
@@ -26,7 +30,7 @@ export function QuizCard({ quiz, rank, location }: { quiz: Quiz; rank?: number; 
 
       </div>
 
-      <QuizLink quiz={quiz} location={location} className="block bg-story px-5 py-8 text-center">
+      <QuizLink quiz={quiz} location={location} className={`block ${cardImagePath ? "" : "bg-story"} px-5 py-8 text-center`} style={cardImagePath ? { backgroundImage: `url(${cardImagePath})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}>
         <p className="text-[11px] font-bold tracking-widest text-primary-foreground/90">
           {quiz.questionCount}問・{quiz.estimatedTime}・登録なし
         </p>
@@ -40,7 +44,7 @@ export function QuizCard({ quiz, rank, location }: { quiz: Quiz; rank?: number; 
         <QuizLink
           quiz={quiz}
           location={location}
-          className="shadow-lift mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3.5 text-sm font-black text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"
+          className="shadow-lift mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-primary py-3.5 text-sm font-black text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_28px_-18px_oklch(0.64_0.28_338_/_0.42)] active:scale-[0.98]"
         >
           <Play className="size-4" />
           診断スタート

@@ -28,7 +28,7 @@ export function HomeHero() {
       <div className="mx-auto mt-4 flex max-w-md flex-col gap-2 sm:flex-row sm:justify-center">
         <a
           href="#daily-quiz-heading"
-          className="shadow-lift flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full bg-primary px-5 text-sm font-black text-primary-foreground active:scale-95"
+          className="shadow-lift flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,oklch(0.93_0.18_86),oklch(0.82_0.14_62))] px-5 text-sm font-black text-[oklch(0.27_0.06_40)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_26px_-18px_oklch(0.64_0.28_338_/_0.52)] active:scale-[0.98]"
         >
           今日の1問をやる
           <ArrowDown className="size-4" aria-hidden />
@@ -36,7 +36,7 @@ export function HomeHero() {
         <Link
           to="/games"
           search={{ cat: "all" }}
-          className="flex min-h-12 flex-1 items-center justify-center gap-2 rounded-full border border-border bg-card px-5 text-sm font-black text-foreground active:scale-95"
+          className="flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full border border-border bg-card px-5 text-sm font-black text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-[oklch(0.995_0.012_320)] active:scale-[0.98]"
         >
           <Gamepad2 className="size-4" aria-hidden />
           ゲームを見る

@@ -44,6 +44,7 @@ export const extraQuizzes: Quiz[] = [
         features: ["判断が速い", "後悔を引きずらない", "自然と場を仕切る"],
         good: ["みんなを待たせない", "チャンスを逃さない", "責任から逃げない"],
         caution: ["勢いで買いすぎる", "人の迷いに冷たくなりがち", "大きい決断も一瞬で決めてしまう"],
+        resultImageId: "ketsudan-result-high",
       },
       {
         min: 50,
@@ -54,6 +55,7 @@ export const extraQuizzes: Quiz[] = [
         features: ["納得してから動く", "大きな失敗が少ない", "選択の理由を説明できる"],
         good: ["信頼される判断をする", "感情に流されない", "相談相手として優秀"],
         caution: ["考える時間が長め", "情報を集めすぎる", "自分の直感を信じきれない"],
+        resultImageId: "ketsudan-result-medium",
       },
       {
         min: 25,
@@ -64,6 +66,7 @@ export const extraQuizzes: Quiz[] = [
         features: ["選択肢を全部検討する", "人の意見を尊重する", "決めたあとも気にする"],
         good: ["視野が広い", "衝動買いが少ない", "まわりに気を配れる"],
         caution: ["待たせてしまうことがある", "決めたあとに後悔する", "他人に決定を委ねがち"],
+        resultImageId: "ketsudan-result-low",
       },
       {
         min: 0,
@@ -74,9 +77,11 @@ export const extraQuizzes: Quiz[] = [
         features: ["争いを避ける", "人に合わせるのが上手", "こだわりが少ない"],
         good: ["一緒にいて楽", "柔軟に動ける", "他人の希望を優先できる"],
         caution: ["自分の好みが分からなくなる", "不満が後から出る", "決定を人任せにしすぎる"],
+        resultImageId: "ketsudan-result-minimal",
       },
     ],
     recommendedDiagnoses: ["sakinobashi", "leader", "jinsei-game"],
+    cardImageId: "ketsudan",
   },
   {
     id: "sakinobashi",

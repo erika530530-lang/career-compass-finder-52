@@ -105,45 +105,52 @@ function QuizPage() {
 
         {stage === "quiz" && (
           <section className="mt-5">
-            <div className="flex gap-1">
-              {quiz.questions.map((_, i) => (
-                <div key={i} className="h-1 flex-1 overflow-hidden rounded-full bg-card/70">
-                  <div
-                    className={`bg-story h-full rounded-full transition-all duration-500 ${
-                      i <= step ? "w-full" : "w-0"
-                    }`}
-                  />
-                </div>
-              ))}
+            <div className="rounded-full border border-border bg-card/80 p-1.5 backdrop-blur">
+              <div className="flex gap-1">
+                {quiz.questions.map((_, i) => (
+                  <div key={i} className="h-2 flex-1 overflow-hidden rounded-full bg-secondary">
+                    <div
+                      className={`bg-story h-full rounded-full transition-all duration-500 ${
+                        i <= step ? "w-full" : "w-0"
+                      }`}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div key={q.id} className="animate-pop card-surface mt-4 overflow-hidden">
-              <div className="flex items-center gap-3 px-4 py-3">
-                <div className="story-ring">
-                  <div className="flex size-10 items-center justify-center rounded-full bg-card text-lg">
-                    {quiz.emoji}
+              <div className="flex items-center justify-between gap-3 px-4 py-3">
+                <div className="flex items-center gap-3">
+                  <div className="story-ring">
+                    <div className="flex size-10 items-center justify-center rounded-full bg-card text-lg">
+                      {quiz.emoji}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-sm font-black text-foreground">
+                      {step + 1} / {quiz.questions.length}
+                    </p>
+                    <p className="text-[11px] text-muted-foreground">{quiz.metricLabel}を測定中</p>
                   </div>
                 </div>
-                <div>
-                  <p className="text-sm font-bold text-foreground">
-                    {step + 1} / {quiz.questions.length}
-                  </p>
-                  <p className="text-[11px] text-muted-foreground">{quiz.metricLabel}を測定中</p>
-                </div>
+                <span className="rounded-full bg-secondary px-2.5 py-1 text-[10px] font-black text-secondary-foreground">
+                  {Math.round(((step + 1) / quiz.questions.length) * 100)}%
+                </span>
               </div>
 
-              <div className="bg-story px-6 py-12">
-                <h1 className="font-display text-center text-xl font-black leading-relaxed text-primary-foreground">
+              <div className="bg-story px-5 py-10 sm:px-6 sm:py-12">
+                <h1 className="font-display text-center text-xl font-black leading-relaxed text-primary-foreground sm:text-2xl">
                   {q.text}
                 </h1>
               </div>
 
-              <div className="flex flex-col gap-2 p-4">
+              <div className="flex flex-col gap-2.5 p-3 sm:p-4">
                 {q.choices.map((c) => (
                   <button
                     key={c.label}
                     onClick={() => answer(c.score)}
-                    className="rounded-full border border-border bg-background px-4 py-3.5 text-left text-sm font-bold text-foreground transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground active:scale-95"
+                    className="min-h-[56px] rounded-2xl border border-border bg-background px-4 py-3 text-left text-sm font-black text-foreground shadow-sm transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground active:scale-[0.98] sm:min-h-[60px] sm:text-base"
                   >
                     {c.label}
                   </button>
@@ -154,7 +161,7 @@ function QuizPage() {
             {step > 0 && (
               <button
                 onClick={() => setStep(step - 1)}
-                className="mt-3 w-full rounded-full bg-card/70 py-2.5 text-xs font-bold text-muted-foreground backdrop-blur"
+                className="mt-3 w-full rounded-full bg-card/80 py-3 text-xs font-black text-muted-foreground backdrop-blur transition-colors hover:bg-card"
               >
                 ← ひとつ戻る
               </button>
@@ -196,8 +203,25 @@ function ResultView({
     .map((id) => quizzes.find((x) => x.id === id))
     .filter((x): x is Quiz => Boolean(x));
 
+  // 結果画像のパス（resultImageId があれば参照）
+  const resultImagePath = band.resultImageId
+    ? `/images/diagnoses/result/${band.resultImageId}.png`
+    : null;
+
   return (
     <section className="animate-pop mt-5">
+      {/* 結果画像（スマホでスクショしたときに見える位置） */}
+      {resultImagePath && (
+        <div className="card-surface mb-4 overflow-hidden">
+          <img
+            src={resultImagePath}
+            alt={`${band.title} - ${quiz.metricLabel}の診断結果画像`}
+            className="h-auto w-full bg-story object-cover"
+            loading="lazy"
+          />
+        </div>
+      )}
+
       <div className="card-surface overflow-hidden">
         <div className="bg-story px-5 py-10 text-center">
           <p className="text-xs font-bold tracking-widest text-primary-foreground/90">

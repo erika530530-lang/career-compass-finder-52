@@ -1,11 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import type { Quiz } from "@/lib/quizzes/types";
 import { trackCardClick, trackNextQuizClick } from "@/lib/analytics";
 
 export function QuizLink({
   quiz,
   className,
+  style,
   children,
   /** 「次はこれやってみる？」導線から遷移する場合、元の診断IDを渡す */
   fromQuizId,
@@ -14,6 +15,7 @@ export function QuizLink({
 }: {
   quiz: Quiz;
   className?: string;
+  style?: CSSProperties;
   children: ReactNode;
   fromQuizId?: string | undefined;
   location?: string | undefined;
@@ -25,14 +27,15 @@ export function QuizLink({
 
   if (quiz.kind === "custom") {
     return (
-      <Link to="/quiz/tekishoku" className={className} onClick={onClick}>
+      <Link to="/quiz/tekishoku" className={className} style={style} onClick={onClick}>
         {children}
       </Link>
     );
   }
   return (
-    <Link to="/quiz/$id" params={{ id: quiz.id }} className={className} onClick={onClick}>
+    <Link to="/quiz/$id" params={{ id: quiz.id }} className={className} style={style} onClick={onClick}>
       {children}
     </Link>
   );
 }
+

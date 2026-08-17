@@ -14,8 +14,8 @@ export function QuizLink({
   location,
 }: {
   quiz: Quiz;
-  className?: string;
-  style?: CSSProperties;
+  className?: string | undefined;
+  style?: CSSProperties | undefined;
   children: ReactNode;
   fromQuizId?: string | undefined;
   location?: string | undefined;

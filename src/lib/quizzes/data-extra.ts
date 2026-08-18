@@ -189,6 +189,7 @@ export const extraQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "kyuujitsu-result-high",
         title: "休日フル稼働・週末が本業タイプ",
         emoji: "🎡",
         description:
@@ -199,6 +200,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "kyuujitsu-result-medium",
         title: "ハイブリッド型・バランス休日タイプ",
         emoji: "🥐",
         description:
@@ -209,6 +211,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "kyuujitsu-result-low",
         title: "おうち充実型・室内クリエイタータイプ",
         emoji: "🎧",
         description:
@@ -219,6 +222,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "kyuujitsu-result-minimal",
         title: "完全充電モード・布団と一心同体",
         emoji: "🛌",
         description:
@@ -403,6 +407,7 @@ export const extraQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "asa-yoru-result-high",
         title: "完全朝型・朝日の申し子",
         emoji: "🌅",
         description:
@@ -413,6 +418,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "asa-yoru-result-medium",
         title: "やや朝型・整った生活の持ち主",
         emoji: "☕",
         description:
@@ -423,6 +429,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "asa-yoru-result-low",
         title: "やや夜型・エンジン後半型",
         emoji: "🌆",
         description:
@@ -433,6 +440,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "asa-yoru-result-minimal",
         title: "完全夜型・深夜0時からが本番",
         emoji: "🦉",
         description:

@@ -356,6 +356,7 @@ const percentQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "ningen-kankei-result-high",
         title: "気づかいレーダー全開タイプ",
         emoji: "📡",
         description:
@@ -366,6 +367,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "ningen-kankei-result-medium",
         title: "がんばりすぎない調整タイプ",
         emoji: "🧩",
         description:
@@ -376,6 +378,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "ningen-kankei-result-low",
         title: "自然体でいられるタイプ",
         emoji: "🌿",
         description:
@@ -386,6 +389,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "ningen-kankei-result-minimal",
         title: "人間関係ノーダメージ",
         emoji: "🛡️",
         description:

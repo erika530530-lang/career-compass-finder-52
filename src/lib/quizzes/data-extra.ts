@@ -114,6 +114,7 @@ export const extraQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "sakinobashi-result-high",
         title: "先延ばし界のレジェンド",
         emoji: "🔥",
         description:
@@ -124,6 +125,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "sakinobashi-result-medium",
         title: "ほどよく先延ばし・人間らしいタイプ",
         emoji: "🍵",
         description:
@@ -134,6 +136,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "sakinobashi-result-low",
         title: "だいたい早めに終わらせる人",
         emoji: "📗",
         description:
@@ -144,6 +147,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "sakinobashi-result-minimal",
         title: "先延ばしゼロ・時間管理の化身",
         emoji: "🏅",
         description:

@@ -340,6 +340,7 @@ export const extraQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "kaimono-result-high",
         title: "衝動買いの申し子",
         emoji: "💸",
         description:
@@ -350,6 +351,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "kaimono-result-medium",
         title: "たまに暴走する・平常時は理性派",
         emoji: "🧾",
         description:
@@ -360,6 +362,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "kaimono-result-low",
         title: "比較検討マスター",
         emoji: "🔍",
         description:
@@ -370,6 +373,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "kaimono-result-minimal",
         title: "財布の門番・鉄壁の防御型",
         emoji: "🛡️",
         description:
@@ -562,6 +566,7 @@ export const extraQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "sns-type-result-high",
         title: "発信者タイプ・タイムラインの主役",
         emoji: "🎤",
         description:
@@ -572,6 +577,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "sns-type-result-medium",
         title: "ほどよく共有・ちょうどいい距離感タイプ",
         emoji: "🫧",
         description:
@@ -582,6 +588,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "sns-type-result-low",
         title: "観測者タイプ・見る専の達人",
         emoji: "🔭",
         description:
@@ -592,6 +599,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "sns-type-result-minimal",
         title: "圏外タイプ・実在しないアカウント",
         emoji: "👻",
         description:

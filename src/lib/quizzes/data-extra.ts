@@ -264,6 +264,7 @@ export const extraQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "ryokou-result-high",
         title: "旅のしおり作成班・完全計画タイプ",
         emoji: "🗺️",
         description:
@@ -274,6 +275,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "ryokou-result-medium",
         title: "ゆる計画型・ちょうどいい旅人",
         emoji: "🚃",
         description:
@@ -284,6 +286,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "ryokou-result-low",
         title: "着いてから考える・現地即興タイプ",
         emoji: "🎒",
         description:
@@ -294,6 +297,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "ryokou-result-minimal",
         title: "完全おまかせ・ついていく旅人",
         emoji: "🐧",
         description:
@@ -483,6 +487,7 @@ export const extraQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "leader-result-high",
         title: "生まれながらの旗振り役",
         emoji: "👑",
         description:
@@ -493,6 +498,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "leader-result-medium",
         title: "参謀タイプ・実はこの人が動かしてる",
         emoji: "♟️",
         description:
@@ -503,6 +509,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "leader-result-low",
         title: "職人タイプ・自分の担当で勝つ人",
         emoji: "🛠️",
         description:
@@ -513,6 +520,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "leader-result-minimal",
         title: "自由枠・チームのオアシス",
         emoji: "🍹",
         description:

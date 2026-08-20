@@ -506,6 +506,7 @@ const percentQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "kyuushoku-result-high",
         title: "きみは『揚げパン』",
         emoji: "🥐",
         description:
@@ -516,6 +517,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "kyuushoku-result-medium",
         title: "きみは『カレーライス』",
         emoji: "🍛",
         description:
@@ -526,6 +528,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "kyuushoku-result-low",
         title: "きみは『ソフト麺』",
         emoji: "🍜",
         description:
@@ -536,6 +539,7 @@ const percentQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "kyuushoku-result-minimal",
         title: "きみは『牛乳』",
         emoji: "🥛",
         description:

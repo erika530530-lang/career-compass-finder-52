@@ -642,6 +642,7 @@ export const extraQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "kuse-result-high",
         title: "クセの総合商社",
         emoji: "🎪",
         description:
@@ -652,6 +653,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "kuse-result-medium",
         title: "自覚アリ・愛されクセ持ち",
         emoji: "🍡",
         description:
@@ -662,6 +664,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "kuse-result-low",
         title: "隠れクセ持ち・本人だけ気づいてない",
         emoji: "🕵️",
         description:
@@ -672,6 +675,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "kuse-result-minimal",
         title: "無クセの人・完全静止型",
         emoji: "🗿",
         description:
@@ -714,6 +718,7 @@ export const extraQuizzes: Quiz[] = [
     results: [
       {
         min: 75,
+        resultImageId: "jinsei-game-result-high",
         title: "効率厨・最短ルート攻略勢",
         emoji: "🧠",
         description:
@@ -724,6 +729,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 50,
+        resultImageId: "jinsei-game-result-medium",
         title: "バランス型・堅実プレイヤー",
         emoji: "🎮",
         description:
@@ -734,6 +740,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 25,
+        resultImageId: "jinsei-game-result-low",
         title: "探索型・寄り道でレベルを上げる人",
         emoji: "🗺️",
         description:
@@ -744,6 +751,7 @@ export const extraQuizzes: Quiz[] = [
       },
       {
         min: 0,
+        resultImageId: "jinsei-game-result-minimal",
         title: "スローライフ勢・のんびり周回",
         emoji: "🐢",
         description:

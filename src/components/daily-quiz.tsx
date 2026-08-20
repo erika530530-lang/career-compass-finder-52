@@ -39,16 +39,16 @@ export function DailyQuiz() {
 
   return (
     <section aria-labelledby="daily-quiz-heading" className="card-surface animate-pop overflow-hidden">
-      <div className="bg-story px-5 py-5 text-center">
-        <p className="text-[11px] font-bold tracking-widest text-primary-foreground/90">
+      <div className="bg-soft border-b border-border/60 px-5 py-6 text-center">
+        <p className="text-[11px] font-bold tracking-widest text-muted-foreground">
           {daily.genre}・{alreadyToday && !answered ? "きょうは回答ずみ" : "毎日かわる1問"}
         </p>
         <h2
           id="daily-quiz-heading"
-          className="font-display mt-1 flex items-center justify-center gap-1.5 text-xl font-black text-primary-foreground"
+          className="font-display mt-1.5 flex items-center justify-center gap-2 text-xl font-black text-foreground"
         >
-          <Sparkles className="size-5" aria-hidden />
-          🌞 今日のピクセルクイズ
+          <Sparkles className="size-5 text-accent" strokeWidth={1.8} aria-hidden />
+          今日のピクセルクイズ
         </h2>
       </div>
 

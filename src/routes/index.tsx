@@ -157,14 +157,14 @@ function Home() {
           <Link
             to="/games"
             search={{ cat: "all" }}
-            className="shadow-lift flex min-h-12 items-center justify-center rounded-full bg-primary px-6 text-sm font-black text-primary-foreground sm:min-w-56"
+            className="bg-cta shadow-lift flex min-h-12 items-center justify-center rounded-full px-6 text-sm font-black text-primary-foreground sm:min-w-56"
           >
             ゲームで遊ぶ 🕹️
           </Link>
           <Link
             to="/quizzes"
             search={{ cat: "all", sort: "popular" }}
-            className="flex min-h-12 items-center justify-center rounded-full border border-border bg-card px-6 text-sm font-black text-foreground sm:min-w-56"
+            className="shadow-soft flex min-h-12 items-center justify-center rounded-full border border-border bg-card px-6 text-sm font-black text-foreground sm:min-w-56"
           >
             診断する 🔮
           </Link>

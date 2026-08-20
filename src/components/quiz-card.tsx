@@ -31,10 +31,10 @@ export function QuizCard({ quiz, rank, location }: { quiz: Quiz; rank?: number; 
       </div>
 
       <QuizLink quiz={quiz} location={location} className={`block ${cardImagePath ? "" : "bg-soft border-y border-border/60"} px-5 py-8 text-center`} style={cardImagePath ? { backgroundImage: `url(${cardImagePath})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}>
-        <p className="text-[11px] font-bold tracking-widest text-primary-foreground/90">
+        <p className={`text-[11px] font-bold tracking-widest ${cardImagePath ? "text-primary-foreground/90" : "text-muted-foreground"}`}>
           {quiz.questionCount}問・{quiz.estimatedTime}・登録なし
         </p>
-        <h3 className="font-display mt-2 text-xl font-black leading-snug text-primary-foreground">
+        <h3 className={`font-display mt-2 text-xl font-black leading-snug ${cardImagePath ? "text-primary-foreground" : "text-foreground"}`}>
           {quiz.title}
         </h3>
       </QuizLink>

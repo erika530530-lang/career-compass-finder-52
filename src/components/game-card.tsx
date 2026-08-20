@@ -26,13 +26,13 @@ export function GameCard({ game, location }: { game: Game; location?: string | u
 
       </div>
 
-      <Link to={game.path} onClick={onClick} className="block bg-story px-5 py-7 text-center">
+      <Link to={game.path} onClick={onClick} className="bg-soft block border-y border-border/60 px-5 py-7 text-center">
         {game.id === "kanji-glyph" ? (
-          <Glyph name="eye" className="mx-auto size-16 text-primary-foreground" />
+          <Glyph name="eye" className="mx-auto size-16 text-foreground" />
         ) : (
           <p className="text-5xl">{game.emoji}</p>
         )}
-        <h3 className="font-display mt-3 text-xl font-black leading-snug text-primary-foreground">
+        <h3 className="font-display mt-3 text-xl font-black leading-snug text-foreground">
           {game.title}
         </h3>
       </Link>

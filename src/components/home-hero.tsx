@@ -7,7 +7,7 @@ import { ArrowDown, Gamepad2 } from "lucide-react";
  */
 export function HomeHero() {
   return (
-    <section className="mt-4 text-center">
+    <section className="mt-6 text-center">
       <h1 className="font-display text-2xl font-black leading-snug text-foreground md:text-4xl">
         暇つぶしで遊んでたら、
         <br />
@@ -17,7 +17,7 @@ export function HomeHero() {
         診断、クイズ、ミニゲーム。気になったものを1分で。
       </p>
 
-      <ul className="mt-3 flex flex-wrap items-center justify-center gap-1.5 text-[10px] font-black text-secondary-foreground">
+      <ul className="mt-4 flex flex-wrap items-center justify-center gap-2 text-[10px] font-black text-secondary-foreground">
         {["登録不要", "ぜんぶ無料", "1〜3分で遊べる"].map((t) => (
           <li key={t} className="rounded-full bg-secondary px-3 py-1">
             {t}
@@ -25,10 +25,10 @@ export function HomeHero() {
         ))}
       </ul>
 
-      <div className="mx-auto mt-4 flex max-w-md flex-col gap-2 sm:flex-row sm:justify-center">
+      <div className="mx-auto mt-6 flex max-w-md flex-col gap-2 sm:flex-row sm:justify-center">
         <a
           href="#daily-quiz-heading"
-          className="shadow-lift flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,oklch(0.93_0.18_86),oklch(0.82_0.14_62))] px-5 text-sm font-black text-[oklch(0.27_0.06_40)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_16px_26px_-18px_oklch(0.64_0.28_338_/_0.52)] active:scale-[0.98]"
+          className="bg-cta shadow-lift flex min-h-[52px] flex-1 items-center justify-center gap-2 rounded-full px-5 text-sm font-black text-primary-foreground transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
         >
           今日の1問をやる
           <ArrowDown className="size-4" aria-hidden />
@@ -36,7 +36,7 @@ export function HomeHero() {
         <Link
           to="/games"
           search={{ cat: "all" }}
-          className="flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full border border-border bg-card px-5 text-sm font-black text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:bg-[oklch(0.995_0.012_320)] active:scale-[0.98]"
+          className="shadow-soft flex min-h-[52px] flex-1 items-center justify-center gap-2 rounded-full border border-border bg-card px-5 text-sm font-black text-foreground transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/25 active:scale-[0.98]"
         >
           <Gamepad2 className="size-4" aria-hidden />
           ゲームを見る

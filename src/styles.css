@@ -72,13 +72,13 @@
 
 :root {
   --radius: 1.25rem;
-  --background: oklch(0.985 0.006 300);
+  --background: oklch(0.99 0.005 300);
   --foreground: oklch(0.21 0.02 300);
   --card: oklch(0.995 0.008 318);
   --card-foreground: oklch(0.21 0.02 300);
   --popover: oklch(0.995 0.008 318);
   --popover-foreground: oklch(0.21 0.02 300);
-  --primary: oklch(0.64 0.28 338);
+  --primary: oklch(0.62 0.2 328);
   --primary-foreground: oklch(0.99 0.005 320);
   --secondary: oklch(0.96 0.02 320);
   --secondary-foreground: oklch(0.34 0.09 320);
@@ -103,7 +103,7 @@
 
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.89 0.02 320);
+  --border: oklch(0.925 0.012 310);
   --input: oklch(0.89 0.02 320);
   --ring: oklch(0.64 0.28 338);
   --chart-1: oklch(0.646 0.222 41.116);
@@ -269,4 +269,12 @@ ruby.ruby-text > rt {
   font-weight: 700;
   letter-spacing: 0;
   color: color-mix(in oklab, currentColor 70%, transparent);
+}
+
+@utility bg-soft {
+  background-image: var(--gradient-soft);
+}
+
+@utility bg-cta {
+  background-image: var(--gradient-cta);
 }

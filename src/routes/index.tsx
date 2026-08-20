@@ -92,18 +92,18 @@ function Home() {
         <HomeHero />
         <PlayStreakBadge />
 
-        <div className="mt-6">
+        <div className="mt-8">
           <CategoryStrip />
         </div>
 
-        <div className="mt-6 lg:mx-auto lg:max-w-2xl">
+        <div className="mt-8 lg:mx-auto lg:max-w-2xl">
           <DailyQuiz />
           <p className="mt-2 px-1 text-center text-[12px] text-muted-foreground">
             1問だけ、やってみる？ 同じ日は同じ問題、明日は別の問題です。
           </p>
         </div>
 
-        <div className="mt-9">
+        <div className="mt-12">
           <SectionHead
             title="🎮 人気のミニゲーム"
             note="遊んでたら、ちょっと賢くなってるやつ。"
@@ -117,7 +117,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="mt-9">
+        <div className="mt-12">
           <SectionHead
             title="🔮 診断してみる？"
             note="1〜2分で終わる、自分のことがわかる系。"
@@ -136,11 +136,11 @@ function Home() {
           </div>
         </div>
 
-        <div className="mt-9">
+        <div className="mt-12">
           <PlayPicker />
         </div>
 
-        <div className="mt-9">
+        <div className="mt-12">
           <SectionHead title="🆕 新着" note="新しく増えたゲームと診断。" />
           <div className="mt-3 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {newItems.map((item) =>
@@ -153,7 +153,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="mt-9 flex flex-col gap-2 sm:flex-row sm:justify-center">
+        <div className="mt-12 flex flex-col gap-2 sm:flex-row sm:justify-center">
           <Link
             to="/games"
             search={{ cat: "all" }}

@@ -1,12 +1,11 @@
 import { Bookmark, Heart, MessageCircle, Play, Send } from "lucide-react";
 import { QuizLink } from "@/components/quiz-link";
 import { categoryMap, type Quiz } from "@/lib/quizzes/types";
+import { quizThumbnail } from "@/lib/quizzes/thumbnails";
 
 export function QuizCard({ quiz, rank, location }: { quiz: Quiz; rank?: number; location?: string | undefined }) {
   const cat = categoryMap[quiz.category];
-  const cardImagePath = quiz.cardImageId
-    ? `/images/diagnoses/card/${quiz.cardImageId}.png`
-    : null;
+  const thumb = quizThumbnail(quiz);
 
   return (
     <article className="card-surface animate-pop overflow-hidden transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-18px_oklch(0.64_0.28_338_/_0.36)]">
@@ -30,13 +29,25 @@ export function QuizCard({ quiz, rank, location }: { quiz: Quiz; rank?: number; 
 
       </div>
 
-      <QuizLink quiz={quiz} location={location} className={`block ${cardImagePath ? "" : "bg-soft border-y border-border/60"} px-5 py-8 text-center`} style={cardImagePath ? { backgroundImage: `url(${cardImagePath})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}>
-        <p className={`text-[11px] font-bold tracking-widest ${cardImagePath ? "text-primary-foreground/90" : "text-muted-foreground"}`}>
-          {quiz.questionCount}問・{quiz.estimatedTime}・登録なし
-        </p>
-        <h3 className={`font-display mt-2 text-xl font-black leading-snug ${cardImagePath ? "text-primary-foreground" : "text-foreground"}`}>
-          {quiz.title}
-        </h3>
+      <QuizLink quiz={quiz} location={location} className="block">
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-soft">
+          <img
+            src={thumb}
+            alt={`${quiz.title}のイメージ画像`}
+            loading="lazy"
+            width={1024}
+            height={576}
+            className="size-full object-cover transition-transform duration-300 hover:scale-[1.03]"
+          />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent px-4 pb-3 pt-10">
+            <p className="text-[10px] font-bold tracking-widest text-white/85">
+              {quiz.questionCount}問・{quiz.estimatedTime}・登録なし
+            </p>
+            <h3 className="font-display mt-1 text-lg font-black leading-snug text-white drop-shadow-sm">
+              {quiz.title}
+            </h3>
+          </div>
+        </div>
       </QuizLink>
 
       <div className="p-4">

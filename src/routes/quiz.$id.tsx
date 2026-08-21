@@ -9,6 +9,7 @@ import { ShareRow } from "@/components/share-row";
 import { GameRow } from "@/components/game-card";
 import { publishedGames } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
+import { quizThumbnail } from "@/lib/quizzes/thumbnails";
 import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analytics";
 
 export const Route = createFileRoute("/quiz/$id")({
@@ -79,7 +80,16 @@ function QuizPage() {
 
         {stage === "intro" && (
           <section className="animate-pop card-surface mt-5 overflow-hidden">
-            <div className="bg-story px-5 py-10 text-center">
+            <div className="aspect-[16/9] w-full overflow-hidden bg-soft">
+              <img
+                src={quizThumbnail(quiz)}
+                alt={`${quiz.title}のイメージ画像`}
+                width={1024}
+                height={576}
+                className="size-full object-cover"
+              />
+            </div>
+            <div className="bg-story px-5 py-8 text-center">
               <p className="text-xs font-bold tracking-widest text-primary-foreground/90">
                 {quiz.questionCount}問・{quiz.estimatedTime}・登録なし
               </p>

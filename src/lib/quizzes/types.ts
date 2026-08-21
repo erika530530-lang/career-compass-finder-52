@@ -76,6 +76,8 @@ export type Quiz = {
   recommendedDiagnoses: string[];
   /** カード画像のID（例: "ketsudan"）。public/images/diagnoses/card/{id}.png */
   cardImageId?: string;
+  /** 一覧・詳細で使うアイキャッチ画像のURL（例: "/images/diagnoses/thumb/xxx.jpg"） */
+  thumbnailUrl?: string;
 };
 
 /** 5段階の選択肢を作るヘルパー（左が高スコア） */

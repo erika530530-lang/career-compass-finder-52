@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Sparkles } from "lucide-react";
 import { axisMeta, careers, diagnose, questions, type Axis } from "@/lib/careers";
+import { careerImage } from "@/lib/careers-images";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";
@@ -307,32 +308,47 @@ function ResultView({
       <ol className="mt-3 flex flex-col gap-3">
         {top.map((m, i) => (
           <li key={m.career.name} className="card-surface overflow-hidden">
-            <div className="flex items-center gap-3 px-4 py-3">
-              <div className="story-ring">
-                <div className="flex size-9 items-center justify-center rounded-full bg-card text-xs font-black text-foreground">
-                  {i + 1}
-                </div>
+            <div className="md:flex md:items-stretch md:gap-0">
+              <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-soft md:aspect-square md:w-44">
+                <img
+                  src={careerImage(m.career.name)}
+                  alt={`${m.career.name}の仕事のイメージ`}
+                  loading="lazy"
+                  width={1024}
+                  height={768}
+                  className="size-full object-cover"
+                />
               </div>
               <div className="min-w-0 flex-1">
-                <h3 className="truncate text-sm font-black text-foreground">{m.career.name}</h3>
-                <p className="text-[11px] text-muted-foreground">{m.career.category}</p>
-              </div>
-              <span className="text-gradient font-display text-lg font-black">{m.score}%</span>
-            </div>
-            <div className="h-1.5 w-full bg-secondary">
-              <div className="bg-story h-full" style={{ width: `${m.score}%` }} />
-            </div>
-            <div className="p-4">
-              <p className="text-sm leading-relaxed text-foreground">{m.career.desc}</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {m.career.axes.map((a) => (
-                  <span key={a} className="text-[11px] font-bold text-primary">
-                    #{axisMeta[a].label}
-                  </span>
-                ))}
+                <div className="flex items-center gap-3 px-4 py-3">
+                  <div className="story-ring">
+                    <div className="flex size-9 items-center justify-center rounded-full bg-card text-xs font-black text-foreground">
+                      {i + 1}
+                    </div>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="truncate text-sm font-black text-foreground">{m.career.name}</h3>
+                    <p className="text-[11px] text-muted-foreground">{m.career.category}</p>
+                  </div>
+                  <span className="text-gradient font-display text-lg font-black">{m.score}%</span>
+                </div>
+                <div className="h-1.5 w-full bg-secondary">
+                  <div className="bg-story h-full" style={{ width: `${m.score}%` }} />
+                </div>
+                <div className="p-4">
+                  <p className="text-sm leading-relaxed text-foreground">{m.career.desc}</p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {m.career.axes.map((a) => (
+                      <span key={a} className="text-[11px] font-bold text-primary">
+                        #{axisMeta[a].label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </li>
+
         ))}
       </ol>
 

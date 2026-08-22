@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Gamepad2 } from "lucide-react";
-import { Glyph } from "@/components/glyph";
+import { gameThumbnail } from "@/lib/games/thumbnails";
 import { trackCardClick } from "@/lib/analytics";
 import type { Game } from "@/lib/games/data";
 
@@ -26,15 +26,25 @@ export function GameCard({ game, location }: { game: Game; location?: string | u
 
       </div>
 
-      <Link to={game.path} onClick={onClick} className="bg-soft block border-y border-border/60 px-5 py-7 text-center">
-        {game.id === "kanji-glyph" ? (
-          <Glyph name="eye" className="mx-auto size-16 text-foreground" />
-        ) : (
-          <p className="text-5xl">{game.emoji}</p>
-        )}
-        <h3 className="font-display mt-3 text-xl font-black leading-snug text-foreground">
-          {game.title}
-        </h3>
+      <Link to={game.path} onClick={onClick} className="block">
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-soft">
+          <img
+            src={gameThumbnail(game)}
+            alt={`${game.title}のイメージ画像`}
+            loading="lazy"
+            width={1024}
+            height={576}
+            className="size-full object-cover transition-transform duration-300 hover:scale-[1.03]"
+          />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent px-4 pb-3 pt-10">
+            <p className="text-[10px] font-bold tracking-widest text-white/85">
+              GAME・{game.questionCount}問・{game.estimatedTime}
+            </p>
+            <h3 className="font-display mt-1 text-lg font-black leading-snug text-white drop-shadow-sm">
+              {game.title}
+            </h3>
+          </div>
+        </div>
       </Link>
 
       <div className="p-4">

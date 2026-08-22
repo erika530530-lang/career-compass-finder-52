@@ -17,6 +17,7 @@ import {
 import { games } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
 import { trackGameComplete, trackGameStart } from "@/lib/analytics";
+import { gameThumbnail } from "@/lib/games/thumbnails";
 
 export const Route = createFileRoute("/game/kotowaza")({
   head: () => ({
@@ -106,6 +107,15 @@ function KotowazaGame() {
 
         {phase === "intro" && (
           <section className="card-surface animate-pop mt-5 overflow-hidden">
+            <div className="aspect-[16/9] w-full overflow-hidden bg-soft">
+              <img
+                src={gameThumbnail({ id: "proverb-origin" })}
+                alt="このゲームのイメージ画像"
+                width={1024}
+                height={576}
+                className="size-full object-cover"
+              />
+            </div>
             <div className="bg-story px-5 py-8 text-center">
               <p className="text-[11px] font-bold tracking-widest text-primary-foreground/90">
                 ミニゲーム・毎回10問・{game.estimatedTime}

@@ -46,6 +46,8 @@ export type Game = {
   categories: GameCategoryId[];
   /** 公開状態。false にすると一覧・sitemapから外れます */
   published: boolean;
+  /** 一覧・ゲームページで使うアイキャッチ画像のURL（例: "/images/games/thumb/xxx.jpg"） */
+  thumbnailUrl?: string;
   /** 結果画面から案内する「もっと知る」トピック。href未設定なら準備中表示 */
   topic: { label: string; href?: string };
 };
@@ -66,6 +68,7 @@ export const glyphQuestions = allGlyphQuestions;
 export const games: Game[] = [
   {
     id: "proverb-origin",
+    thumbnailUrl: "/images/games/thumb/proverb-origin.jpg",
     title: "この由来、どのことわざ？",
     nickname: "ことわざ由来クイズ",
     description: `ことわざの由来を読んで、元のことわざを当てよう！全${allProverbQuestions.length}問から毎回ランダムに10問の4択。意味・由来・現代での使い方・豆知識つきです。`,
@@ -81,6 +84,7 @@ export const games: Game[] = [
   },
   {
     id: "flag-country",
+    thumbnailUrl: "/images/games/thumb/flag-country.jpg",
     title: "この国、わかる？",
     nickname: "国旗と国名クイズ",
     description: `国旗と穴あき国名から国を当てよう！全${allCountryQuestions.length}か国から毎回ランダムに10問出題。2段階ヒントつきで、正解すると首都・地域・豆知識も読めます。`,
@@ -96,6 +100,7 @@ export const games: Game[] = [
   },
   {
     id: "kanji-glyph",
+    thumbnailUrl: "/images/games/thumb/kanji-glyph.jpg",
     title: "この象形文字、何の漢字？",
     nickname: "象形文字クイズ",
     description: `約${allGlyphQuestions.length}問の中から毎回ランダムに10問を出題するミニゲーム。答えは自分で入力、2段階ヒントつき。初級から上級までまざって出るので何度でも遊べます。`,

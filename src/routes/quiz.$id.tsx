@@ -253,6 +253,34 @@ function ResultView({
           <Block title="注意点" items={band.caution} />
 
           <ShareRow
+            {quiz.id === "renai-mendo" && (
+  <div className="card-surface mt-5 overflow-hidden border border-border p-4">
+    <p className="text-[10px] font-bold text-muted-foreground">PR</p>
+    <p className="mt-1 text-sm font-black text-foreground">
+      恋愛の悩みを誰かに相談してみる？
+    </p>
+    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+      恋愛や人間関係など、ひとりで抱えている悩みを相談できます。
+    </p>
+
+    <a
+      href="https://px.a8.net/svt/ejp?a8mat=4BACLC+EI572Y+2PEO+BYLJM"
+      rel="nofollow sponsored"
+      target="_blank"
+      className="mt-3 flex w-full items-center justify-center rounded-full bg-primary py-3 text-sm font-black text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"
+    >
+      ココナラ電話占いを見てみる
+    </a>
+
+    <img
+      border="0"
+      width="1"
+      height="1"
+      src="https://www18.a8.net/0.gif?a8mat=4BACLC+EI572Y+2PEO+BYLJM"
+      alt=""
+    />
+  </div>
+)}
             quizId={quiz.id}
             text={`私の${quiz.metricLabel}は${percent}%でした${band.emoji}「${band.title}」`}
           />

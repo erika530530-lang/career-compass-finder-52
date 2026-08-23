@@ -351,7 +351,33 @@ function ResultView({
 
         ))}
       </ol>
-
+  {/* A8：資格スクエア */}
+  <div className="card-surface mt-6 overflow-hidden p-4">
+    <p className="mb-2 text-[10px] font-bold text-muted-foreground">
+      PR
+    </p>
+    <p className="text-sm font-black text-foreground">
+      資格取得でキャリアの選択肢を広げる
+    </p>
+    <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+      気になる資格が見つかったら、資格講座もチェックしてみよう。
+    </p>
+    <a
+      href="https://px.a8.net/svt/ejp?a8mat=4BACLC+BYGFX6+373C+7CX1E"
+      rel="nofollow sponsored"
+      target="_blank"
+      className="mt-3 flex w-full items-center justify-center rounded-full bg-primary py-3 text-sm font-black text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"
+    >
+      資格スクエアの講座を見る
+    </a>
+    <img
+      border="0"
+      width="1"
+      height="1"
+      src="https://www19.a8.net/0.gif?a8mat=4BACLC+BYGFX6+373C+7CX1E"
+      alt=""
+    />
+  </div>
       <div className="mt-5 flex flex-col gap-2">
         <button
           onClick={() => setShowAll(!showAll)}

@@ -251,18 +251,22 @@ function ResultView({
           <Block title="あなたの特徴" items={band.features} />
           <Block title="良いところ" items={band.good} />
           <Block title="注意点" items={band.caution} />
+<ShareRow
+  quizId={quiz.id}
+  text={`私の${quiz.metricLabel}は${percent}%でした${band.emoji}「${band.title}」`}
+/>
 
-          <ShareRow
-            {quiz.id === "renai-mendo" && (
+{quiz.id === "renai-mendo" && (
   <div className="card-surface mt-5 overflow-hidden border border-border p-4">
-    <p className="text-[10px] font-bold text-muted-foreground">PR</p>
+    <p className="text-[10px] font-bold text-muted-foreground">
+      PR
+    </p>
     <p className="mt-1 text-sm font-black text-foreground">
       恋愛の悩みを誰かに相談してみる？
     </p>
     <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
       恋愛や人間関係など、ひとりで抱えている悩みを相談できます。
     </p>
-
     <a
       href="https://px.a8.net/svt/ejp?a8mat=4BACLC+EI572Y+2PEO+BYLJM"
       rel="nofollow sponsored"
@@ -271,7 +275,6 @@ function ResultView({
     >
       ココナラ電話占いを見てみる
     </a>
-
     <img
       border="0"
       width="1"
@@ -281,6 +284,14 @@ function ResultView({
     />
   </div>
 )}
+
+<button
+  onClick={onRestart}
+  className="mt-2 w-full rounded-full border border-border bg-card py-3 text-sm font-black text-foreground"
+>
+  もう一回やる 🔁
+</button>
+ 
             quizId={quiz.id}
             text={`私の${quiz.metricLabel}は${percent}%でした${band.emoji}「${band.title}」`}
           />

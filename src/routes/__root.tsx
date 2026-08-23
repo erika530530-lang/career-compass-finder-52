@@ -132,19 +132,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
-    scripts: [
-      ...(GA4_MEASUREMENT_ID
-        ? [
-            {
-              src: `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`,
-              async: true,
-            },
-            {
-              children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${GA4_MEASUREMENT_ID}',{anonymize_ip:true,send_page_view:true});`,
-            },
-          ]
-        : []),
-    ],
+   scripts: [
+  {
+    src: "//statics.a8.net/a8link/a8linkmgr.js",
+  },
+  {
+    children: `a8linkmgr({
+      "config_id": "yeA1DrLblQXEifaszBis"
+    });`,
+  },
+  ...(GA4_MEASUREMENT_ID
+    ? [
+        {
+          src: `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`,
+          async: true,
+        },
+        {
+          children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${GA4_MEASUREMENT_ID}',{anonymize_ip:true,send_page_view:true});`,
+        },
+      ]
+    : []),
+],
   }),
   shellComponent: RootShell,
   component: RootComponent,

@@ -6,6 +6,8 @@ import { careerImage } from "@/lib/careers-images";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";
+import { ResultShareCard } from "@/components/result-share-card";
+
 import { GameRow } from "@/components/game-card";
 import { publishedGames } from "@/lib/games/data";
 import { quizzes } from "@/lib/quizzes/data";
@@ -301,6 +303,18 @@ function ResultView({
           text={`私は${result.top.map((a) => axisMeta[a].label).slice(0, 2).join("×")}タイプ！1位は「${result.matches[0]!.career.name}」`}
         />
       </div>
+
+      <ResultShareCard
+        data={{
+          quizId: "tekishoku",
+          quizTitle: "向いてる職業診断（てきしょく）",
+          headline: `${result.top.map((a) => axisMeta[a].label).slice(0, 2).join("×")}タイプ`,
+          resultTitle: `${axisEmoji[result.top[0]!]} 1位：${result.matches[0]!.career.name}`,
+          comment: result.matches[0]!.career.desc,
+        }}
+        shareText={`私は${result.top.map((a) => axisMeta[a].label).slice(0, 2).join("×")}タイプ！1位は「${result.matches[0]!.career.name}」\n#ピクセルポップ`}
+      />
+
 
       <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">
         向いてる仕事ランキング 🏆

@@ -264,7 +264,8 @@ function ResultView({
           quizId: quiz.id,
           quizTitle: quiz.title,
           headline: `${percent}%`,
-          resultTitle: `${band.emoji} ${band.title}`,
+          resultTitle: band.title,
+          emoji: band.emoji,
           comment: band.description,
           metricLabel: quiz.metricLabel,
         }}

@@ -309,7 +309,8 @@ function ResultView({
           quizId: "tekishoku",
           quizTitle: "向いてる職業診断（てきしょく）",
           headline: `${result.top.map((a) => axisMeta[a].label).slice(0, 2).join("×")}タイプ`,
-          resultTitle: `${axisEmoji[result.top[0]!]} 1位：${result.matches[0]!.career.name}`,
+          resultTitle: `1位：${result.matches[0]!.career.name}`,
+          emoji: axisEmoji[result.top[0]!],
           comment: result.matches[0]!.career.desc,
         }}
         shareText={`私は${result.top.map((a) => axisMeta[a].label).slice(0, 2).join("×")}タイプ！1位は「${result.matches[0]!.career.name}」\n#ピクセルポップ`}

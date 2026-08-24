@@ -147,7 +147,7 @@ export function drawResultCard(canvas: HTMLCanvasElement, data: ResultCardData) 
   // 絵文字
   let cursor = py + 74;
   if (data.emoji) {
-    ctx.font = fontStack(700, 64);
+    ctx.font = `700 64px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", ${'"Zen Maru Gothic"'}, sans-serif`;
     ctx.fillStyle = t.panelText;
     ctx.fillText(data.emoji, W / 2, cursor);
     cursor += 66;

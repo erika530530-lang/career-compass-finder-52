@@ -277,7 +277,6 @@ function ResultView({
             ココナラ電話占いを見てみる
           </a>
           <img
-            border="0"
             width="1"
             height="1"
             src="https://www18.a8.net/0.gif?a8mat=4BACLC+EI572Y+2PEO+BYLJM"

@@ -371,7 +371,6 @@ function ResultView({
       資格スクエアの講座を見る
     </a>
     <img
-      border="0"
       width="1"
       height="1"
       src="https://www19.a8.net/0.gif?a8mat=4BACLC+BYGFX6+373C+7CX1E"

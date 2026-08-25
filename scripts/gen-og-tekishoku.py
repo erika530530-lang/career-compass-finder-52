@@ -133,16 +133,34 @@ def build(career):
     d.text((60, 168), "10問でわかる！", font=font(38), fill=BLUE)
     d.text((60, 224), "あなたに向いている職業は", font=font(42), fill=NAVY)
 
-    # 職業名（最大サイズで目立たせる）
+    # 職業名（1行で入らないときは2行に分けて表示）
     name = career["name"]
-    nf = fit(name, 600, 118, 46)
-    d.text((58, 300), name, font=nf, fill=NAVY)
+    max_w = 600
+    lines = [name]
+    nf = fit(name, max_w, 118, 60)
+    if nf.getlength(name) > max_w:
+        mid = len(name) // 2
+        cut = mid
+        for i in range(len(name)):
+            for c in (mid - i, mid + i):
+                if 1 <= c < len(name) and name[c - 1] in "・（）／/":
+                    cut = c
+                    break
+            else:
+                continue
+            break
+        lines = [name[:cut], name[cut:]]
+        nf = font(min(70, int(max_w / max(len(l) for l in lines))), "Black")
+
+    y = 320 - (nf.size + 8) * (len(lines) - 1) // 2
+    for i, line in enumerate(lines):
+        d.text((58, y + i * (nf.size + 8)), line, font=nf, fill=NAVY)
 
     # タイプのバッジ
     label = career["type"]
     bf = font(32)
     tw = bf.getlength(label)
-    by = 300 + nf.size + 40
+    by = y + (nf.size + 8) * len(lines) + 34
     d.rounded_rectangle([58, by, 58 + tw + 64, by + 62], 31, fill=PURPLE)
     d.text((90, by + 12), label, font=bf, fill=(255, 255, 255))
 

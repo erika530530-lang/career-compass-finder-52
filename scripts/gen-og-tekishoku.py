@@ -72,7 +72,28 @@ def photo(slug):
     return Image.open(path).convert("RGB")
 
 
+def trim_black(img):
+    """AI生成画像に入っている黒帯を取り除く。"""
+    g = img.convert("L")
+    W0, H0 = g.size
+    def row_dark(y):
+        return sum(g.getpixel((x, y)) for x in range(0, W0, 16)) / (W0 / 16) < 18
+    def col_dark(x):
+        return sum(g.getpixel((x, y)) for y in range(0, H0, 16)) / (H0 / 16) < 18
+    top, bottom, left, right = 0, H0 - 1, 0, W0 - 1
+    while top < bottom and row_dark(top):
+        top += 1
+    while bottom > top and row_dark(bottom):
+        bottom -= 1
+    while left < right and col_dark(left):
+        left += 1
+    while right > left and col_dark(right):
+        right -= 1
+    return img.crop((left, top, right + 1, bottom + 1))
+
+
 def cover(img, w, h):
+    img = trim_black(img)
     r = max(w / img.width, h / img.height)
     im = img.resize((max(1, int(img.width * r)), max(1, int(img.height * r))), Image.LANCZOS)
     left = (im.width - w) // 2

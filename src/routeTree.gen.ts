@@ -22,6 +22,7 @@ import { Route as GameKokkiRouteImport } from './routes/game.kokki'
 import { Route as GameKotowazaRouteImport } from './routes/game.kotowaza'
 import { Route as QuizIdRouteImport } from './routes/quiz.$id'
 import { Route as QuizTekishokuRouteImport } from './routes/quiz.tekishoku'
+import { Route as QuizTekishokuResultSlugRouteImport } from './routes/quiz.tekishoku-result.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -88,6 +89,11 @@ const QuizTekishokuRoute = QuizTekishokuRouteImport.update({
   path: '/quiz/tekishoku',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuizTekishokuResultSlugRoute = QuizTekishokuResultSlugRouteImport.update({
+  id: '/quiz/tekishoku-result/$slug',
+  path: '/quiz/tekishoku-result/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -103,6 +109,7 @@ export interface FileRoutesByFullPath {
   '/game/kotowaza': typeof GameKotowazaRoute
   '/quiz/$id': typeof QuizIdRoute
   '/quiz/tekishoku': typeof QuizTekishokuRoute
+  '/quiz/tekishoku-result/$slug': typeof QuizTekishokuResultSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -118,6 +125,7 @@ export interface FileRoutesByTo {
   '/game/kotowaza': typeof GameKotowazaRoute
   '/quiz/$id': typeof QuizIdRoute
   '/quiz/tekishoku': typeof QuizTekishokuRoute
+  '/quiz/tekishoku-result/$slug': typeof QuizTekishokuResultSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/game/kotowaza': typeof GameKotowazaRoute
   '/quiz/$id': typeof QuizIdRoute
   '/quiz/tekishoku': typeof QuizTekishokuRoute
+  '/quiz/tekishoku-result/$slug': typeof QuizTekishokuResultSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/game/kotowaza'
     | '/quiz/$id'
     | '/quiz/tekishoku'
+    | '/quiz/tekishoku-result/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/game/kotowaza'
     | '/quiz/$id'
     | '/quiz/tekishoku'
+    | '/quiz/tekishoku-result/$slug'
   id:
     | '__root__'
     | '/'
@@ -181,6 +192,7 @@ export interface FileRouteTypes {
     | '/game/kotowaza'
     | '/quiz/$id'
     | '/quiz/tekishoku'
+    | '/quiz/tekishoku-result/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -197,6 +209,7 @@ export interface RootRouteChildren {
   GameKotowazaRoute: typeof GameKotowazaRoute
   QuizIdRoute: typeof QuizIdRoute
   QuizTekishokuRoute: typeof QuizTekishokuRoute
+  QuizTekishokuResultSlugRoute: typeof QuizTekishokuResultSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -292,6 +305,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuizTekishokuRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quiz/tekishoku-result/$slug': {
+      id: '/quiz/tekishoku-result/$slug'
+      path: '/quiz/tekishoku-result/$slug'
+      fullPath: '/quiz/tekishoku-result/$slug'
+      preLoaderRoute: typeof QuizTekishokuResultSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -309,6 +329,7 @@ const rootRouteChildren: RootRouteChildren = {
   GameKotowazaRoute: GameKotowazaRoute,
   QuizIdRoute: QuizIdRoute,
   QuizTekishokuRoute: QuizTekishokuRoute,
+  QuizTekishokuResultSlugRoute: QuizTekishokuResultSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

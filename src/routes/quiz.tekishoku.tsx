@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Sparkles } from "lucide-react";
 import { axisMeta, careers, diagnose, questions, type Axis } from "@/lib/careers";
 import { careerImage } from "@/lib/careers-images";
+import { careerResultPath, careerSlug, OG_DEFAULT } from "@/lib/careers-og";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";
@@ -311,7 +312,12 @@ function ResultView({
         <ShareRow
           quizId="tekishoku"
           text={`私は${result.top.map((a) => axisMeta[a].label).slice(0, 2).join("×")}タイプ！1位は「${result.matches[0]!.career.name}」`}
+          shareUrl={(() => {
+            const slug = careerSlug(result.matches[0]!.career.name);
+            return slug ? canonical(careerResultPath(slug)) : undefined;
+          })()}
         />
+
       </div>
 
       <ResultShareCard

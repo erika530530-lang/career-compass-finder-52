@@ -312,7 +312,12 @@ function ResultView({
         <ShareRow
           quizId="tekishoku"
           text={`私は${result.top.map((a) => axisMeta[a].label).slice(0, 2).join("×")}タイプ！1位は「${result.matches[0]!.career.name}」`}
+          shareUrl={(() => {
+            const slug = careerSlug(result.matches[0]!.career.name);
+            return slug ? canonical(careerResultPath(slug)) : undefined;
+          })()}
         />
+
       </div>
 
       <ResultShareCard

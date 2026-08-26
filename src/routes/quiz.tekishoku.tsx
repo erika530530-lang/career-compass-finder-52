@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Sparkles } from "lucide-react";
 import { axisMeta, careers, diagnose, questions, type Axis } from "@/lib/careers";
 import { careerImage } from "@/lib/careers-images";
+import { careerResultPath, careerSlug, OG_DEFAULT } from "@/lib/careers-og";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";

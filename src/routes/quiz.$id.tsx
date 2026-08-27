@@ -6,7 +6,7 @@ import { categoryMap, scoreQuiz, type Quiz } from "@/lib/quizzes/types";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { QuizRow } from "@/components/quiz-card";
 import { ShareRow } from "@/components/share-row";
-import { ResultShareCard } from "@/components/result-share-card";
+
 
 import { GameRow } from "@/components/game-card";
 import { publishedGames } from "@/lib/games/data";
@@ -259,18 +259,6 @@ function ResultView({
         text={`私の${quiz.metricLabel}は${percent}%でした${band.emoji}「${band.title}」`}
       />
 
-      <ResultShareCard
-        data={{
-          quizId: quiz.id,
-          quizTitle: quiz.title,
-          headline: `${percent}%`,
-          resultTitle: band.title,
-          emoji: band.emoji,
-          comment: band.description,
-          metricLabel: quiz.metricLabel,
-        }}
-        shareText={`私の${quiz.metricLabel}は${percent}%でした${band.emoji}「${band.title}」\n#ピクセルポップ`}
-      />
 
 
       {quiz.id === "renai-mendo" && (

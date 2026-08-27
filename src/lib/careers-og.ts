@@ -37,5 +37,5 @@ export function careerTypeLabel(career: Career): string {
 
 /** 結果シェア用URL（SNSクローラーがこのURLからOGPを取得する） */
 export function careerResultPath(slug: string): string {
-  return `/quiz/tekishoku/result/${slug}`;
+  return `/quiz/tekishoku-result/${slug}`;
 }

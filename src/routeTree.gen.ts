@@ -22,6 +22,7 @@ import { Route as GameKokkiRouteImport } from './routes/game.kokki'
 import { Route as GameKotowazaRouteImport } from './routes/game.kotowaza'
 import { Route as QuizIdRouteImport } from './routes/quiz.$id'
 import { Route as QuizTekishokuRouteImport } from './routes/quiz.tekishoku'
+import { Route as QuizKetsudanResultLevelRouteImport } from './routes/quiz.ketsudan-result.$level'
 import { Route as QuizTekishokuResultSlugRouteImport } from './routes/quiz.tekishoku-result.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -89,6 +90,11 @@ const QuizTekishokuRoute = QuizTekishokuRouteImport.update({
   path: '/quiz/tekishoku',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuizKetsudanResultLevelRoute = QuizKetsudanResultLevelRouteImport.update({
+  id: '/quiz/ketsudan-result/$level',
+  path: '/quiz/ketsudan-result/$level',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuizTekishokuResultSlugRoute = QuizTekishokuResultSlugRouteImport.update({
   id: '/quiz/tekishoku-result/$slug',
   path: '/quiz/tekishoku-result/$slug',
@@ -109,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/game/kotowaza': typeof GameKotowazaRoute
   '/quiz/$id': typeof QuizIdRoute
   '/quiz/tekishoku': typeof QuizTekishokuRoute
+  '/quiz/ketsudan-result/$level': typeof QuizKetsudanResultLevelRoute
   '/quiz/tekishoku-result/$slug': typeof QuizTekishokuResultSlugRoute
 }
 export interface FileRoutesByTo {
@@ -125,6 +132,7 @@ export interface FileRoutesByTo {
   '/game/kotowaza': typeof GameKotowazaRoute
   '/quiz/$id': typeof QuizIdRoute
   '/quiz/tekishoku': typeof QuizTekishokuRoute
+  '/quiz/ketsudan-result/$level': typeof QuizKetsudanResultLevelRoute
   '/quiz/tekishoku-result/$slug': typeof QuizTekishokuResultSlugRoute
 }
 export interface FileRoutesById {
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/game/kotowaza': typeof GameKotowazaRoute
   '/quiz/$id': typeof QuizIdRoute
   '/quiz/tekishoku': typeof QuizTekishokuRoute
+  '/quiz/ketsudan-result/$level': typeof QuizKetsudanResultLevelRoute
   '/quiz/tekishoku-result/$slug': typeof QuizTekishokuResultSlugRoute
 }
 export interface FileRouteTypes {
@@ -160,6 +169,7 @@ export interface FileRouteTypes {
     | '/game/kotowaza'
     | '/quiz/$id'
     | '/quiz/tekishoku'
+    | '/quiz/ketsudan-result/$level'
     | '/quiz/tekishoku-result/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
     | '/game/kotowaza'
     | '/quiz/$id'
     | '/quiz/tekishoku'
+    | '/quiz/ketsudan-result/$level'
     | '/quiz/tekishoku-result/$slug'
   id:
     | '__root__'
@@ -192,6 +203,7 @@ export interface FileRouteTypes {
     | '/game/kotowaza'
     | '/quiz/$id'
     | '/quiz/tekishoku'
+    | '/quiz/ketsudan-result/$level'
     | '/quiz/tekishoku-result/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -209,6 +221,7 @@ export interface RootRouteChildren {
   GameKotowazaRoute: typeof GameKotowazaRoute
   QuizIdRoute: typeof QuizIdRoute
   QuizTekishokuRoute: typeof QuizTekishokuRoute
+  QuizKetsudanResultLevelRoute: typeof QuizKetsudanResultLevelRoute
   QuizTekishokuResultSlugRoute: typeof QuizTekishokuResultSlugRoute
 }
 
@@ -305,6 +318,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuizTekishokuRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quiz/ketsudan-result/$level': {
+      id: '/quiz/ketsudan-result/$level'
+      path: '/quiz/ketsudan-result/$level'
+      fullPath: '/quiz/ketsudan-result/$level'
+      preLoaderRoute: typeof QuizKetsudanResultLevelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quiz/tekishoku-result/$slug': {
       id: '/quiz/tekishoku-result/$slug'
       path: '/quiz/tekishoku-result/$slug'
@@ -329,6 +349,7 @@ const rootRouteChildren: RootRouteChildren = {
   GameKotowazaRoute: GameKotowazaRoute,
   QuizIdRoute: QuizIdRoute,
   QuizTekishokuRoute: QuizTekishokuRoute,
+  QuizKetsudanResultLevelRoute: QuizKetsudanResultLevelRoute,
   QuizTekishokuResultSlugRoute: QuizTekishokuResultSlugRoute,
 }
 export const routeTree = rootRouteImport

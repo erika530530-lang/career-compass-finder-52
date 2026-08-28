@@ -12,6 +12,8 @@ import { GameRow } from "@/components/game-card";
 import { publishedGames } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
 import { ketsudanLevelFromBand, ketsudanResultPath } from "@/lib/quizzes/ketsudan-og";
+import { quizResultPath, resultLevelFromBand } from "@/lib/quizzes/result-og";
+
 import { quizThumbnail } from "@/lib/quizzes/thumbnails";
 import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analytics";
 

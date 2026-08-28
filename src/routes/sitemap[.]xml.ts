@@ -23,11 +23,17 @@ export const Route = createFileRoute("/sitemap.xml")({
             changefreq: "weekly" as const,
             priority: "0.8",
           })),
+          ...allQuizResultPaths().map((path) => ({
+            path,
+            changefreq: "monthly" as const,
+            priority: "0.6",
+          })),
           ...publishedGames.map((g) => ({
             path: g.path,
             changefreq: "weekly" as const,
             priority: "0.8",
           })),
+
           { path: "/about", changefreq: "monthly", priority: "0.5" },
           { path: "/contact", changefreq: "yearly", priority: "0.3" },
           { path: "/privacy", changefreq: "yearly", priority: "0.3" },

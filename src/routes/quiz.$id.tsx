@@ -257,6 +257,11 @@ function ResultView({
             <ShareRow
         quizId={quiz.id}
         text={`私の${quiz.metricLabel}は${percent}%でした${band.emoji}「${band.title}」`}
+        shareUrl={(() => {
+          if (quiz.id !== "ketsudan") return undefined;
+          const level = ketsudanLevelFromBand(band);
+          return level ? canonical(ketsudanResultPath(level)) : undefined;
+        })()}
       />
 
 

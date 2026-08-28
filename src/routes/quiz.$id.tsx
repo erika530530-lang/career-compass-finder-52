@@ -11,6 +11,7 @@ import { ShareRow } from "@/components/share-row";
 import { GameRow } from "@/components/game-card";
 import { publishedGames } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
+import { ketsudanLevelFromBand, ketsudanResultPath } from "@/lib/quizzes/ketsudan-og";
 import { quizThumbnail } from "@/lib/quizzes/thumbnails";
 import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analytics";
 
@@ -257,6 +258,11 @@ function ResultView({
             <ShareRow
         quizId={quiz.id}
         text={`私の${quiz.metricLabel}は${percent}%でした${band.emoji}「${band.title}」`}
+        shareUrl={(() => {
+          if (quiz.id !== "ketsudan") return undefined;
+          const level = ketsudanLevelFromBand(band);
+          return level ? canonical(ketsudanResultPath(level)) : undefined;
+        })()}
       />
 
 

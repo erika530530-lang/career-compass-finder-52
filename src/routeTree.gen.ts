@@ -24,6 +24,7 @@ import { Route as QuizIdRouteImport } from './routes/quiz.$id'
 import { Route as QuizTekishokuRouteImport } from './routes/quiz.tekishoku'
 import { Route as QuizKetsudanResultLevelRouteImport } from './routes/quiz.ketsudan-result.$level'
 import { Route as QuizTekishokuResultSlugRouteImport } from './routes/quiz.tekishoku-result.$slug'
+import { Route as QuizResultIdLevelRouteImport } from './routes/quiz.result.$id.$level'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -100,6 +101,11 @@ const QuizTekishokuResultSlugRoute = QuizTekishokuResultSlugRouteImport.update({
   path: '/quiz/tekishoku-result/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuizResultIdLevelRoute = QuizResultIdLevelRouteImport.update({
+  id: '/quiz/result/$id/$level',
+  path: '/quiz/result/$id/$level',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -117,6 +123,7 @@ export interface FileRoutesByFullPath {
   '/quiz/tekishoku': typeof QuizTekishokuRoute
   '/quiz/ketsudan-result/$level': typeof QuizKetsudanResultLevelRoute
   '/quiz/tekishoku-result/$slug': typeof QuizTekishokuResultSlugRoute
+  '/quiz/result/$id/$level': typeof QuizResultIdLevelRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,6 +141,7 @@ export interface FileRoutesByTo {
   '/quiz/tekishoku': typeof QuizTekishokuRoute
   '/quiz/ketsudan-result/$level': typeof QuizKetsudanResultLevelRoute
   '/quiz/tekishoku-result/$slug': typeof QuizTekishokuResultSlugRoute
+  '/quiz/result/$id/$level': typeof QuizResultIdLevelRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -152,6 +160,7 @@ export interface FileRoutesById {
   '/quiz/tekishoku': typeof QuizTekishokuRoute
   '/quiz/ketsudan-result/$level': typeof QuizKetsudanResultLevelRoute
   '/quiz/tekishoku-result/$slug': typeof QuizTekishokuResultSlugRoute
+  '/quiz/result/$id/$level': typeof QuizResultIdLevelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -171,6 +180,7 @@ export interface FileRouteTypes {
     | '/quiz/tekishoku'
     | '/quiz/ketsudan-result/$level'
     | '/quiz/tekishoku-result/$slug'
+    | '/quiz/result/$id/$level'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -188,6 +198,7 @@ export interface FileRouteTypes {
     | '/quiz/tekishoku'
     | '/quiz/ketsudan-result/$level'
     | '/quiz/tekishoku-result/$slug'
+    | '/quiz/result/$id/$level'
   id:
     | '__root__'
     | '/'
@@ -205,6 +216,7 @@ export interface FileRouteTypes {
     | '/quiz/tekishoku'
     | '/quiz/ketsudan-result/$level'
     | '/quiz/tekishoku-result/$slug'
+    | '/quiz/result/$id/$level'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -223,6 +235,7 @@ export interface RootRouteChildren {
   QuizTekishokuRoute: typeof QuizTekishokuRoute
   QuizKetsudanResultLevelRoute: typeof QuizKetsudanResultLevelRoute
   QuizTekishokuResultSlugRoute: typeof QuizTekishokuResultSlugRoute
+  QuizResultIdLevelRoute: typeof QuizResultIdLevelRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -332,6 +345,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuizTekishokuResultSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quiz/result/$id/$level': {
+      id: '/quiz/result/$id/$level'
+      path: '/quiz/result/$id/$level'
+      fullPath: '/quiz/result/$id/$level'
+      preLoaderRoute: typeof QuizResultIdLevelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -351,6 +371,7 @@ const rootRouteChildren: RootRouteChildren = {
   QuizTekishokuRoute: QuizTekishokuRoute,
   QuizKetsudanResultLevelRoute: QuizKetsudanResultLevelRoute,
   QuizTekishokuResultSlugRoute: QuizTekishokuResultSlugRoute,
+  QuizResultIdLevelRoute: QuizResultIdLevelRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

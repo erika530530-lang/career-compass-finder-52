@@ -259,11 +259,15 @@ function ResultView({
         quizId={quiz.id}
         text={`私の${quiz.metricLabel}は${percent}%でした${band.emoji}「${band.title}」`}
         shareUrl={(() => {
-          if (quiz.id !== "ketsudan") return undefined;
-          const level = ketsudanLevelFromBand(band);
-          return level ? canonical(ketsudanResultPath(level)) : undefined;
+          if (quiz.id === "ketsudan") {
+            const level = ketsudanLevelFromBand(band);
+            return level ? canonical(ketsudanResultPath(level)) : undefined;
+          }
+          const level = resultLevelFromBand(band);
+          return level ? canonical(quizResultPath(quiz.id, level)) : undefined;
         })()}
       />
+
 
 
 

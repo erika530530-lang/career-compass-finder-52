@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { quizzes } from "@/lib/quizzes/data";
 import { publishedGames } from "@/lib/games/data";
+import { allQuizResultPaths } from "@/lib/quizzes/result-og";
+
 import { SITE_URL } from "@/lib/site-config";
 
 interface SitemapEntry {
@@ -23,11 +25,17 @@ export const Route = createFileRoute("/sitemap.xml")({
             changefreq: "weekly" as const,
             priority: "0.8",
           })),
+          ...allQuizResultPaths().map((path) => ({
+            path,
+            changefreq: "monthly" as const,
+            priority: "0.6",
+          })),
           ...publishedGames.map((g) => ({
             path: g.path,
             changefreq: "weekly" as const,
             priority: "0.8",
           })),
+
           { path: "/about", changefreq: "monthly", priority: "0.5" },
           { path: "/contact", changefreq: "yearly", priority: "0.3" },
           { path: "/privacy", changefreq: "yearly", priority: "0.3" },

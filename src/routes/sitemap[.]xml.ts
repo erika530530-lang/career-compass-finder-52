@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 import { quizzes } from "@/lib/quizzes/data";
 import { publishedGames } from "@/lib/games/data";
+import { allQuizResultPaths } from "@/lib/quizzes/result-og";
+
 import { SITE_URL } from "@/lib/site-config";
 
 interface SitemapEntry {

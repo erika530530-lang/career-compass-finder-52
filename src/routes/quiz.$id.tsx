@@ -16,7 +16,7 @@ import { quizResultPath, resultLevelFromBand } from "@/lib/quizzes/result-og";
 
 import { quizThumbnail } from "@/lib/quizzes/thumbnails";
 import { quizIntro } from "@/lib/quizzes/intro";
-import { relatedQuizzes } from "@/lib/quizzes/recommend";
+import { recommendHeading, relatedQuizzes } from "@/lib/quizzes/recommend";
 import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analytics";
 
 export const Route = createFileRoute("/quiz/$id")({
@@ -320,8 +320,11 @@ function ResultView({
   </div>
 
   <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">
-    次はこれやってみる？ 👀
+    {recommendHeading(quiz, band)}
       </h2>
+      <p className="mt-1 px-1 text-[12px] text-muted-foreground">
+        同じ「{categoryMap[quiz.category].label}」系や、相性のいい診断を集めました。
+      </p>
       <div className="mt-3 grid gap-3 md:grid-cols-2">
         {recos.map((r) => (
           <QuizRow key={r.id} quiz={r} fromQuizId={quiz.id} />

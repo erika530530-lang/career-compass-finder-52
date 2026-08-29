@@ -106,7 +106,7 @@ function Home() {
         <div className="mt-12">
           <SectionHead
             title="🎮 人気のミニゲーム"
-            note="遊んでたら、ちょっと賢くなってるやつ。"
+            note="10問だけ。遊んでたら、ちょっと賢くなってるやつ。"
             moreTo="games"
             moreLabel="ゲーム一覧へ"
           />
@@ -115,12 +115,19 @@ function Home() {
               <GameCard key={g.id} game={g} location="home_popular_games" />
             ))}
           </div>
+          <Link
+            to="/games"
+            search={{ cat: "all" }}
+            className="shadow-soft mx-auto mt-4 flex min-h-11 w-full max-w-sm items-center justify-center rounded-full border border-border bg-card text-[13px] font-black text-foreground"
+          >
+            ほかのゲームも見てみる 🕹️
+          </Link>
         </div>
 
         <div className="mt-12">
           <SectionHead
             title="🔮 診断してみる？"
-            note="1〜2分で終わる、自分のことがわかる系。"
+            note="迷ったらここから。1〜2分で自分のことがわかる系。"
             moreTo="quizzes"
             moreLabel="診断一覧へ"
           />

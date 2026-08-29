@@ -107,6 +107,14 @@ function QuizPage() {
             </div>
             <div className="p-4">
               <p className="text-[13px] leading-relaxed text-muted-foreground">{quiz.description}</p>
+
+              <div className="mt-4 space-y-3 rounded-2xl bg-secondary/60 p-4">
+                <h2 className="text-xs font-black text-foreground">この診断について</h2>
+                <IntroItem label="こんな人に向いています" text={intro.forWho} />
+                <IntroItem label="わかること" text={intro.learn} />
+                <IntroItem label="ボリューム" text={intro.volume} />
+              </div>
+
               <button
                 onClick={start}
                 className="shadow-lift mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-primary py-4 text-base font-black text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"

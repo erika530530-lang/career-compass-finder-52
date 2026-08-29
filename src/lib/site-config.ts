@@ -36,6 +36,6 @@ export const SITE_OWNER = "ピクセルポップ運営";
 export const ADSENSE_CLIENT_ID = "ca-pub-4125685680865875";
 
 /** 利用規約ページを追加したらここを true にするとフッターにリンクが出ます */
-export const HAS_TERMS_PAGE = false;
+export const HAS_TERMS_PAGE = true;
 
 export const canonical = (path: string) => `${SITE_URL}${path}`;

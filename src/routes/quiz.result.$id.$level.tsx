@@ -113,7 +113,7 @@ function QuizResultPage() {
         </section>
 
         <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">
-          ほかの診断もやってみる？ 🔮
+          「{data.title}」の人におすすめ 👀
         </h2>
         <div className="mt-3 grid gap-3 md:grid-cols-2">
           {recos.map((r) => (

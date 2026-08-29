@@ -52,9 +52,9 @@ export function SiteFooter() {
         {HAS_TERMS_PAGE && (
           <>
             <span aria-hidden>·</span>
-            <a href="/terms" className={linkClass}>
+            <Link to="/terms" className={linkClass}>
               利用規約
-            </a>
+            </Link>
           </>
         )}
       </nav>

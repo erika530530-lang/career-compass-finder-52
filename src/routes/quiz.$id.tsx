@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Sparkles } from "lucide-react";
-import { getQuiz, quizzes } from "@/lib/quizzes/data";
+import { getQuiz } from "@/lib/quizzes/data";
 import { categoryMap, scoreQuiz, type Quiz } from "@/lib/quizzes/types";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { QuizRow } from "@/components/quiz-card";
@@ -15,6 +15,8 @@ import { ketsudanLevelFromBand, ketsudanResultPath } from "@/lib/quizzes/ketsuda
 import { quizResultPath, resultLevelFromBand } from "@/lib/quizzes/result-og";
 
 import { quizThumbnail } from "@/lib/quizzes/thumbnails";
+import { quizIntro } from "@/lib/quizzes/intro";
+import { recommendHeading, relatedQuizzes } from "@/lib/quizzes/recommend";
 import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analytics";
 
 export const Route = createFileRoute("/quiz/$id")({
@@ -52,6 +54,7 @@ function QuizPage() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const cat = categoryMap[quiz.category];
+  const intro = quizIntro(quiz);
 
   const result = useMemo(
     () => (stage === "result" ? scoreQuiz(quiz, answers) : null),
@@ -107,6 +110,14 @@ function QuizPage() {
             </div>
             <div className="p-4">
               <p className="text-[13px] leading-relaxed text-muted-foreground">{quiz.description}</p>
+
+              <div className="mt-4 space-y-3 rounded-2xl bg-secondary/60 p-4">
+                <h2 className="text-xs font-black text-foreground">この診断について</h2>
+                <IntroItem label="こんな人に向いています" text={intro.forWho} />
+                <IntroItem label="わかること" text={intro.learn} />
+                <IntroItem label="ボリューム" text={intro.volume} />
+              </div>
+
               <button
                 onClick={start}
                 className="shadow-lift mt-4 flex w-full items-center justify-center gap-2 rounded-full bg-primary py-4 text-base font-black text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"
@@ -214,9 +225,7 @@ function ResultView({
   band: NonNullable<ReturnType<typeof scoreQuiz>>["band"];
   onRestart: () => void;
 }) {
-  const recos = quiz.recommendedDiagnoses
-    .map((id) => quizzes.find((x) => x.id === id))
-    .filter((x): x is Quiz => Boolean(x));
+  const recos = relatedQuizzes(quiz, 4);
 
   // 結果画像のパス（resultImageId があれば参照）
   const resultImagePath = band.resultImageId
@@ -311,8 +320,11 @@ function ResultView({
   </div>
 
   <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">
-    次はこれやってみる？ 👀
+    {recommendHeading(quiz, band)}
       </h2>
+      <p className="mt-1 px-1 text-[12px] text-muted-foreground">
+        同じ「{categoryMap[quiz.category].label}」系や、相性のいい診断を集めました。
+      </p>
       <div className="mt-3 grid gap-3 md:grid-cols-2">
         {recos.map((r) => (
           <QuizRow key={r.id} quiz={r} fromQuizId={quiz.id} />
@@ -341,6 +353,15 @@ function ResultView({
         診断をもっと見る
       </Link>
     </section>
+  );
+}
+
+function IntroItem({ label, text }: { label: string; text: string }) {
+  return (
+    <div>
+      <p className="text-[11px] font-black text-primary">{label}</p>
+      <p className="mt-0.5 text-[12px] leading-relaxed text-muted-foreground">{text}</p>
+    </div>
   );
 }
 

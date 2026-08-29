@@ -6,6 +6,7 @@ import { QuizRow } from "@/components/quiz-card";
 import { quizzes } from "@/lib/quizzes/data";
 import { canonical } from "@/lib/site-config";
 import { quizResultBand, quizResultOgImage } from "@/lib/quizzes/result-og";
+import { relatedQuizzes } from "@/lib/quizzes/recommend";
 
 export const Route = createFileRoute("/quiz/result/$id/$level")({
   loader: ({ params }) => {
@@ -65,7 +66,8 @@ export const Route = createFileRoute("/quiz/result/$id/$level")({
 
 function QuizResultPage() {
   const data = Route.useLoaderData();
-  const recos = quizzes.filter((q) => q.id !== data.quizId).slice(0, 4);
+  const self = quizzes.find((q) => q.id === data.quizId);
+  const recos = self ? relatedQuizzes(self, 4) : quizzes.slice(0, 4);
 
   return (
     <main className="min-h-screen bg-hero">
@@ -111,7 +113,7 @@ function QuizResultPage() {
         </section>
 
         <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">
-          ほかの診断もやってみる？ 🔮
+          「{data.title}」の人におすすめ 👀
         </h2>
         <div className="mt-3 grid gap-3 md:grid-cols-2">
           {recos.map((r) => (

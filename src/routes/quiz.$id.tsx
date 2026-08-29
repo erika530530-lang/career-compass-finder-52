@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Sparkles } from "lucide-react";
-import { getQuiz, quizzes } from "@/lib/quizzes/data";
+import { getQuiz } from "@/lib/quizzes/data";
 import { categoryMap, scoreQuiz, type Quiz } from "@/lib/quizzes/types";
 import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { QuizRow } from "@/components/quiz-card";

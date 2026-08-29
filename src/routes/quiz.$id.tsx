@@ -225,9 +225,7 @@ function ResultView({
   band: NonNullable<ReturnType<typeof scoreQuiz>>["band"];
   onRestart: () => void;
 }) {
-  const recos = quiz.recommendedDiagnoses
-    .map((id) => quizzes.find((x) => x.id === id))
-    .filter((x): x is Quiz => Boolean(x));
+  const recos = relatedQuizzes(quiz, 4);
 
   // 結果画像のパス（resultImageId があれば参照）
   const resultImagePath = band.resultImageId

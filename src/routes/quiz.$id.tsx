@@ -15,6 +15,8 @@ import { ketsudanLevelFromBand, ketsudanResultPath } from "@/lib/quizzes/ketsuda
 import { quizResultPath, resultLevelFromBand } from "@/lib/quizzes/result-og";
 
 import { quizThumbnail } from "@/lib/quizzes/thumbnails";
+import { quizIntro } from "@/lib/quizzes/intro";
+import { relatedQuizzes } from "@/lib/quizzes/recommend";
 import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analytics";
 
 export const Route = createFileRoute("/quiz/$id")({
@@ -52,6 +54,7 @@ function QuizPage() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const cat = categoryMap[quiz.category];
+  const intro = quizIntro(quiz);
 
   const result = useMemo(
     () => (stage === "result" ? scoreQuiz(quiz, answers) : null),
@@ -349,6 +352,15 @@ function ResultView({
         診断をもっと見る
       </Link>
     </section>
+  );
+}
+
+function IntroItem({ label, text }: { label: string; text: string }) {
+  return (
+    <div>
+      <p className="text-[11px] font-black text-primary">{label}</p>
+      <p className="mt-0.5 text-[12px] leading-relaxed text-muted-foreground">{text}</p>
+    </div>
   );
 }
 

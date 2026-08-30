@@ -32,6 +32,7 @@ export const Route = createFileRoute("/quiz/$id")({
     const q = loaderData.quiz;
     const title = `${q.title}｜${q.nickname ?? q.metricLabel}診断｜ピクセルポップ`;
     const url = canonical(`/quiz/${params.id}`);
+    const image = canonical(`/og/quiz/${params.id}/default.jpg`);
     return {
       meta: [
         { title },
@@ -40,7 +41,14 @@ export const Route = createFileRoute("/quiz/$id")({
         { property: "og:description", content: q.description },
         { property: "og:type", content: "website" },
         { property: "og:url", content: url },
+        { property: "og:site_name", content: "ピクセルポップ" },
+        { property: "og:image", content: image },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
         { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: q.description },
+        { name: "twitter:image", content: image },
       ],
       links: [{ rel: "canonical", href: url }],
     };

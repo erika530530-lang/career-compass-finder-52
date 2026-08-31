@@ -133,27 +133,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
-   scripts: [
-  {
-    src: "//statics.a8.net/a8link/a8linkmgr.js",
-  },
-  {
-    children: `a8linkmgr({
+  scripts: [
+    // Google Tag Manager (<head> 用)
+    ...(GTM_CONTAINER_ID
+      ? [
+          {
+            children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_CONTAINER_ID}');`,
+          },
+        ]
+      : []),
+    {
+      src: "//statics.a8.net/a8link/a8linkmgr.js",
+    },
+    {
+      children: `a8linkmgr({
       "config_id": "yeA1DrLblQXEifaszBis"
     });`,
-  },
-  ...(GA4_MEASUREMENT_ID
-    ? [
-        {
-          src: `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`,
-          async: true,
-        },
-        {
-          children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${GA4_MEASUREMENT_ID}',{anonymize_ip:true,send_page_view:true});`,
-        },
-      ]
-    : []),
-],
+    },
+    ...(GA4_MEASUREMENT_ID
+      ? [
+          {
+            src: `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`,
+            async: true,
+          },
+          {
+            children: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${GA4_MEASUREMENT_ID}',{anonymize_ip:true,send_page_view:true});`,
+          },
+        ]
+      : []),
+  ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

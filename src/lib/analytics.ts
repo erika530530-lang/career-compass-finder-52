@@ -12,20 +12,31 @@ declare global {
 export const gaEnabled = () => GA4_MEASUREMENT_ID.length > 0;
 
 /**
- * GA4イベント送信。個人を特定できる情報（名前・メール・自由入力文）は
+ * GA4 / GTM イベント送信。個人を特定できる情報（名前・メール・自由入力文）は
  * 絶対に params に入れないこと。診断ID・結果バンド名などの非個人情報のみ。
+ *
+ * GTM 導入時は gtag が未定義の場合があるため、dataLayer への push にフォールバックする。
  */
 export function track(event: string, params: Params = {}) {
-  if (typeof window === "undefined" || !window.gtag) return;
-  window.gtag("event", event, params);
+  if (typeof window === "undefined") return;
+  if (window.gtag) {
+    window.gtag("event", event, params);
+  } else if (window.dataLayer) {
+    window.dataLayer.push({ event, ...params });
+  }
 }
 
 export const trackPageView = (path: string) => {
-  if (typeof window === "undefined" || !window.gtag) return;
-  window.gtag("event", "page_view", {
+  if (typeof window === "undefined") return;
+  const payload = {
     page_path: path,
     page_location: `${window.location.origin}${path}`,
-  });
+  };
+  if (window.gtag) {
+    window.gtag("event", "page_view", payload);
+  } else if (window.dataLayer) {
+    window.dataLayer.push({ event: "page_view", ...payload });
+  }
 };
 
 export const trackQuizStart = (quizId: string) => track("quiz_start", { quiz_id: quizId });

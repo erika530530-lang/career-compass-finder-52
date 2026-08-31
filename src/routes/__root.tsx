@@ -16,6 +16,7 @@ import {
   ADSENSE_CLIENT_ID,
   GA4_MEASUREMENT_ID,
   GSC_VERIFICATION_CODE,
+  GTM_CONTAINER_ID,
   SITE_NAME,
 } from "../lib/site-config";
 import { trackPageView } from "../lib/analytics";

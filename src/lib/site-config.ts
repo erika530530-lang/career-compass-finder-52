@@ -13,8 +13,19 @@ export const SITE_TAGLINE = "暇つぶしできる診断、いっぱいありま
  * Google Analytics 4 の測定ID。
  * 例: "G-XXXXXXXXXX"
  * 空文字のあいだはGA4スクリプトを読み込みません（＝本番前は無効）。
+ *
+ * GTM 経由で GA4 を計測する場合は、ここを空のままにし、
+ * GTM コンテナ内で GA4 タグを設定してください。
+ * 両方を同時に有効にすると計測が重複する可能性があります。
  */
 export const GA4_MEASUREMENT_ID = "";
+
+/**
+ * Google Tag Manager のコンテナID。
+ * 例: "GTM-XXXXXX"
+ * 空文字のあいだはGTMスクリプトを読み込みません。
+ */
+export const GTM_CONTAINER_ID = "GTM-NBSWTC3K";
 
 /**
  * Google Search Console の所有権確認コード（HTMLタグ方式の content の値だけ）。

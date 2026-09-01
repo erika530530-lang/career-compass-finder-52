@@ -32,7 +32,7 @@ export const GTM_CONTAINER_ID = "GTM-NBSWTC3K";
  * 例: "abcdEFGh1234..."
  * 空文字のあいだは meta タグを出力しません。
  */
-export const GSC_VERIFICATION_CODE = "";
+export const GSC_VERIFICATION_CODE = "9vTOqJh5kKGk78XMqDQGp6owuNd5owcO3dQTIa61Y4A";
 
 /**
  * お問い合わせの通知先メールアドレス（後から設定）。

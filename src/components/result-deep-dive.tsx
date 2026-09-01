@@ -4,7 +4,7 @@ import type { DeepDive } from "@/lib/quizzes/deep-dive";
  * 結果ページの読み物パート。診断結果ごとの固有解説を表示する。
  * データが無い診断では何も表示しない（既存の見た目を壊さない）。
  */
-export function ResultDeepDive({ data, title }: { data?: DeepDive; title?: string }) {
+export function ResultDeepDive({ data, title }: { data?: DeepDive | undefined; title?: string | undefined }) {
   if (!data) return null;
   return (
     <section className="card-surface mt-5 p-5">

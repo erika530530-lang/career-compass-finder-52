@@ -17,6 +17,8 @@ import { quizResultPath, resultLevelFromBand } from "@/lib/quizzes/result-og";
 import { quizThumbnail } from "@/lib/quizzes/thumbnails";
 import { quizIntro } from "@/lib/quizzes/intro";
 import { recommendHeading, relatedQuizzes } from "@/lib/quizzes/recommend";
+import { ResultDeepDive } from "@/components/result-deep-dive";
+import { quizDeepDive } from "@/lib/quizzes/deep-dive";
 import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analytics";
 
 export const Route = createFileRoute("/quiz/$id")({
@@ -123,6 +125,7 @@ function QuizPage() {
                 <h2 className="text-xs font-black text-foreground">この診断について</h2>
                 <IntroItem label="こんな人に向いています" text={intro.forWho} />
                 <IntroItem label="わかること" text={intro.learn} />
+                {intro.enjoy && <IntroItem label="結果の楽しみ方" text={intro.enjoy} />}
                 <IntroItem label="ボリューム" text={intro.volume} />
               </div>
 
@@ -326,6 +329,8 @@ function ResultView({
       </button>
     </div>
   </div>
+
+  <ResultDeepDive data={quizDeepDive(quiz.id, band.title)} />
 
   <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">
     {recommendHeading(quiz, band)}

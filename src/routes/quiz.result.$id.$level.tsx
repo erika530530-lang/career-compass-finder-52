@@ -7,6 +7,8 @@ import { quizzes } from "@/lib/quizzes/data";
 import { canonical } from "@/lib/site-config";
 import { quizResultBand, quizResultOgImage } from "@/lib/quizzes/result-og";
 import { relatedQuizzes } from "@/lib/quizzes/recommend";
+import { ResultDeepDive } from "@/components/result-deep-dive";
+import { quizDeepDive } from "@/lib/quizzes/deep-dive";
 
 export const Route = createFileRoute("/quiz/result/$id/$level")({
   loader: ({ params }) => {
@@ -111,6 +113,8 @@ function QuizResultPage() {
             </Link>
           </div>
         </section>
+
+        <ResultDeepDive data={quizDeepDive(data.quizId, data.title)} />
 
         <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">
           「{data.title}」の人におすすめ 👀

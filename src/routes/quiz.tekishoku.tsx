@@ -14,6 +14,8 @@ import { publishedGames } from "@/lib/games/data";
 import { quizzes } from "@/lib/quizzes/data";
 import { canonical } from "@/lib/site-config";
 import { trackQuizComplete, trackQuizStart, trackResultView } from "@/lib/analytics";
+import { ResultDeepDive } from "@/components/result-deep-dive";
+import { tekishokuDeepDive } from "@/lib/quizzes/deep-dive";
 
 export const Route = createFileRoute("/quiz/tekishoku")({
   head: () => ({
@@ -340,6 +342,11 @@ function ResultView({
 
       </div>
 
+      <ResultDeepDive
+        data={tekishokuDeepDive[result.top[0]!]}
+        title={`${axisMeta[result.top[0]!].label}タイプをもっと知る`}
+      />
+
 
 
       <h2 className="font-display mt-6 px-1 text-base font-black text-foreground">
@@ -463,5 +470,14 @@ function ResultView({
         診断をもっと見る
       </Link>
     </section>
+  );
+}
+
+function IntroItem({ label, text }: { label: string; text: string }) {
+  return (
+    <div>
+      <p className="text-[11px] font-black text-primary">{label}</p>
+      <p className="mt-0.5 text-[12px] leading-relaxed text-muted-foreground">{text}</p>
+    </div>
   );
 }

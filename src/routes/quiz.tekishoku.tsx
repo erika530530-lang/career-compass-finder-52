@@ -159,6 +159,25 @@ function Intro({ onStart }: { onStart: () => void }) {
           </p>
         </div>
         <div className="p-4">
+          <div className="mb-4 space-y-3 rounded-2xl bg-secondary/60 p-4">
+            <h2 className="text-xs font-black text-foreground">この診断について</h2>
+            <IntroItem
+              label="こんな人に向いています"
+              text="進路や就職・転職で「自分は何に向いているのか」が言葉にできない人向け。やりたいことが多すぎて絞れない人にも役立ちます。"
+            />
+            <IntroItem
+              label="わかること"
+              text={`6つの適性（現実・研究・芸術・社会・企業・慣習）のスコアと、その組み合わせから相性の良い職業のランキングが分かります。${careers.length}職業ぶんの仕事内容も一緒に読めます。`}
+            />
+            <IntroItem
+              label="結果の楽しみ方"
+              text="1位の職業をそのまま目指す必要はありません。上位に並んだ職業の共通点（ひとり作業か、人と話すか、作るのか整えるのか）を眺めるのが、この診断の本来の使い方です。"
+            />
+            <IntroItem
+              label="ボリューム"
+              text="全18問・約2分。登録もアプリのインストールも不要で、答えはこの端末の中だけで計算されます。"
+            />
+          </div>
           <button
             onClick={onStart}
             className="shadow-lift flex w-full items-center justify-center gap-2 rounded-full bg-primary py-4 text-base font-black text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"
@@ -167,6 +186,7 @@ function Intro({ onStart }: { onStart: () => void }) {
             診断スタート
           </button>
         </div>
+
       </div>
     </section>
   );

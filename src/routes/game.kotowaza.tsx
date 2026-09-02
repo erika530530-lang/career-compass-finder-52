@@ -16,6 +16,7 @@ import {
 } from "@/lib/games/proverb-data";
 import { games } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
+import { pageOgImageMeta } from "@/lib/og-pages";
 import { trackGameComplete, trackGameStart } from "@/lib/analytics";
 import { gameThumbnail } from "@/lib/games/thumbnails";
 
@@ -36,6 +37,7 @@ export const Route = createFileRoute("/game/kotowaza")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: canonical("/game/kotowaza") },
       { name: "twitter:card", content: "summary_large_image" },
+      ...pageOgImageMeta("game-kotowaza"),
     ],
     links: [{ rel: "canonical", href: canonical("/game/kotowaza") }],
   }),

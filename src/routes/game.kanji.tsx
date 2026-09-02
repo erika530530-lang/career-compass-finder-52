@@ -16,6 +16,7 @@ import {
   type GlyphQuestion,
 } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
+import { pageOgImageMeta } from "@/lib/og-pages";
 import { track } from "@/lib/analytics";
 import { gameThumbnail } from "@/lib/games/thumbnails";
 
@@ -36,6 +37,7 @@ export const Route = createFileRoute("/game/kanji")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: canonical("/game/kanji") },
       { name: "twitter:card", content: "summary_large_image" },
+      ...pageOgImageMeta("game-kanji"),
     ],
     links: [{ rel: "canonical", href: canonical("/game/kanji") }],
   }),

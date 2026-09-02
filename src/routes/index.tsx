@@ -10,6 +10,7 @@ import { HomeHero } from "@/components/home-hero";
 import { PlayPicker } from "@/components/play-picker";
 import { publishedGames } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
+import { pageOgImageMeta } from "@/lib/og-pages";
 
 const TITLE = "ピクセルポップ｜診断・クイズ・ミニゲームで暇つぶし";
 const DESCRIPTION =
@@ -25,6 +26,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: canonical("/") },
       { name: "twitter:card", content: "summary_large_image" },
+      ...pageOgImageMeta("home"),
     ],
     links: [{ rel: "canonical", href: canonical("/") }],
   }),

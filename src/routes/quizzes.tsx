@@ -6,6 +6,7 @@ import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { GameRow } from "@/components/game-card";
 import { publishedGames } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
+import { pageOgImageMeta } from "@/lib/og-pages";
 
 type Search = { cat: CategoryId | "all"; sort: "popular" | "new" };
 
@@ -30,6 +31,7 @@ export const Route = createFileRoute("/quizzes")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: canonical("/quizzes") },
       { name: "twitter:card", content: "summary_large_image" },
+      ...pageOgImageMeta("quizzes"),
     ],
     links: [{ rel: "canonical", href: canonical("/quizzes") }],
   }),

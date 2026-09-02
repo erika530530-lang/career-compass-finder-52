@@ -3,6 +3,7 @@ import { SiteFooter, SiteHeader } from "@/components/site-header";
 import { GameCard, GameRow } from "@/components/game-card";
 import { gameCategories, gamesInCategory, publishedGames, type GameCategoryId } from "@/lib/games/data";
 import { canonical } from "@/lib/site-config";
+import { pageOgImageMeta } from "@/lib/og-pages";
 
 type Search = { cat: GameCategoryId | "all" };
 
@@ -29,6 +30,7 @@ export const Route = createFileRoute("/games")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: canonical("/games") },
       { name: "twitter:card", content: "summary_large_image" },
+      ...pageOgImageMeta("games"),
     ],
     links: [{ rel: "canonical", href: canonical("/games") }],
   }),
